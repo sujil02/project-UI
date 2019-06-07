@@ -42,13 +42,12 @@ export default class SearchFields extends React.Component{
                     postings: this.state.postings.concat(json)
                 })
             })
-        console.log(this.state.postings)
     }
 
 
     render(){
         return(
-            <div>
+            <div className="justify-content-center">
                     <div className="form-group">
                         <label htmlFor="job-title">
                             Job Skill
@@ -74,7 +73,9 @@ export default class SearchFields extends React.Component{
                     <div className="list-group">
                         {
                             this.state.postings.map( posting =>
-                                <JobRow job={posting.title} />)
+                                <JobRow job={posting.title}
+                                        id={posting.id}
+                                        key={posting.id}/>)
                         }
                     </div>
             </div>
