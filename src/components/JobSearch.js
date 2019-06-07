@@ -1,14 +1,13 @@
 import React from 'react'
 import SearchFields from "./SearchFields";
-import {Link, BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import JobDetails from "./JobDetails";
 
-export default class JobSearchContainer extends React.Component{
+
+
+export default class JobSearch extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            test: 1
-        }
     }
 
     render(){
@@ -20,13 +19,16 @@ export default class JobSearchContainer extends React.Component{
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-6 col-md-6" style={{'borderRight':'3px solid black'}}>
-                            <SearchFields  />
+                            <SearchFields findAllJobsbyDescriptionAndLocation={this.props.findAllJobsbyDescriptionAndLocation}
+                                            jobs={this.props.jobs}
+                                            findJobById={this.props.findJobById}/>
                         </div>
                         <div className="col-lg-6 col-md-6">
                             <Route path={`/positions/:id`}
                                    render={(props) => <JobDetails
-                                                    {...props}
-                                                    id={props.match.params.id}/>} />
+                                       {...props}
+                                       id={props.match.params.id}
+                                       job={props.location.state}/>} />
                         </div>
                     </div>
                 </div>

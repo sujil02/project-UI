@@ -1,9 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 
-const JobRow = ({job, id}) =>
+const JobRow = ({job, id, findJobById}) =>
     <div className="list-group-item">
-        <Link to={`/positions/${id}`}>
+        <Link to={{pathname: `/positions/${id}`,
+                    state:{job: findJobById(id)}}
+        }>
             {job}
         </Link>
     </div>

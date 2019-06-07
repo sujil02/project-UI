@@ -7,7 +7,6 @@ export default class SearchFields extends React.Component{
         super(props);
         this.handleChangeJobTitle = this.handleChangeJobTitle.bind(this);
         this.handleChangeJobLocation = this.handleChangeJobLocation.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.state={
             job: '',
             location:'',
@@ -30,19 +29,7 @@ export default class SearchFields extends React.Component{
 
     }
 
-    handleSubmit(){
-        var url = "https://jobs.github.com/positions.json";
-        var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-        url += "?description=" + this.state.job + "&location=" + this.state.location;
-        fetch(proxyUrl+ url )
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    postings: this.state.postings.concat(json)
-                })
-            })
-    }
 
 
     render(){
@@ -65,17 +52,18 @@ export default class SearchFields extends React.Component{
                     </div>
 
                     <div className="form-group">
-                        <button className="btn btn-block btn-success" onClick={this.handleSubmit}>
+                        <button className="btn btn-block btn-success" onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);console.log(this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location))}}>
                             Search Jobs
                         </button>
                     </div>
 
                     <div className="list-group">
-                        {
-                            this.state.postings.map( posting =>
+                        { this.props.jobs.length >0  &&
+                            this.props.jobs.map( posting =>
                                 <JobRow job={posting.title}
                                         id={posting.id}
-                                        key={posting.id}/>)
+                                        key={posting.id}
+                                        findJobById={this.props.findJobById}/>)
                         }
                     </div>
             </div>

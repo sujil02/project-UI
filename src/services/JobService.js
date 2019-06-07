@@ -13,14 +13,16 @@ export default class JobService {
 
 
     findAllJobsbyDescriptionAndLocation  = (description,location) =>{
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         var findJob = "https://jobs.github.com/positions.json?description=" + description + "&location="+location;
-        fetch(findJob)
-            .then(response => response.json())}
+        return fetch(proxyUrl + findJob)
+            .then(response => response.json())
+    }
 
     findJobById = jobId => {
         // reference --- https://jobs.github.com/positions/564569b3-a4b3-460f-a683-14c5669bc9ff.json
         var findJobByID = "https://jobs.github.com/positions/" + jobId +".json";
-        fetch(findJobByID)
+        return fetch(findJobByID)
             .then(response => response.json())}
 
 
