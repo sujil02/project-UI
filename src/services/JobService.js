@@ -21,8 +21,9 @@ export default class JobService {
 
     findJobById = jobId => {
         // reference --- https://jobs.github.com/positions/564569b3-a4b3-460f-a683-14c5669bc9ff.json
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         var findJobByID = "https://jobs.github.com/positions/" + jobId +".json";
-        return fetch(findJobByID)
+        return fetch(proxyUrl+findJobByID)
             .then(response => response.json())}
 
 

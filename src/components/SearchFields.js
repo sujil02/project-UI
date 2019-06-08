@@ -52,18 +52,21 @@ export default class SearchFields extends React.Component{
                     </div>
 
                     <div className="form-group">
-                        <button className="btn btn-block btn-success" onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);console.log(this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location))}}>
+                        <button className="btn btn-block btn-success" onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);}}>
                             Search Jobs
                         </button>
                     </div>
 
                     <div className="list-group">
-                        { this.props.jobs.length >0  &&
-                            this.props.jobs.map( posting =>
-                                <JobRow job={posting.title}
+                        { this.props.jobs.length > 0  &&
+                            this.props.jobs.map( posting => {
+                                return <JobRow job={posting.title}
                                         id={posting.id}
                                         key={posting.id}
-                                        findJobById={this.props.findJobById}/>)
+                                        findJobById={this.props.findJobById}
+                                        jobs={this.props.jobs}/>
+
+                            })
                         }
                     </div>
             </div>

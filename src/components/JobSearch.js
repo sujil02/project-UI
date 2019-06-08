@@ -11,6 +11,7 @@ export default class JobSearch extends React.Component{
     }
 
     render(){
+        let cJob = {};
         return(
             <Router>
             <div className="jumbotron bg-info">
@@ -24,11 +25,15 @@ export default class JobSearch extends React.Component{
                                             findJobById={this.props.findJobById}/>
                         </div>
                         <div className="col-lg-6 col-md-6">
-                            <Route path={`/positions/:id`}
-                                   render={(props) => <JobDetails
-                                       {...props}
-                                       id={props.match.params.id}
-                                       job={props.location.state}/>} />
+
+                                <div>
+                                        <Route path={`/positions/:id`}
+                                               render={(props) => <JobDetails
+                                                                       {...props}
+                                                                       job={this.props.job}
+                                                                />}/>
+                                </div>
+
                         </div>
                     </div>
                 </div>
