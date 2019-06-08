@@ -11,12 +11,8 @@ export default class JobSearch extends React.Component{
     }
 
     render(){
-        let cJob = {};
         return(
             <Router>
-            <div className="jumbotron bg-info">
-                    <h1>Job Search - Prototype</h1>
-            </div>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-4 col-md-4" style={{'borderRight':'3px solid black'}}>
