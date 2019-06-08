@@ -19,12 +19,12 @@ export default class JobSearch extends React.Component{
             </div>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-lg-6 col-md-6" style={{'borderRight':'3px solid black'}}>
+                        <div className="col-lg-4 col-md-4" style={{'borderRight':'3px solid black'}}>
                             <SearchFields findAllJobsbyDescriptionAndLocation={this.props.findAllJobsbyDescriptionAndLocation}
                                             jobs={this.props.jobs}
                                             findJobById={this.props.findJobById}/>
                         </div>
-                        <div className="col-lg-6 col-md-6">
+                        <div className="col-lg-8 col-md-8">
 
                                 <div>
                                         <Route path={`/positions/:id`}
