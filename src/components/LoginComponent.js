@@ -1,7 +1,10 @@
 import React from 'react';
+import RegisterComponent from "./RegisterComponent";
+import {Route, Link} from 'react-router-dom';
 
 const LoginComponent = () => {
     return (
+        <div>
         <div className="row justify-content-center">
             <div className="card" style={{'width':'60%', 'marginTop':'3em', 'marginBottom':'3em'}}>
                 <div className="card-body">
@@ -33,12 +36,16 @@ const LoginComponent = () => {
                 <div className="card-footer">
                     <div className="form-row">
                         <button className="btn btn-success ml-1 mr-auto"> Login </button>
+                        <Link to={`/register`}>
                         <button className="btn btn-warning"> Sign Up </button>
+                        </Link>
                     </div>
 
                 </div>
 
             </div>
+        </div>
+
         </div>
     );
 };

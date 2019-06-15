@@ -8,12 +8,19 @@ import JobDetails from "./JobDetails";
 export default class JobSearch extends React.Component{
     constructor(props){
         super(props);
+
+    }
+
+    componentWillMount() {
+
     }
 
     render(){
         return(
             <Router>
                 <div className="container-fluid">
+                    {console.log("JOB SEARCH")}
+                    {console.log(this.props)}
                     <div className="row">
                         <div className="col-lg-4 col-md-4" style={{'borderRight':'3px solid black'}}>
                             <SearchFields findAllJobsbyDescriptionAndLocation={this.props.findAllJobsbyDescriptionAndLocation}

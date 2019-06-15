@@ -17,4 +17,5 @@ const jobReducer = (state = {jobs: []}, action) => {
     }
 }
 
+
 export default jobReducer;
