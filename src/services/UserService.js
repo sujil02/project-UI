@@ -12,11 +12,11 @@ export default class JobService {
         return this.myInstance;
     }
 
-    urlUser = `${URL_ROOT}/api`;
+    urlUser = `http://localhost:8080/api`;
     proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
     findUserBycredentials  = (user) =>{
-        return fetch(`${this.proxyUrl}/${this.urlUser}/login`,{
+        return fetch(`${this.urlUser}/login`,{
             method: 'POST',
             body: user,
             credentials:'include',

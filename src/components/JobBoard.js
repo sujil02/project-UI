@@ -4,10 +4,10 @@ import {createStore} from 'redux';
 import jobReducer from '../reducers/jobReducer';
 import JobContainer from "../container/JobSearchContainer";
 import {Link, BrowserRouter as Router, Route} from "react-router-dom";
-import LoginComponent from './LoginComponent';
 import '../../node_modules/font-awesome/css/font-awesome.css';
 import RegisterComponent from "./RegisterComponent";
 import mainReducer from '../reducers/JobBoardReducer'
+import LoginContainer from '../container/LoginContainer';
 
 const store = createStore(mainReducer);
 let s = store.getState();
@@ -16,8 +16,6 @@ export default class JobBoard extends React.Component{
         return(
             <Provider store={store}>
             <Router>
-                {console.log("JOB BOARD SELECTOR")}
-                {console.log(this.props)}
                 <div className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <Link to={'/'}>
                         <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-circle"
@@ -41,7 +39,7 @@ export default class JobBoard extends React.Component{
                 </div>
 
                 <Route exact path={`/login`}
-                            render={() => <LoginComponent />}/>
+                            render={() => <LoginContainer />}/>
                 <Route exact path={`/register`}
                        render={() => <RegisterComponent />}/>
                 <Route exact path={'/'}
