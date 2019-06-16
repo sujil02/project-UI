@@ -1,12 +1,13 @@
 import userService from '../services/UserService'
 import {connect} from 'react-redux';
-import {selectIsUserLoggedIn} from "../reducers/loginReducer";
+import {selectIsUserLoggedIn, selectUser} from "../reducers/loginReducer";
 import LoginComponent from '../components/LoginComponent';
 let us = userService.getInstance();
 
-const stateToPropertyMapper = (state) => ({
+const stateToPropertyMapper = state => ({
     user: state.loginReducer.user,
-    isUserLoggedIn: selectIsUserLoggedIn(state)
+    // user: selectUser(state),
+    isUserLoggedIn: state.loginReducer.isUserLoggedIn
 });
 
 const propertyToDispatchMapper = dispatch => ({
@@ -16,7 +17,8 @@ const propertyToDispatchMapper = dispatch => ({
                 user: result,
                 isUserLoggedIn: true
             }
-        )).catch( () => dispatch({
+        ))
+        .catch( () => dispatch({
             type: 'FAILED',
             isUserLoggedIn: false
         })),

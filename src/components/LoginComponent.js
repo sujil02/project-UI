@@ -69,7 +69,10 @@ export default class LoginComponent extends React.Component{
                           <div className="form-row">
                               <Link to={`/`} className="ml-1 mr-auto">
                               <button className="btn btn-success "
-                                        onClick={() => {console.log(this.state.user); this.props.loginUser(this.state.user);}}>
+                                        onClick={() =>
+                                        {
+                                            this.props.loginUser(this.state.user);
+                                        }}>
                                   Login
                               </button>
                               </Link>

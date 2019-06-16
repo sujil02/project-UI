@@ -17,8 +17,13 @@ const loginReducer = (state = {user:{}, isUserLoggedIn:false}, action) => {
             return state;
     }
 };
+export const selectIsUserLoggedIn = (state) =>{
+    return state.isUserLoggedIn;
+}
 
-export const selectIsUserLoggedIn = (state) =>
-    state.isUserLoggedIn;
+export const selectUser = (state) => {
+    return state.user;
+}
+
 
 export default loginReducer;

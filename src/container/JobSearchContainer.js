@@ -6,7 +6,8 @@ const jobService = service.getInstance();
 
 const stateToPropertyMapper = (state) => ({
     jobs: state.jobReducer.jobs,
-    job: state.jobReducer.job
+    job: state.jobReducer.job,
+    isUserLoggedIn: state.loginReducer.isUserLoggedIn
 });
 
 const propertyToDispatchMapper = dispatch => ({

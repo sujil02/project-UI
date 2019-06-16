@@ -10,12 +10,16 @@ import mainReducer from '../reducers/JobBoardReducer'
 import LoginContainer from '../container/LoginContainer';
 
 const store = createStore(mainReducer);
-let s = store.getState();
+let s = store
+
 export default class JobBoard extends React.Component{
     render(){
         return(
             <Provider store={store}>
             <Router>
+                {console.log("JOB BOARD")}
+                {console.log(store.getState().loginReducer.isUserLoggedIn
+                )}
                 <div className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <Link to={'/'}>
                         <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-circle"
@@ -43,7 +47,7 @@ export default class JobBoard extends React.Component{
                 <Route exact path={`/register`}
                        render={() => <RegisterComponent />}/>
                 <Route exact path={'/'}
-                       render={() =><JobContainer/>} />
+                       render={() =><JobContainer s ={store.getState().loginReducer}/>} />
 
             </Router>
             </Provider>
