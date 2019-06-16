@@ -1,3 +1,4 @@
+import URL_ROOT from "./UrlConfig";
 
 export default class JobService {
 
@@ -11,13 +12,34 @@ export default class JobService {
         return this.myInstance;
     }
 
+    urlUser = `http://localhost:8080/api`;
+    proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-    findUserBycredentials  = (username,password) =>{
-        var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        var findUser = "";
-        return fetch(proxyUrl + findUser)
+    findUserBycredentials  = (user) =>{
+        return fetch(`${this.urlUser}/user/login`,{
+            method: 'POST',
+            body: JSON.stringify(user),
+            credentials:'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
             .then(response => response.json())
     }
+
+    registerUser = (user) => {
+        return fetch(`${this.urlUser}/register`,{
+            method: 'POST',
+            body: user,
+            credentials:'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+    }
+
+
 
 
 }

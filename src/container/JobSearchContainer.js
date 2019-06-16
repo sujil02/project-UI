@@ -4,10 +4,11 @@ import {connect} from 'react-redux'
 import service from '../services/JobService'
 const jobService = service.getInstance();
 
-const stateToPropertyMapper = state => ({
-    jobs: state.jobs,
-    job:state.job
-})
+const stateToPropertyMapper = (state) => ({
+    jobs: state.jobReducer.jobs,
+    job: state.jobReducer.job,
+    isUserLoggedIn: state.loginReducer.isUserLoggedIn
+});
 
 const propertyToDispatchMapper = dispatch => ({
 
@@ -31,9 +32,7 @@ const propertyToDispatchMapper = dispatch => ({
                 })),
 
     }
-)
-
-
+);
 
 
 const JobsListContainer = connect(

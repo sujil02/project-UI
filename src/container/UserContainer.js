@@ -19,10 +19,15 @@ const propertyToDispatchMapper = dispatch => ({
                     user: user,
                 })),
 
+    registerUser: (user) =>
+        userService.registerUser(user)
+            .then( user =>
+                dispatch({
+                    type: 'REGISTER_USER',
+                    user: user
+                })),
 
-
-
-})
+});
 
 
 
