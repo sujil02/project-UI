@@ -1,5 +1,5 @@
 
-const privateProfileReducer = (state = {user:{}}, action) => {
+const privateProfileReducer = (state = {user: {}}, action) => {
     switch(action.type){
 
         case 'UPDATE_USER':

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const PrivateProfileComponent = (user) => {
+    let updatedUser = {...user.loggedInUser};
     return(
         <div>
             <div >
@@ -18,7 +19,7 @@ const PrivateProfileComponent = (user) => {
                                         Username
                                     </label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" placeholder={user.loggedInUser.username} readOnly />
+                                        <input className="form-control" placeholder={updatedUser.username} readOnly />
                                     </div>
                                 </div>
 
@@ -28,10 +29,11 @@ const PrivateProfileComponent = (user) => {
                                     </label>
                                     <div className="col-sm-10">
                                         <input className="form-control"
-                                               value={user.loggedInUser.firstName}
+                                               value={user.updatedUser.firstName != null ? user.updatedUser.firstName : user.loggedInUser.firstName}
+                                               type="text"
                                                 onChange={(event) => user.updateUser(
                                                     user=
-                                                        {...user.loggedInUser,
+                                                        {...updatedUser,
                                                             ...user.updatedUser,
                                                             firstName: event.target.value})}/>
                                     </div>
@@ -43,10 +45,11 @@ const PrivateProfileComponent = (user) => {
                                     </label>
                                     <div className="col-sm-10">
                                         <input className="form-control"
-                                               value={user.loggedInUser.lastName}
+                                               type="text"
+                                               value={user.updatedUser.lastName != null ? user.updatedUser.lastName : user.loggedInUser.lastName}
                                                onChange={(event) => user.updateUser(
                                                    user=
-                                                       {...user.loggedInUser,
+                                                       {...updatedUser,
                                                            ...user.updatedUser,
                                                            lastName: event.target.value})}/>
                                     </div>
@@ -59,10 +62,10 @@ const PrivateProfileComponent = (user) => {
                                     <div className="col-sm-10">
                                         <input className="form-control"
                                                type="password"
-                                               value={user.loggedInUser.password}
+                                               value={user.updatedUser.password != null ? user.updatedUser.password : user.loggedInUser.password}
                                                onChange={(event) => user.updateUser(
                                                    user=
-                                                       {...user.loggedInUser,
+                                                       {...updatedUser,
                                                            ...user.updatedUser,
                                                            password: event.target.value})}/>
                                     </div>
@@ -75,10 +78,10 @@ const PrivateProfileComponent = (user) => {
                                     <div className="col-sm-10">
                                         <input className="form-control"
                                                type="email"
-                                               value={user.loggedInUser.email}
+                                               value={user.updatedUser.email != null ? user.updatedUser.email : user.loggedInUser.email}
                                                onChange={(event) => user.updateUser(
                                                    user=
-                                                       {...user.loggedInUser,
+                                                       {...updatedUser,
                                                            ...user.updatedUser,
                                                            email: event.target.value})}/>
                                     </div>
@@ -90,7 +93,7 @@ const PrivateProfileComponent = (user) => {
                                     </label>
                                     <div className="col-sm-10">
                                         <input className="form-control"
-                                               placeholder={user.loggedInUser.role}
+                                               placeholder={updatedUser.role}
                                                readOnly />
                                     </div>
                                 </div>
@@ -98,7 +101,7 @@ const PrivateProfileComponent = (user) => {
                         </div>
                         <div className="card-footer">
                             <button className="btn btn-success btn-block"
-                                    onClick={() => user.saveDetails(user.updatedUser, user.updatedUser.id)}>
+                                    onClick={() => user.saveDetails(user.updatedUser, updatedUser.id)}>
                                 Save Details
                             </button>
                         </div>
