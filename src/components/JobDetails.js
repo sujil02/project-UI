@@ -4,8 +4,8 @@ const JobDetails =({job}) => {
     return (
 
         <div className="container">
-            {console.log(job)}
-            { job &&
+
+            {job &&
             <div>
                 <div className="card">
                     <div className="card-header">
@@ -59,21 +59,19 @@ const JobDetails =({job}) => {
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2 col-form-label-sm"> How to Apply: </label>
                             <div className="col-sm-10">
-                                {/*<input type="text" className="form-control" value={job.how_to_apply} readOnly/>*/}
                                 <span>{ReactHtmlParser(job.how_to_apply)}</span>
                             </div>
                         </div>
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2 col-form-label-sm"> Company Website: </label>
                             <div className="col-sm-10">
-                                {/*<input type="text" className="form-control" value={job.how_to_apply} readOnly/>*/}
+
                                 <span><a href={job.company_url} target="_blank">{job.company_url}</a></span>
                             </div>
                         </div>
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2 col-form-label-sm"> Github Job Link: </label>
                             <div className="col-sm-10">
-                                {/*<input type="text" className="form-control" value={job.how_to_apply} readOnly/>*/}
                                 <span><a href={job.url} target="_blank">{job.url}</a></span>
                             </div>
                         </div>
@@ -87,8 +85,6 @@ const JobDetails =({job}) => {
 
 };
 
-//     =
-// } ({id}) => {
 
 
 export default JobDetails;

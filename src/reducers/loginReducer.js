@@ -1,7 +1,7 @@
 import userService from '../services/UserService'
 let us = userService.getInstance();
 
-const loginReducer = (state = {user:{}, isUserLoggedIn:false}, action) => {
+const loginReducer = (state = {user:{}}, action) => {
     switch(action.type) {
         case 'LOGIN_USER':
             return {

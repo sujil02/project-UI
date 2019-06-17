@@ -8,11 +8,19 @@ import '../../node_modules/font-awesome/css/font-awesome.css';
 import RegisterComponent from "./RegisterComponent";
 import mainReducer from '../reducers/JobBoardReducer'
 import LoginContainer from '../container/LoginContainer';
+import JobDetails from "./JobDetails";
 
 const store = createStore(mainReducer);
-let s = store
+
+
+
+
 
 export default class JobBoard extends React.Component{
+
+
+
+
     render(){
         return(
             <Provider store={store}>
@@ -43,11 +51,15 @@ export default class JobBoard extends React.Component{
                 </div>
 
                 <Route exact path={`/login`}
-                            render={() => <LoginContainer />}/>
+                            component={LoginContainer }/>
                 <Route exact path={`/register`}
                        render={() => <RegisterComponent />}/>
                 <Route exact path={'/'}
                        render={() =><JobContainer s ={store.getState().loginReducer}/>} />
+                <Route exact path={`/jobs/:skill/:loc`}
+                       render={(props) => <JobContainer {...props} s ={store.getState().loginReducer}/>}/>
+                <Route exact path={`/jobs/:skill/:loc/positions/:id`}
+                       render={(props) => <JobContainer {...props} s ={store.getState().loginReducer}/>}/>
 
             </Router>
             </Provider>

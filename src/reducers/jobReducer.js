@@ -5,7 +5,8 @@ const jobReducer = (state = {jobs: []}, action) => {
     switch (action.type) {
         case "FIND_JOB_BY_DESC_LOC":
             return {
-                jobs: action.jobs
+                jobs: action.jobs,
+
             }
         case "FIND_JOB_BY_ID":
             return{
