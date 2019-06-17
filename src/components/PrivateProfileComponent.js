@@ -28,7 +28,12 @@ const PrivateProfileComponent = (user) => {
                                     </label>
                                     <div className="col-sm-10">
                                         <input className="form-control"
-                                               value={user.loggedInUser.firstName} />
+                                               value={user.loggedInUser.firstName}
+                                                onChange={(event) => user.updateUser(
+                                                    user=
+                                                        {...user.loggedInUser,
+                                                            ...user.updatedUser,
+                                                            firstName: event.target.value})}/>
                                     </div>
                                 </div>
 
@@ -38,7 +43,12 @@ const PrivateProfileComponent = (user) => {
                                     </label>
                                     <div className="col-sm-10">
                                         <input className="form-control"
-                                               value={user.loggedInUser.lastName}/>
+                                               value={user.loggedInUser.lastName}
+                                               onChange={(event) => user.updateUser(
+                                                   user=
+                                                       {...user.loggedInUser,
+                                                           ...user.updatedUser,
+                                                           lastName: event.target.value})}/>
                                     </div>
                                 </div>
 
@@ -49,7 +59,12 @@ const PrivateProfileComponent = (user) => {
                                     <div className="col-sm-10">
                                         <input className="form-control"
                                                type="password"
-                                               value={user.loggedInUser.password}/>
+                                               value={user.loggedInUser.password}
+                                               onChange={(event) => user.updateUser(
+                                                   user=
+                                                       {...user.loggedInUser,
+                                                           ...user.updatedUser,
+                                                           password: event.target.value})}/>
                                     </div>
                                 </div>
 
@@ -60,7 +75,12 @@ const PrivateProfileComponent = (user) => {
                                     <div className="col-sm-10">
                                         <input className="form-control"
                                                type="email"
-                                               value={user.loggedInUser.email}/>
+                                               value={user.loggedInUser.email}
+                                               onChange={(event) => user.updateUser(
+                                                   user=
+                                                       {...user.loggedInUser,
+                                                           ...user.updatedUser,
+                                                           email: event.target.value})}/>
                                     </div>
                                 </div>
 
@@ -75,6 +95,12 @@ const PrivateProfileComponent = (user) => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className="card-footer">
+                            <button className="btn btn-success btn-block"
+                                    onClick={() => user.saveDetails(user.updatedUser, user.updatedUser.id)}>
+                                Save Details
+                            </button>
                         </div>
                     </div>
 

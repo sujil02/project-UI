@@ -1,13 +1,13 @@
 import URL_ROOT from "./UrlConfig";
 
-export default class JobService {
+export default class UserService {
 
     static myInstance = null;
 
     static getInstance() {
-        if (JobService.myInstance == null) {
-            JobService.myInstance =
-                new JobService();
+        if (UserService.myInstance == null) {
+            UserService.myInstance =
+                new UserService();
         }
         return this.myInstance;
     }
@@ -37,6 +37,17 @@ export default class JobService {
             }
         })
             .then(response => response.json())
+    }
+
+    updateUser = (user, userId) => {
+        return fetch(`${this.urlUser}/user/${userId}`,{
+            method: 'PUT',
+            body: JSON.stringify(user),
+            credentials: 'include',
+            headers:{
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
     }
 
 
