@@ -16,7 +16,7 @@ export default class JobService {
     proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
     findUserBycredentials  = (user) =>{
-        return fetch(`${this.urlUser}/user/login`,{
+        return fetch(`${this.urlUser}/login`,{
             method: 'POST',
             body: JSON.stringify(user),
             credentials:'include',

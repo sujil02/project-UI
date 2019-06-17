@@ -1,5 +1,6 @@
 import React from 'react';
 import JobRow from './JobRow'
+import {Link, BrowserRouter as Router, Route} from "react-router-dom";
 
 export default class SearchFields extends React.Component{
 
@@ -11,9 +12,9 @@ export default class SearchFields extends React.Component{
             job: '',
             location:'',
             postings:[]
-        }
-    }
 
+    }
+    }
 
     handleChangeJobTitle(event){
         this.setState({
@@ -32,15 +33,18 @@ export default class SearchFields extends React.Component{
 
 
 
+
     render(){
         return(
+            <Router>
             <div className="justify-content-center">
                     <div className="form-group">
                         <label htmlFor="job-title">
                             Job Skill
                         </label>
                         <input type="input" className="form-control" id="job-title"
-                        onChange={this.handleChangeJobTitle} />
+                        onChange={this.handleChangeJobTitle}
+                        defaultValue= {window.location.pathname.split("/")[2]}/>
                     </div>
 
                     <div className="form-group">
@@ -48,28 +52,34 @@ export default class SearchFields extends React.Component{
                             Preferred Location
                         </label>
                         <input type="input" className="form-control" id="job-location"
-                        onChange={this.handleChangeJobLocation}/>
+                        onChange={this.handleChangeJobLocation}
+                               defaultValue = {window.location.pathname.split("/")[3]}/>
                     </div>
 
                     <div className="form-group">
-                        <button className="btn btn-block btn-success" onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);}}>
+                        <Link to={`/profile`} >
+                            <button className="btn btn-block bg-light">Profile</button>
+                        </Link>
+                        <Link to={`/jobs/${this.state.job}/${this.state.location}`} className="btn btn-block btn-success" onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);}}>
                             Search Jobs
-                        </button>
+                        </Link>
                     </div>
 
-                    <div className="list-group">
+
+
                         { this.props.jobs.length > 0  &&
-                            this.props.jobs.map( posting => {
-                                return <JobRow job={posting.title}
-                                        id={posting.id}
-                                        key={posting.id}
-                                        findJobById={this.props.findJobById}
-                                        jobs={this.props.jobs}/>
 
-                            })
-                        }
-                    </div>
+                                    <JobRow skill = {this.state.job}
+                                            loc = {this.state.location}
+                                            {...this.props}
+                                            jobs={this.props.jobs}
+                                            findJobById={this.props.findJobById}/>}
+
+
+
+
             </div>
+            </Router>
         )
     }
 }
