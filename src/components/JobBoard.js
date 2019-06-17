@@ -8,26 +8,20 @@ import '../../node_modules/font-awesome/css/font-awesome.css';
 import RegisterComponent from "./RegisterComponent";
 import mainReducer from '../reducers/JobBoardReducer'
 import LoginContainer from '../container/LoginContainer';
+import PrivateProfileComponent from "./PrivateProfileComponent";
+import PrivateProfileContainer from '../container/PrivateProfileContainer'
 import JobDetails from "./JobDetails";
-
-const store = createStore(mainReducer);
-
-
 
 
 
 export default class JobBoard extends React.Component{
 
 
-
-
     render(){
         return(
-            <Provider store={store}>
             <Router>
                 {console.log("JOB BOARD")}
-                {console.log(store.getState().loginReducer.isUserLoggedIn
-                )}
+                {console.log(this.props)}
                 <div className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <Link to={'/'}>
                         <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-circle"
@@ -39,30 +33,33 @@ export default class JobBoard extends React.Component{
                                 <button className="btn btn-block bg-light">Login</button>
                             </Link>
                         </li>
+                        {this.props.isUserLoggedIn &&
+                        <li className="nav-item nav-link">
+                            <Link to={`/profile`}>
+                                <button className="btn btn-block bg-light">Profile</button>
+                            </Link>
+                        </li>
+                        }
                     </ul>
-                    <li className="nav-item nav-link">
-                        <Link to={`/profile`} >
-                            <button className="btn btn-block bg-light">Profile</button>
-                        </Link>
-                    </li>
                 </div>
                 <div className="jumbotron bg-info">
                     <h1>Job Search Application</h1>
                 </div>
 
                 <Route exact path={`/login`}
-                            component={LoginContainer }/>
+                            render={() => <LoginContainer />}/>
+                <Route exact path={`/profile`}
+                       render={() => <PrivateProfileContainer />}/>
                 <Route exact path={`/register`}
                        render={() => <RegisterComponent />}/>
                 <Route exact path={'/'}
-                       render={() =><JobContainer s ={store.getState().loginReducer}/>} />
+                       render={() =><JobContainer/>} />
                 <Route exact path={`/jobs/:skill/:loc`}
-                       render={(props) => <JobContainer {...props} s ={store.getState().loginReducer}/>}/>
+                       render={(props) => <JobContainer {...props}/>}/>
                 <Route exact path={`/jobs/:skill/:loc/positions/:id`}
-                       render={(props) => <JobContainer {...props} s ={store.getState().loginReducer}/>}/>
+                       render={(props) => <JobContainer {...props}/>}/>
 
             </Router>
-            </Provider>
         );
     };
 };
