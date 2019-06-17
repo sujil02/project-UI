@@ -31,7 +31,23 @@ const propertyToDispatchMapper = dispatch => ({
                     jobs: jobs
                 })),
 
+
+        findAllJobsbyDescriptionAndLocationandid: (desc, location , id) =>
+            jobService
+                .findAllJobsbyDescriptionAndLocation(desc, location)
+                .then(jobs =>jobService.findJobById(id).then(
+                    job =>
+                        dispatch({
+                            type: 'FIND_JOB_BY_ID',
+                            job: job,
+                            jobs: jobs
+                        }))
+
+                )
     }
+
+
+
 );
 
 

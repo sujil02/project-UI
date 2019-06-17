@@ -10,9 +10,13 @@ import mainReducer from '../reducers/JobBoardReducer'
 import LoginContainer from '../container/LoginContainer';
 import PrivateProfileComponent from "./PrivateProfileComponent";
 import PrivateProfileContainer from '../container/PrivateProfileContainer'
+import JobDetails from "./JobDetails";
+
 
 
 export default class JobBoard extends React.Component{
+
+
     render(){
         return(
             <Router>
@@ -49,8 +53,11 @@ export default class JobBoard extends React.Component{
                 <Route exact path={`/register`}
                        render={() => <RegisterComponent />}/>
                 <Route exact path={'/'}
-                       // render={() =><JobContainer s ={store.getState().loginReducer}/>} />
-                       render={() =><JobContainer s={this.props.isUserLoggedIn}/>} />
+                       render={() =><JobContainer/>} />
+                <Route exact path={`/jobs/:skill/:loc`}
+                       render={(props) => <JobContainer {...props}/>}/>
+                <Route exact path={`/jobs/:skill/:loc/positions/:id`}
+                       render={(props) => <JobContainer {...props}/>}/>
 
             </Router>
         );
