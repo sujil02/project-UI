@@ -1,13 +1,32 @@
 import {connect} from 'react-redux'
-import service from '../services/UserService'
 import PrivateProfileComponent from "../components/PrivateProfileComponent";
-const userService = service.getInstance();
+import UserService from '../services/UserService'
+let userService = UserService.getInstance();
 
 
-const StateTOPropertyMapper = state => ({
-    loggedInUser: state.loginReducer.user
+const stateTOPropertyMapper = state => ({
+    loggedInUser: state.loginReducer.user,
+    updatedUser: state.privateProfileReducer.user
 });
 
-const PrivateProfileContainer = connect(StateTOPropertyMapper,)(PrivateProfileComponent);
+const propertyToDispatchMapper = dispatch => ({
+
+    updateUser : (user) => {
+        dispatch({
+            type: 'UPDATE_USER',
+            user: user
+        })
+    },
+
+    saveDetails: (user, userId) =>
+        userService.updateUser(user, userId)
+            .then(result => dispatch({
+                type: 'SAVE_USER',
+                user: result
+            }))
+
+});
+
+const PrivateProfileContainer = connect(stateTOPropertyMapper, propertyToDispatchMapper)(PrivateProfileComponent);
 
 export default  PrivateProfileContainer;
