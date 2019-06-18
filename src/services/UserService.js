@@ -50,6 +50,11 @@ export default class UserService {
         }).then(response => response.json())
     }
 
+    findUsers = (username) => {
+        return fetch(`${this.urlUser}/users/${username}`)
+            .then(response => response.json())
+    }
+
 
 
 
