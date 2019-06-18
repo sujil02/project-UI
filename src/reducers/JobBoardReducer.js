@@ -8,7 +8,7 @@ export default combineReducers({
     jobReducer,
     UserReducer,
     loginReducer,
-    privateProfileReducer
+    privateProfileReducer,
 })
 
  // export const selectIsUserLoggedIn = (state) =>
