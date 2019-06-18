@@ -30,7 +30,7 @@ export default class UserService {
     registerUser = (user) => {
         return fetch(`${this.urlUser}/register`,{
             method: 'POST',
-            body: user,
+            body: JSON.stringify(user),
             credentials:'include',
             headers: {
                 'content-type': 'application/json'

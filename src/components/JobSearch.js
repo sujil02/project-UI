@@ -11,35 +11,49 @@ export default class JobSearch extends React.Component{
     constructor(props){
         super(props);
 
-        console.log(this.props.isUserLoggedIn)
+
         this.state = {
-            job : this.props.job
+            job : this.props.job,
+            isUserLoggedIn : this.propsisUserLoggedIn
         }
+
+        localStorage.setItem('isUserLoggedIn', this.state.isUserLoggedIn)
         // this.state = {
         //     isUserLoggedIn : this.props.isUserLoggedIn
         // }
     }
 
+    componentDidMount() {
+        console.log("didmou")
+
+    }
+
     componentWillMount() {
-        console.log(this.props.isUserLoggedIn)
+        if(window.location.pathname.split("/")[1] === "jobs") {
+            this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill ,
+                this.props.match.params.loc, window.location.pathname.split("/")[5] )
+        }
+        console.log("Willmou")
         localStorage.getItem('isUserLoggedIn') && this.setState({
             isUserLoggedIn : localStorage.getItem('isUserLoggedIn')
+
         })
         // if(window.location.pathname.split("/")[4] === "positions") {
         //
         //     this.props.findJobById(window.location.pathname.split("/")[5] , this.props.jobs)
         //
         // }
-        if(window.location.pathname.split("/")[1] === "jobs") {
-            this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill ,
-                this.props.match.params.loc, window.location.pathname.split("/")[5] )
-        }
+
+        console.log(this.state.isUserLoggedIn)
 
     }
 
+
+
     componentWillUpdate(nextProps, nextState) {
-        console.log(this.props.isUserLoggedIn)
+
         console.log("will update")
+        console.log(this.state.isUserLoggedIn)
         localStorage.setItem('isUserLoggedIn', nextProps.isUserLoggedIn)
     }
 
@@ -50,10 +64,7 @@ export default class JobSearch extends React.Component{
             return (
                 <Router>
                     <div className="container-fluid">
-                        {console.log("JOB SEARCH")}
-                        {console.log(this.props)}
-                        {console.log("state")}
-                        {console.log(this.state)}
+
                         {/*{console.log(this.props.isUserLoggedIn)}*/}
 
                         <div className="row">
@@ -70,11 +81,12 @@ export default class JobSearch extends React.Component{
                                 {/*{window.location.pathname.split('/')[2] &&*/}
                                 <div>
 
-                                    <JobDetails
-                                        {...this.props}
+                                    {/*{this.state.isUserLoggedIn === 'true' &&*/}
+                                    < JobDetails
+                                    {...this.props}
                                         job={this.props.job}
-
-                                    />
+                                        />
+                                    {/*}*/}
 
 
 
