@@ -1,23 +1,17 @@
 import React from 'react';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import {Link} from "react-router-dom";
-const JobDetails =({job}) => {
+const AddJobComponent =({}) => {
     return (
 
         <div className="container">
 
-            {job &&
             <div>
                 <div className="card">
                     <div className="card-header">
                         <div className="row">
                             <div className="col-md-10">
-                                <h3> {job.company} </h3>
-                            </div>
-                            <div className="col-md-2">
-                                <div className="ml-auto mr-1">
-                                    <span><img src={job.company_logo} style={{'width':'100%', 'height':'100%'}} /></span>
-                                </div>
+                                <h3> Job Details </h3>
                             </div>
                         </div>
                     </div>
@@ -26,31 +20,33 @@ const JobDetails =({job}) => {
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-2 col-form-label-sm"> Job Title: </label>
                                 <div className="col-sm-10">
-                                    <textarea className="form-control" value={job.title} readOnly/>
+                                    <textarea className="form-control" placeholder="Enter a tiltle for job"/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-2 col-form-label-sm"> Job Type: </label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" value={job.type} readOnly/>
+                                    <input className="form-control"  placeholder="Type of Job"/>
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <label className="col-form-label col-sm-2 col-form-label-sm"> Created On: </label>
+                                <label className="col-form-label col-sm-2 col-form-label-sm"> Posting Date: </label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" value={job.created_at} readOnly/>
+                                    <input className="form-control"  placeholder="Date for posting the job"/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-2 col-form-label-sm"> Location: </label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" value={job.location} readOnly/>
+                                    <input className="form-control"/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-2 col-form-label-sm"> Job Description: </label>
                                 <div className="col-sm-10">
-                                    <span >{ReactHtmlParser(job.description)}</span>
+                                    <div className="col-sm-10">
+                                        <textarea className="form-control"/>
+                                    </div>
                                     {/*< className="form-control" value={job.description} readOnly/>*/}
                                 </div>
                             </div>
@@ -60,31 +56,30 @@ const JobDetails =({job}) => {
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2 col-form-label-sm"> How to Apply: </label>
                             <div className="col-sm-10">
-                                <span>{ReactHtmlParser(job.how_to_apply)}</span>
+                                <textarea className="form-control"/>
                             </div>
                         </div>
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2 col-form-label-sm"> Company Website: </label>
                             <div className="col-sm-10">
-
-                                <span><a href={job.company_url} target="_blank">{job.company_url}</a></span>
+                                <input className="form-control"/>
                             </div>
                         </div>
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2 col-form-label-sm"> Github Job Link: </label>
                             <div className="col-sm-10">
-                                <span><a href={job.url} target="_blank">{job.url}</a></span>
+                                <input className="form-control"/>
                             </div>
                         </div>
                     </div>
                     <div className="form-group">
                         <Link  className="btn btn-block btn-success">
-                            Add Job to Profile
+                           Post Job
                         </Link>
                     </div>
                 </div>
             </div>
-            }
+
         </div>
 
     );
@@ -93,4 +88,4 @@ const JobDetails =({job}) => {
 
 
 
-export default JobDetails;
+export default AddJobComponent;

@@ -11,6 +11,7 @@ import LoginContainer from '../container/LoginContainer';
 import PrivateProfileComponent from "./PrivateProfileComponent";
 import PrivateProfileContainer from '../container/PrivateProfileContainer'
 import JobDetails from "./JobDetails";
+import RegisterUserContainer from "../container/RegisterUserContainer";
 
 
 
@@ -20,19 +21,20 @@ export default class JobBoard extends React.Component{
     render(){
         return(
             <Router>
-                {console.log("JOB BOARD")}
-                {console.log(this.props)}
                 <div className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <Link to={'/'}>
                         <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-circle"
                               style={{'margin': '0', 'padding':'0'}}/>
                     </Link>
+
                     <ul className="navbar-nav mr-1 ml-auto">
+                        {!this.props.isUserLoggedIn &&
                         <li className="nav-item nav-link">
-                            <Link to={`/login`} >
+                            <Link to={`/login`}>
                                 <button className="btn btn-block bg-light">Login</button>
                             </Link>
                         </li>
+                        }
                         {this.props.isUserLoggedIn &&
                         <li className="nav-item nav-link">
                             <Link to={`/profile`}>
@@ -40,6 +42,14 @@ export default class JobBoard extends React.Component{
                             </Link>
                         </li>
                         }
+                        {this.props.isUserLoggedIn &&
+                        <li className="nav-item nav-link">
+                            <Link to={`/login`}>
+                                <button className="btn btn-block bg-light">LogOut</button>
+                            </Link>
+                        </li>
+                        }
+
                     </ul>
                 </div>
                 <div className="jumbotron bg-info">
@@ -51,13 +61,13 @@ export default class JobBoard extends React.Component{
                 <Route exact path={`/profile`}
                        render={() => <PrivateProfileContainer />}/>
                 <Route exact path={`/register`}
-                       render={() => <RegisterComponent />}/>
+                       render={() => <RegisterUserContainer />}/>
                 <Route exact path={'/'}
-                       render={() =><JobContainer/>} />
+                       render={(props) =><JobContainer {...props} isUserLoggedIn = {localStorage.getItem('isUserLoggedIn')}/>} />
                 <Route exact path={`/jobs/:skill/:loc`}
-                       render={(props) => <JobContainer {...props}/>}/>
+                       render={(props) => <JobContainer {...props}/>} isUserLoggedIn = {localStorage.getItem('isUserLoggedIn')}/>
                 <Route exact path={`/jobs/:skill/:loc/positions/:id`}
-                       render={(props) => <JobContainer {...props}/>}/>
+                       render={(props) => <JobContainer {...props}/>} isUserLoggedIn = {localStorage.getItem('isUserLoggedIn')}/>
 
             </Router>
         );
