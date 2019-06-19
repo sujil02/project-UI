@@ -51,9 +51,9 @@ const propertyToDispatchMapper = dispatch => ({
 );
 
 
-const JobsListContainer = connect(
+const JobContainer = connect(
     stateToPropertyMapper,
     propertyToDispatchMapper
 )(JobSearch);
 
-export default JobsListContainer;
+export default JobContainer;

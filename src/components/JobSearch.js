@@ -1,9 +1,12 @@
 import React from 'react'
 import SearchFields from "./SearchFields";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom";
 import JobDetails from "./JobDetails";
 import {selectIsUserLoggedIn, selectUser} from "../reducers/loginReducer";
 import LoginContainer from "../container/LoginContainer";
+import JobsContainer from "../container/JobsContainer";
+import LoginComponent from "./LoginComponent";
+import JobRow from "./JobRow";
 // import {s} from './JobBoard';
 
 
@@ -14,18 +17,12 @@ export default class JobSearch extends React.Component{
 
         this.state = {
             job : this.props.job,
-            isUserLoggedIn : this.propsisUserLoggedIn
         }
 
-        localStorage.setItem('isUserLoggedIn', this.state.isUserLoggedIn)
+        // localStorage.setItem('isUserLoggedIn', this.state.isUserLoggedIn)
         // this.state = {
         //     isUserLoggedIn : this.props.isUserLoggedIn
         // }
-    }
-
-    componentDidMount() {
-        console.log("didmou")
-
     }
 
     componentWillMount() {
@@ -33,19 +30,11 @@ export default class JobSearch extends React.Component{
             this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill ,
                 this.props.match.params.loc, window.location.pathname.split("/")[5] )
         }
-        console.log("Willmou")
-        localStorage.getItem('isUserLoggedIn') && this.setState({
-            isUserLoggedIn : localStorage.getItem('isUserLoggedIn')
-
-        })
         // if(window.location.pathname.split("/")[4] === "positions") {
         //
         //     this.props.findJobById(window.location.pathname.split("/")[5] , this.props.jobs)
         //
         // }
-
-        console.log(this.state.isUserLoggedIn)
-
     }
 
 
@@ -62,10 +51,10 @@ export default class JobSearch extends React.Component{
 
     render() {
             return (
-                <Router>
+                <div>
                     <div className="container-fluid">
-
-                        {/*{console.log(this.props.isUserLoggedIn)}*/}
+                        {console.log("JOB SEARCH")}
+                        {console.log(this.props )}
 
                         <div className="row">
                             <div className="col-lg-4 col-md-4" style={{'borderRight': '3px solid black'}}>
@@ -74,19 +63,42 @@ export default class JobSearch extends React.Component{
                                     findAllJobsbyDescriptionAndLocation={this.props.findAllJobsbyDescriptionAndLocation}
                                     jobs={this.props.jobs}
                                     findJobById={this.props.findJobById}
-                                    isUserLoggedIn={localStorage.getItem('isUserLoggedIn')}/>
+                                    isUserLoggedIn={this.props.isUserLoggedIn}/>
+
+
                             </div>
                             <div className="col-lg-8 col-md-8">
 
                                 {/*{window.location.pathname.split('/')[2] &&*/}
                                 <div>
+                                    {/*<Route exact path={`/jobs/:skill/:loc/positions/:id`}*/}
+                                    {/*       render={(props) => { return (this.props.isUserLoggedIn ?*/}
+                                    {/*           <JobsContainer {...props} job={}/>*/}
+                                    {/*           : <LoginComponent /> )*/}
+                                    {/*       }}/>*/}
 
-                                    {/*{this.state.isUserLoggedIn === 'true' &&*/}
-                                    < JobDetails
-                                    {...this.props}
-                                        job={this.props.job}
+                                    {this.props.isUserLoggedIn === true ? (
+                                        < JobDetails
+                                            {...this.props}
+                                            job={this.props.job}
                                         />
-                                    {/*}*/}
+                                    ) : (
+                                        <div>
+                                            {this.props.job &&
+                                                <h4>
+                                                    Hmm, looks like you are not logged in, please log in or sign up
+                                                    to view the job description
+                                                    {/*<Redirect to={{path: '/login',*/}
+                                                    {/*        state:{from: this.props.match.location}}} >*/}
+                                                    {/*    Here.*/}
+                                                    {/*</Redirect>*/}
+                                                    <LoginContainer loc={this.props.match.location}/>
+                                                </h4>
+                                            }
+                                        </div>
+
+                                    )
+                                    }
 
 
 
@@ -121,7 +133,7 @@ export default class JobSearch extends React.Component{
                             </div>
                         </div>
                     </div>
-                </Router>
+                </div>
 
             )
         }

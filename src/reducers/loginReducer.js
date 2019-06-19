@@ -13,6 +13,16 @@ const loginReducer = (state = {user:{}}, action) => {
                 user: state.user,
                 isUserLoggedIn: false
             };
+        case 'CHECK_USER':
+            return{
+                user: action.user,
+                isUserLoggedIn: Object.keys(action.user).length !== 0 && action.user !== undefined
+            };
+        case 'LOG_OUT':
+            return{
+                user: action.user,
+                isUserLoggedIn: false
+            }
         default:
             return state;
     }

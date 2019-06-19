@@ -36,7 +36,7 @@ export default class SearchFields extends React.Component{
 
     render(){
         return(
-            <Router>
+            <div>
             <div className="justify-content-center">
                     <div className="form-group">
                         <label htmlFor="job-title">
@@ -57,29 +57,24 @@ export default class SearchFields extends React.Component{
                     </div>
 
                     <div className="form-group">
-                        <Link to={`/profile`} >
-                            <button className="btn btn-block bg-light">Profile</button>
-                        </Link>
-                        <Link to={`/jobs/${this.state.job}/${this.state.location}`} className="btn btn-block btn-success" onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);}}>
+                        <Link to={`/jobs/${this.state.job}/${this.state.location}`}
+                              className="btn btn-block btn-success"
+                              onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);}}>
                             Search Jobs
                         </Link>
                     </div>
-
-
-
                         { this.props.jobs.length > 0  &&
 
                                     <JobRow skill = {this.state.job}
                                             loc = {this.state.location}
                                             {...this.props}
                                             jobs={this.props.jobs}
-                                            findJobById={this.props.findJobById}/>}
-
-
+                                            findJobById={this.props.findJobById}/>
+                        }
 
 
             </div>
-            </Router>
+            </div>
         )
     }
 }

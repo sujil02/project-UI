@@ -39,7 +39,7 @@ class PublicProfileComponent extends React.Component {
                             </div>
                         </div>
 
-                        {this.props.user.role === "Recruiter" ? (
+                        {this.props.user.role === "RECRUITER" ? (
                             <div>
                                 <div className="form-group row">
                                     <label className="col-form-label col-sm-3">

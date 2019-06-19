@@ -51,8 +51,25 @@ export default class UserService {
     }
 
     findUsers = (username) => {
-        return fetch(`${this.urlUser}/users/${username}`)
+        return fetch(`${this.urlUser}/users/searchUserProfiles/${username}`)
             .then(response => response.json())
+    }
+
+    checkIfUserLoggedIn = () => {
+        return fetch(`${this.urlUser}/loggedIn`,{
+            credentials: 'include'
+        })
+            .then(response => response.text())
+            .catch(error => console.log("ERROR IN CHECK"))
+    };
+
+    logOutUser = () => {
+        return fetch(`${this.urlUser}/logout`,{
+            method: 'POST',
+            credentials: 'include'
+        })
+            .then(response => response.text())
+            .catch(error => console.log("ERROR IN LOG OUT"))
     }
 
 
