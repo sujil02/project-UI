@@ -1,13 +1,13 @@
 const initialJob = {title:"",
                     type:"",
-                    create_at:"",
+                    created_at:"",
                     description:"",
-                    logo_details:"",
+                    company_logo:"",
                     url:"",
                     company_url:"",
                     company:"",
-                    application_details:"",
-                    address:"",};
+                    how_to_apply:"",
+                    location:"",};
 
 
 const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,

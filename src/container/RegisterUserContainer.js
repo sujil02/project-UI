@@ -5,7 +5,7 @@ let userService = UserService.getInstance();
 
 
 const stateTOPropertyMapper = state => ({
-    updatedUser: state.registerUserReducer.user
+    user: state.registerUserReducer.user
 });
 
 const propertyToDispatchMapper = dispatch => ({

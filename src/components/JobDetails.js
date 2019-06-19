@@ -43,7 +43,7 @@ const JobDetails =({job, addJob, userId}) => {
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-2 col-form-label-sm"> Location: </label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" value={job.location} readOnly/>
+                                    <input className="form-control" value={job.location || job.address} readOnly/>
                                 </div>
                             </div>
                             <div className="form-group row">

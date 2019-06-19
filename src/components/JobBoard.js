@@ -53,7 +53,7 @@ export default class JobBoard extends React.Component{
                 {console.log(this.props)}
                 <div className="navbar navbar-expand-sm navbar-dark bg-dark">
                     <Link to={'/'}>
-                        <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-circle"
+                        <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-top rounded-bottom"
                               style={{'margin': '0', 'padding':'0'}}/>
                     </Link>
 
@@ -67,13 +67,7 @@ export default class JobBoard extends React.Component{
 
                     <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav mr-1 ml-auto">
-                        {!this.props.isUserLoggedIn &&
-                            <li className="nav-item nav-link">
-                                <Link to={`/login`}>
-                                    <button className="btn btn-block bg-light">Login</button>
-                                </Link>
-                            </li>
-                        }
+
                             <li className="nav-item nav-link">
                                 <div className="form-inline">
                                     <input className="form-control" type="text"
@@ -93,6 +87,20 @@ export default class JobBoard extends React.Component{
                                     </Link>
                                 </div>
                             </li>
+                        {!this.props.isUserLoggedIn &&
+                        <li className="nav-item nav-link">
+                            <Link to={`/login`}>
+                                <button className="btn btn-block bg-light">Login</button>
+                            </Link>
+                        </li>
+                        }
+                        {!this.props.isUserLoggedIn &&
+                        <li className="nav-item nav-link">
+                            <Link to={`/register`}>
+                                <button className="btn btn-block bg-light">Register</button>
+                            </Link>
+                        </li>
+                        }
                             {
                             this.props.isUserLoggedIn &&
                                 <li className="nav-item nav-link">
@@ -126,7 +134,12 @@ export default class JobBoard extends React.Component{
 
 
                 <Route exact path={`/login`}
-                            render={(props) => <LoginContainer {...props}/>}/>
+                            render={(props) => (this.props.isUserLoggedIn !== undefined && this.props.isUserLoggedIn !== true)  ? (
+                                <LoginContainer {...props}/>
+                            ) : (
+                                <Redirect to={{pathname: `/`}} />
+                                )
+                            }/>
 
                             <Route exact path={`/profile`}
                             render={() => this.props.isUserLoggedIn ?
@@ -135,7 +148,11 @@ export default class JobBoard extends React.Component{
 
 
                        <Route exact path={`/register`}
-                       render={() => <RegisterUserContainer />}/>
+                       render={() => (this.props.isUserLoggedIn !== undefined && this.props.isUserLoggedIn !== true)  ? (
+                           <RegisterUserContainer/>
+                       ) : (
+                           <Redirect to={{pathname: `/`}} />
+                       ) }/>
 
                         <Route exact path={'/'}
                        render={(props) =><JobSearchContainer jobs = {[]}/>} />
@@ -143,10 +160,10 @@ export default class JobBoard extends React.Component{
                        <Route exact path={`/search/:skill/:loc`}
                        render={(props) => <JobContainer {...props}/>}/>
 
-                       <Route path={`/search/:skill/:loc/positions/:id`}
-                       render={(props) =>
-                           <JobContainer {...props}/>
-                       }/>
+                       {/*<Route exact path={`/search/:skill/:loc/positions/:id`}*/}
+                       {/*render={(props) =>*/}
+                       {/*    <JobContainer {...props}/>*/}
+                       {/*}/>*/}
 
                 <Route path={`/recruiter`}
                        render={(props) =>
