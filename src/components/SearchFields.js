@@ -57,7 +57,7 @@ export default class SearchFields extends React.Component{
                     </div>
 
                     <div className="form-group">
-                        <Link to={`/jobs/${this.state.job}/${this.state.location}`}
+                        <Link to={`/search/${this.state.job}/${this.state.location}`}
                               className="btn btn-block btn-success"
                               onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);}}>
                             Search Jobs
@@ -69,7 +69,8 @@ export default class SearchFields extends React.Component{
                                             loc = {this.state.location}
                                             {...this.props}
                                             jobs={this.props.jobs}
-                                            findJobById={this.props.findJobById}/>
+                                            findJobById={this.props.findJobById}
+                                    user_logged_in={this.props.isUserLoggedIn}/>
                         }
 
 

@@ -81,11 +81,12 @@ class PrivateProfileComponent extends React.Component {
                                         Add a Job
                                     </button>
                                 </li>
-                                <li className={this.getclassName("ALL_ADDED_JOBS")}>
-                                    <button className="btn" onClick={() => this.getAllAddedJobs()}>
-                                        All Added Jobs
-                                    </button>
-                                    <ul>
+
+                                    <li className={this.getclassName("ALL_ADDED_JOBS")}>
+                                        <button className="btn" onClick= {() => this.props.getAllAddedJobs(this.props.loggedInUser)}>
+                                            All Saved Jobs
+                                        </button>
+                                        <ul>
                                         {
                                             this.props.tab === "ALL_ADDED_JOBS" &&
                                             this.props.allAddedJobs.length > 0 &&
@@ -110,12 +111,12 @@ class PrivateProfileComponent extends React.Component {
                                 {/*    </button>*/}
                                 {/*</li>*/}
 
-                                <li className={this.getclassName("MARKED_STUDENTS")}>
-                                    <button className="btn"
-                                            onClick={() => this.props.getMarkedStudents(this.props.loggedInUser, "MARKED_STUDENTS")}>
-                                        Marked Students
-                                    </button>
-                                    <ul>
+
+                                    <li className={this.getclassName("MARKED_STUDENTS")}>
+                                        <button className="btn" onClick= {() => this.props.getMarkedStudents(this.props.loggedInUser , "MARKED_STUDENTS" )}>
+                                            Marked Students
+                                        </button>
+                                        <ul>
                                         {
                                             this.props.tab === "MARKED_STUDENTS" &&
                                             this.props.markedStudents.length > 0 &&
@@ -130,7 +131,6 @@ class PrivateProfileComponent extends React.Component {
 
                                         }
                                     </ul>
-
                                 </li>
 
 
@@ -138,16 +138,18 @@ class PrivateProfileComponent extends React.Component {
                             }
 
                             {this.props.loggedInUser.role === "STUDENT" &&
+
                             <div>
+
                                 <li className={this.getclassName("SAVED_GIT_JOBS")}>
-                                    <button className="btn" onClick={() => this.getSavedGitJobs()}>
-                                        All Saved Jobs
-                                    </button>
+                                    <button className="btn" onClick= {() => this.props.getSavedGitJobs(this.props.loggedInUser)}>
+                                    All Saved Jobs
+                                </button>
                                     <ul>
-                                        {
-                                            this.props.tab === "SAVED_GIT_JOBS" &&
-                                            this.props.savedGitJobs.length > 0 &&
-                                            this.props.savedGitJobs.map(posting =>
+                                    {
+                                    this.props.tab === "SAVED_GIT_JOBS" &&
+                                    this.props.savedGitJobs.length > 0 &&
+                                    this.props.savedGitJobs.map(posting =>
 
                                                 <li className="list-group-item">
                                                     <button className="btn"
@@ -161,12 +163,30 @@ class PrivateProfileComponent extends React.Component {
 
                                 </li>
 
+                                <li className={this.getclassName("FOLLOWING_STUDENT")}>
+                                    <button className="btn" onClick= {() => this.props.getFollowingStudents(this.props.loggedInUser , "FOLLOWING_STUDENT" )}>
+                                        Following
+                                    </button>
+                                    {
+                                        this.props.tab === "FOLLOWING_STUDENT" &&
+                                        this.props.followingStudents.length > 0 &&
+                                        this.props.followingStudents.map(user =>
+
+                                            <div className="list-group-item">
+                                                <button
+                                                    onClick={() => this.set_User(user.id, this.props.followingStudents)}>
+                                                    {user.title}
+                                                </button>
+                                            </div>)
+
+                                    }
+
+                                </li>
 
                                 <li className={this.getclassName("FOLLOWED_STUDENT")}>
                                     <button className="btn"
                                             onClick={() => this.props.getFollowedStudents(this.props.loggedInUser, "FOLLOWED_STUDENT")}>
                                         Followed Students
-
                                     </button>
                                     <ul>
                                         {
@@ -186,6 +206,7 @@ class PrivateProfileComponent extends React.Component {
                                 </li>
                             </div>
                             }
+
                         </ul>
 
                         {/*  PLACE SOME EXTRA INFO RELATED TO PROFILE HERE  */}
@@ -341,6 +362,31 @@ class PrivateProfileComponent extends React.Component {
                             && Object.keys(this.state.user).length > 0 &&
                             <PublicProfileComponent user={this.state.user}/>
                         }
+
+                        {/*{*/}
+                        {/*    this.props.tab === "MARKED_STUDENTS"&&*/}
+                        {/*    this.state.user !== null &&*/}
+                        {/*    <div>*/}
+                        {/*    <p>{this.state.user}</p>*/}
+                        {/*    </div>*/}
+                        {/*}*/}
+
+                        {/*{*/}
+                        {/*    this.props.tab === "FOLLOWED_STUDENT"&&*/}
+                        {/*    this.state.user !== null &&*/}
+                        {/*    <div>*/}
+                        {/*        <p>{this.state.user}</p>*/}
+                        {/*    </div>*/}
+                        {/*}*/}
+
+                        {/*{*/}
+                        {/*    this.props.tab === "FOLLOWING_STUDENT"&&*/}
+                        {/*    this.state.user !== null &&*/}
+                        {/*    <div>*/}
+                        {/*        <p>{this.state.user}</p>*/}
+                        {/*    </div>*/}
+                        {/*}*/}
+
 
 
                     </div>

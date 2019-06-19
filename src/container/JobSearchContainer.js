@@ -32,7 +32,12 @@ const propertyToDispatchMapper = dispatch => ({
                     jobs: jobs
                 })),
 
+            reset:() =>
+                dispatch({
+                    type: 'RESET',
+                    jobs: []
 
+                }),
         findAllJobsbyDescriptionAndLocationandid: (desc, location , id) =>
             jobService
                 .findAllJobsbyDescriptionAndLocation(desc, location)
@@ -52,6 +57,7 @@ const propertyToDispatchMapper = dispatch => ({
                     type: 'SAVE_JOB'
                 }))
     }
+
 
 
 

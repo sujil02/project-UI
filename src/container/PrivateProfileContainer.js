@@ -14,7 +14,7 @@ const stateTOPropertyMapper = state => ({
     followedStudents : state.privateProfileReducer.followedStudents,
     markedStudents : state.privateProfileReducer.markedStudents,
     job: state.privateProfileReducer.job,
-
+    followingStudents : state.privateProfileReducer.followingStudents,
 });
 
 const propertyToDispatchMapper = dispatch => ({
@@ -23,6 +23,7 @@ const propertyToDispatchMapper = dispatch => ({
         dispatch({
             type: 'UPDATE_USER',
             user: user,
+            tab:'PROFILE'
         })
     },
 
@@ -30,7 +31,8 @@ const propertyToDispatchMapper = dispatch => ({
         userService.updateUser(user, userId)
             .then(result => dispatch({
                 type: 'SAVE_USER',
-                user: result
+                user: result,
+                tab:'PROFILE'
             })),
 
     getSavedGitJobs: (user) => {
@@ -76,13 +78,21 @@ const propertyToDispatchMapper = dispatch => ({
             }))
     },
 
+    getFollowingStudents: (user) => {
+        dispatch({
+            type: 'FOLLOWING_STUDENT',
+            followingStudents: [],
+            user: user,
+            tab: 'FOLLOWING_STUDENT'
+        })
+    },
 
-    changeTab : (user , tab) =>
+    changeTab : (user , tab) => {
         dispatch({
             type: 'CHANGED_TAB',
             user: user,
             tab: tab
-        }),
+        })},
 
     addJob: (job, userId) => jobService.addJob(job, userId)
         .then(dispatch({
