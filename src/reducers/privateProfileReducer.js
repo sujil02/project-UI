@@ -2,14 +2,16 @@
 const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
                                         savedGitJobs: [] ,
                                         allAddedJobs: [] ,
-                                        followedStudents : [] ,
+                                        followedStudents : [],
+                                        followingStudents : [],
                                         markedStudents : []}, action) => {
     switch(action.type){
 
         case 'UPDATE_USER':
         case 'SAVE_USER':
             return{
-                user:  action.user
+                user:  action.user,
+                tab: action.tab
             };
         case 'SAVED_GIT_JOBS':
             return{
@@ -29,6 +31,14 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
         case 'FOLLOWED_STUDENT':
             return{
                 followedStudents : action.followedStudents,
+                tab:  action.tab,
+                user: action.user
+
+            };
+
+        case 'FOLLOWING_STUDENT':
+            return{
+                followingStudents : action.followingStudents,
                 tab:  action.tab,
                 user: action.user
 

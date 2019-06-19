@@ -11,6 +11,7 @@ const stateTOPropertyMapper = state => ({
     savedGitJobs : state.privateProfileReducer.savedGitJobs,
     allAddedJobs : state.privateProfileReducer.allAddedJobs,
     followedStudents : state.privateProfileReducer.followedStudents,
+    followingStudents : state.privateProfileReducer.followingStudents,
     markedStudents : state.privateProfileReducer.markedStudents
 
 });
@@ -20,7 +21,8 @@ const propertyToDispatchMapper = dispatch => ({
     updateUser: (user) => {
         dispatch({
             type: 'UPDATE_USER',
-            user: user
+            user: user,
+            tab:'PROFILE'
         })
     },
 
@@ -28,7 +30,8 @@ const propertyToDispatchMapper = dispatch => ({
         userService.updateUser(user, userId)
             .then(result => dispatch({
                 type: 'SAVE_USER',
-                user: result
+                user: result,
+                tab:'PROFILE'
             })),
 
     getSavedGitJobs: (user) => {
@@ -192,10 +195,45 @@ const propertyToDispatchMapper = dispatch => ({
 
     },
 
+    getFollowingStudents: (user) => {
+
+        dispatch({
+            type: 'FOLLOWING_STUDENT',
+            followingStudents: [
+                {
+                    "id": "3",
+                    "type": null,
+                    "url": null,
+                    "createdAt": null,
+                    "company": "Google",
+                    "company_url": null,
+                    "address": "NY",
+                    "title": "ABC",
+                    "description": null,
+                    "applicationDetails": "aa",
+                    "logoDetails": null
+                },
+                {
+                    "id": "4",
+                    "type": "IT",
+                    "url": null,
+                    "createdAt": null,
+                    "company": "Facebook",
+                    "company_url": "facebook.com",
+                    "address": "BOSTON",
+                    "title": "Software Developer",
+                    "description": "Software Developer",
+                    "applicationDetails": "Hello",
+                    "logoDetails": null
+                }
+            ],
+            user: user,
+            tab: 'FOLLOWING_STUDENT'
+        })
 
 
 
-
+    },
 
     changeTab : (user , tab) => {
         dispatch({

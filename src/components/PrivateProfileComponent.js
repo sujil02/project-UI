@@ -9,7 +9,8 @@ class PrivateProfileComponent extends React.Component {
         super(props);
 
         this.state = {
-            job : null
+            job : null,
+            user:null
         }
         // localStorage.setItem('isUserLoggedIn', this.state.isUserLoggedIn)
         // this.state = {
@@ -35,13 +36,6 @@ class PrivateProfileComponent extends React.Component {
         }
 
 
-    }
-    getSavedGitJobs = () =>{
-        this.props.getSavedGitJobs(this.props.loggedInUser)
-    }
-
-    getAllAddedJobs = () =>{
-        this.props.getAllAddedJobs(this.props.loggedInUser)
     }
 
     set_Job = (job_id ,  jobs) => {
@@ -81,7 +75,7 @@ class PrivateProfileComponent extends React.Component {
                                 </button>
                             </li>
                                     <li className={this.getclassName("ALL_ADDED_JOBS")}>
-                                        <button className="btn" onClick= {() => this.getAllAddedJobs()}>
+                                        <button className="btn" onClick= {() => this.props.getAllAddedJobs(this.props.loggedInUser)}>
                                             All Saved Jobs
                                         </button>
                                         {
@@ -100,11 +94,7 @@ class PrivateProfileComponent extends React.Component {
 
                                     </li>
 
-                            {/*        <li className={this.getclassName("MARKED_STUDENTS")}>*/}
-                            {/*    <button className="btn" onClick={() => this.props.changeTab(this.props.loggedInUser,"MARKED_STUDENTS")} >*/}
-                            {/*        Marked Students*/}
-                            {/*    </button>*/}
-                            {/*</li>*/}
+
 
                                     <li className={this.getclassName("MARKED_STUDENTS")}>
                                         <button className="btn" onClick= {() => this.props.getMarkedStudents(this.props.loggedInUser , "MARKED_STUDENTS" )}>
@@ -126,21 +116,15 @@ class PrivateProfileComponent extends React.Component {
 
                                     </li>
 
-
-
-
-
-
-
-
-
                                 </div>
                                 }
 
                             {this.props.loggedInUser.role === "STUDENT" &&
+
                             <div>
-                            <li className={this.getclassName("SAVED_GIT_JOBS")}>
-                                <button className="btn" onClick= {() => this.getSavedGitJobs()}>
+
+                                <li className={this.getclassName("SAVED_GIT_JOBS")}>
+                                <button className="btn" onClick= {() => this.props.getSavedGitJobs(this.props.loggedInUser)}>
                                    All Saved Jobs
                                 </button>
                                 {
@@ -156,16 +140,51 @@ class PrivateProfileComponent extends React.Component {
                                         </div>)
 
                                 }
-
-                            </li>
-
+                                </li>
 
 
-                            <li className={this.getclassName("FOLLOWED_STUDENT")}>
-                                <button className="btn" onClick={() => this.props.changeTab(this.props.loggedInUser,"FOLLOWED_STUDENT")} >
-                                    Followed Students
-                                </button>
-                            </li>
+                                <li className={this.getclassName("FOLLOWED_STUDENT")}>
+                                    <button className="btn" onClick= {() => this.props.getFollowedStudents(this.props.loggedInUser , "FOLLOWED_STUDENT" )}>
+                                        Followed
+                                    </button>
+                                    {
+                                        this.props.tab === "FOLLOWED_STUDENT" &&
+                                        this.props.followedStudents.length > 0 &&
+                                        this.props.followedStudents.map(user =>
+
+                                            <div className="list-group-item">
+                                                <button
+                                                    onClick={() => this.set_User(user.id, this.props.followedStudents)}>
+                                                    {user.title}
+                                                </button>
+                                            </div>)
+
+                                    }
+
+                                </li>
+
+
+                                <li className={this.getclassName("FOLLOWING_STUDENT")}>
+                                    <button className="btn" onClick= {() => this.props.getFollowingStudents(this.props.loggedInUser , "FOLLOWING_STUDENT" )}>
+                                        Following
+                                    </button>
+                                    {
+                                        this.props.tab === "FOLLOWING_STUDENT" &&
+                                        this.props.followingStudents.length > 0 &&
+                                        this.props.followingStudents.map(user =>
+
+                                            <div className="list-group-item">
+                                                <button
+                                                    onClick={() => this.set_User(user.id, this.props.followingStudents)}>
+                                                    {user.title}
+                                                </button>
+                                            </div>)
+
+                                    }
+
+                                </li>
+
+
                                 </div>
                                 }
                         </ul>
@@ -308,6 +327,31 @@ class PrivateProfileComponent extends React.Component {
                             this.props.tab === "SAVED_GIT_JOBS"&&
                                 this.state.job !== null &&
                             <JobDetails job = {this.state.job}/>
+                        }
+
+
+                        {
+                            this.props.tab === "MARKED_STUDENTS"&&
+                            this.state.user !== null &&
+                            <div>
+                            <p>{this.state.user}</p>
+                            </div>
+                        }
+
+                        {
+                            this.props.tab === "FOLLOWED_STUDENT"&&
+                            this.state.user !== null &&
+                            <div>
+                                <p>{this.state.user}</p>
+                            </div>
+                        }
+
+                        {
+                            this.props.tab === "FOLLOWING_STUDENT"&&
+                            this.state.user !== null &&
+                            <div>
+                                <p>{this.state.user}</p>
+                            </div>
                         }
 
 
