@@ -129,7 +129,7 @@ export default class JobBoard extends React.Component{
                             <Route exact path={`/profile`}
                             render={() => this.props.isUserLoggedIn ?
                                         <PrivateProfileContainer />
-                                        :  <Redirect to={`/login`} /> } />
+                                        :  <Redirect to={{pathname: `/login`, message: true}} /> } />
 
 
                        <Route exact path={`/register`}

@@ -63,10 +63,11 @@ export default class JobBoard extends React.Component{
             this.props.jobs.map((posting,index) =>
 
                 <li className="list-group-item" key={index}>
-                    <Link
-                        to = "/login"
-
-                    >
+                    <Link to={{
+                        pathname: '/login',
+                        state: {
+                            message: true
+                        }}}>
                         {posting.title}
                     </Link>
                 </li>
