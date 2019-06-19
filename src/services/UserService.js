@@ -28,6 +28,8 @@ export default class UserService {
     }
 
     registerUser = (user) => {
+
+
         return fetch(`${this.urlUser}/register`,{
             method: 'POST',
             body: JSON.stringify(user),

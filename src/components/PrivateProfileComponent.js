@@ -1,17 +1,17 @@
 import React from 'react';
 import AddJobComponent from './AddJobComponent'
+import {Link} from "react-router-dom";
 
+import JobDetails from "./JobDetails";
 
 class PrivateProfileComponent extends React.Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
-            tab: "PROFILE"
+            job : null
         }
-
-        localStorage.setItem('isUserLoggedIn', this.state.isUserLoggedIn)
+        // localStorage.setItem('isUserLoggedIn', this.state.isUserLoggedIn)
         // this.state = {
         //     isUserLoggedIn : this.props.isUserLoggedIn
         // }
@@ -22,17 +22,42 @@ class PrivateProfileComponent extends React.Component {
         this.setState({
             tab: tab_type
         })
+
     }
 
     getclassName = (tab_type) => {
-        if (tab_type === this.state.tab)
+        if (tab_type === this.props.tab)
         {
             return ("list-group-item active")
         }
         else{
             return("list-group-item")
         }
+
+
     }
+    getSavedGitJobs = () =>{
+        this.props.getSavedGitJobs(this.props.loggedInUser)
+    }
+
+    getAllAddedJobs = () =>{
+        this.props.getAllAddedJobs(this.props.loggedInUser)
+    }
+
+    set_Job = (job_id ,  jobs) => {
+    this.setState({
+        job : jobs.find(j => j.id === job_id)
+    })
+    }
+
+    set_User = (user_id, users) => {
+        this.setState({
+            user : users.find(u => u.id === user_id)
+        })
+    }
+
+
+
 
     render() {
         return (
@@ -43,7 +68,7 @@ class PrivateProfileComponent extends React.Component {
 
                         <ul className="list-group">
                             <li className={this.getclassName("PROFILE")}>
-                                <button className="btn" onClick={() => this.changeTab("PROFILE")}  >
+                                <button className="btn" onClick={() => this.props.changeTab(this.props.loggedInUser, "PROFILE")}  >
                                     Profile
                                 </button>
                             </li>
@@ -51,32 +76,93 @@ class PrivateProfileComponent extends React.Component {
                             {this.props.loggedInUser.role === "RECRUITER" &&
                                 <div>
                             <li className={this.getclassName("ADD_JOB")}>
-                                <button className="btn" onClick={() => this.changeTab("ADD_JOB")} >
+                                <button className="btn" onClick={() => {this.props.changeTab(this.props.loggedInUser,"ADD_JOB")}} >
                                     Add a Job
                                 </button>
                             </li>
-                            <li className={this.getclassName("ADDED_JOB")}>
-                                <button className= "btn" onClick={() => this.changeTab("ADDED_JOB")} >
-                                    Added Jobs
-                                </button>
-                            </li>
-                            <li className={this.getclassName("MARKED_STUDENTS")}>
-                                <button className="btn" onClick={() => this.changeTab("MARKED_STUDENTS")} >
-                                    Marked Students
-                                </button>
-                            </li>
+                                    <li className={this.getclassName("ALL_ADDED_JOBS")}>
+                                        <button className="btn" onClick= {() => this.getAllAddedJobs()}>
+                                            All Saved Jobs
+                                        </button>
+                                        {
+                                            this.props.tab === "ALL_ADDED_JOBS" &&
+                                            this.props.allAddedJobs.length > 0 &&
+                                            this.props.allAddedJobs.map(posting =>
+
+                                                <div className="list-group-item">
+                                                    <button
+                                                        onClick={() => this.set_Job(posting.id, this.props.allAddedJobs)}>
+                                                        {posting.title}
+                                                    </button>
+                                                </div>)
+
+                                        }
+
+                                    </li>
+
+                            {/*        <li className={this.getclassName("MARKED_STUDENTS")}>*/}
+                            {/*    <button className="btn" onClick={() => this.props.changeTab(this.props.loggedInUser,"MARKED_STUDENTS")} >*/}
+                            {/*        Marked Students*/}
+                            {/*    </button>*/}
+                            {/*</li>*/}
+
+                                    <li className={this.getclassName("MARKED_STUDENTS")}>
+                                        <button className="btn" onClick= {() => this.props.getMarkedStudents(this.props.loggedInUser , "MARKED_STUDENTS" )}>
+                                            Marked Students
+                                        </button>
+                                        {
+                                            this.props.tab === "MARKED_STUDENTS" &&
+                                            this.props.markedStudents.length > 0 &&
+                                            this.props.markedStudents.map(user =>
+
+                                                <div className="list-group-item">
+                                                    <button
+                                                        onClick={() => this.set_User(user.id, this.props.markedStudents)}>
+                                                        {user.first_Name}
+                                                    </button>
+                                                </div>)
+
+                                        }
+
+                                    </li>
+
+
+
+
+
+
+
+
+
                                 </div>
                                 }
 
                             {this.props.loggedInUser.role === "STUDENT" &&
                             <div>
-                            <li className={this.getclassName("SAVED_JOBS")}>
-                                <button className="btn" onClick={() => this.changeTab("SAVED_JOBS")} >
-                                   Saved Jobs
+                            <li className={this.getclassName("SAVED_GIT_JOBS")}>
+                                <button className="btn" onClick= {() => this.getSavedGitJobs()}>
+                                   All Saved Jobs
                                 </button>
+                                {
+                                    this.props.tab === "SAVED_GIT_JOBS" &&
+                                    this.props.savedGitJobs.length > 0 &&
+                                    this.props.savedGitJobs.map(posting =>
+
+                                        <div className="list-group-item">
+                                            <button
+                                                onClick={() => this.set_Job(posting.id, this.props.savedGitJobs)}>
+                                                {posting.title}
+                                            </button>
+                                        </div>)
+
+                                }
+
                             </li>
+
+
+
                             <li className={this.getclassName("FOLLOWED_STUDENT")}>
-                                <button className="btn" onClick={() => this.changeTab("FOLLOWED_STUDENT")} >
+                                <button className="btn" onClick={() => this.props.changeTab(this.props.loggedInUser,"FOLLOWED_STUDENT")} >
                                     Followed Students
                                 </button>
                             </li>
@@ -90,7 +176,7 @@ class PrivateProfileComponent extends React.Component {
 
                     <div className="col-lg-8 col-md-8">
 
-                        {this.state.tab === "PROFILE" &&
+                        {this.props.tab === "PROFILE" &&
                         <div className="card">
                             <div className="card-header">
                                 <h4>Personal Profile Details</h4>
@@ -203,12 +289,28 @@ class PrivateProfileComponent extends React.Component {
                         }
 
                         {
-                            this.state.tab === "ADD_JOB"
+                            this.props.tab === "ADD_JOB"
                             &&
 
                             <AddJobComponent/>
-                            
+
                         }
+
+                        {
+                            this.props.tab === "ALL_ADDED_JOBS" &&
+                            this.state.job !== null &&
+
+                                <JobDetails job = {this.state.job}/>
+
+                        }
+
+                        {
+                            this.props.tab === "SAVED_GIT_JOBS"&&
+                                this.state.job !== null &&
+                            <JobDetails job = {this.state.job}/>
+                        }
+
+
 
                     </div>
 
