@@ -29,17 +29,30 @@ export default class UserService {
 
     registerUser = (user) => {
 
-
-        return fetch(`${this.urlUser}/register`,{
-            method: 'POST',
-            body: JSON.stringify(user),
-            credentials:'include',
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-            .then(response => response.json())
+        if (user.role == "STUDENT") {
+            return fetch(`${this.urlUser}/register/student`, {
+                method: 'POST',
+                body: JSON.stringify(user),
+                credentials: 'include',
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+        }
+        else{
+            return fetch(`${this.urlUser}/register/recruiter`, {
+                method: 'POST',
+                body: JSON.stringify(user),
+                credentials: 'include',
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+        }
     }
+
 
     updateUser = (user, userId) => {
         return fetch(`${this.urlUser}/user/${userId}`,{

@@ -25,25 +25,38 @@ export default class JobSearch extends React.Component{
         // }
     }
 
+    // componentWillMount() {
+    //     if(window.location.pathname.split("/")[1] === "jobs") {
+    //         this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill ,
+    //             this.props.match.params.loc, window.location.pathname.split("/")[5] )
+    //     }
+    //     // if(window.location.pathname.split("/")[4] === "positions") {
+    //     //
+    //     //     this.props.findJobById(window.location.pathname.split("/")[5] , this.props.jobs)
+    //     //
+    //     // }
+    // }
+
+
     componentWillMount() {
-        if(window.location.pathname.split("/")[1] === "jobs") {
+        if(window.location.pathname.split("/")[4] === "positions") {
             this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill ,
                 this.props.match.params.loc, window.location.pathname.split("/")[5] )
         }
-        // if(window.location.pathname.split("/")[4] === "positions") {
-        //
-        //     this.props.findJobById(window.location.pathname.split("/")[5] , this.props.jobs)
-        //
-        // }
-    }
+        else if(window.location.pathname.split("/")[1] === "search") {
 
+            this.props.findAllJobsbyDescriptionAndLocation(this.props.match.params.skill ,
+                this.props.match.params.loc)
+
+        }
+
+        this.props.reset();
+    }
 
 
     componentWillUpdate(nextProps, nextState) {
 
-        console.log("will update")
-        console.log(this.state.isUserLoggedIn)
-        localStorage.setItem('isUserLoggedIn', nextProps.isUserLoggedIn)
+
     }
 
 
@@ -84,17 +97,18 @@ export default class JobSearch extends React.Component{
                                         />
                                     ) : (
                                         <div>
-                                            {this.props.job &&
-                                                <h4>
-                                                    Hmm, looks like you are not logged in, please log in or sign up
-                                                    to view the job description
-                                                    {/*<Redirect to={{path: '/login',*/}
-                                                    {/*        state:{from: this.props.match.location}}} >*/}
-                                                    {/*    Here.*/}
-                                                    {/*</Redirect>*/}
-                                                    <LoginContainer loc={this.props.match.location}/>
-                                                </h4>
-                                            }
+                                            {/*{this.props.job &&*/}
+                                            {/*    <h4>*/}
+                                            {/*        Hmm, looks like you are not logged in, please log in or sign up*/}
+                                            {/*        to view the job description*/}
+                                            {/*        /!*<Redirect to={{path: '/login',*!/*/}
+                                            {/*        /!*        state:{from: this.props.match.location}}} >*!/*/}
+                                            {/*        /!*    Here.*!/*/}
+                                            {/*        /!*</Redirect>*!/*/}
+
+                                            {/*        <LoginContainer/>*/}
+                                            {/*    </h4>*/}
+                                            {/*}*/}
                                         </div>
 
                                     )

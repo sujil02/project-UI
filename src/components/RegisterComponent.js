@@ -39,6 +39,24 @@ const RegisterComponent = (user) => {
                                                        lastName: event.target.value})}/>
                                 </div>
                             </div>
+
+                            <div className="form-group">
+                                <label className="col-form-label-sm">
+                                    <h5> Email: </h5>
+                                </label>
+                                <div className="input-group">
+                                    <div className="input-group-prepend">
+                                        <div className="input-group-text"><i className="fa fa-at" /></div>
+                                    </div>
+                                    <input type="text" className="form-control"
+                                           placeholder="Email"
+                                           onChange={(event) => user.updateUser(
+                                               user=
+                                                   { ...user.updatedUser,
+                                                       email: event.target.value})}/>
+                                </div>
+                            </div>
+
                             <div className="form-group">
                                 <label className="col-form-label-sm">
                                     <h5> Username: </h5>
@@ -127,7 +145,7 @@ const RegisterComponent = (user) => {
                                 <div className="input-group-prepend">
                                     <div className="input-group-text"><i className="fa fa-university"></i></div>
                                     </div>
-                                    <input type="password" className="form-control"
+                                    <input className="form-control"
                                         placeholder="University"
                                         onChange={(event) => user.updateUser(
                                     user=
@@ -135,22 +153,57 @@ const RegisterComponent = (user) => {
                                             university: event.target.value})}/>
                                     </div>
                                 </div>
-                                <div className="form-group">
-                                    <label className="col-form-label-sm">
-                                        <h5> GPA: </h5>
-                                    </label>
-                                    <div className="input-group">
-                                <div className="input-group-prepend">
-                                <div className="input-group-text"><i className="fas fa-poll-h"></i></div>
-                                </div>
-                                        <input type="password" className="form-control"
-                                        placeholder="GPA"
-                                        onChange={(event) => user.updateUser(
-                                        user=
-                                            { ...user.updatedUser,
-                                                gpa: event.target.value})}/>
-                                </div>
-                                </div>
+                                    <div className="form-group">
+                                        <label className="col-form-label-sm">
+                                            <h5> GPA: </h5>
+                                        </label>
+                                        <div className="input-group">
+                                            <input type="text" className="form-control"
+                                                   placeholder="GPA"
+                                                   onChange={(event) => user.updateUser(
+                                                       user=
+                                                           { ...user.updatedUser,
+                                                               GPA: event.target.value})}/>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label className="col-form-label-sm">
+                                            <h5> LinkedIn: </h5>
+                                        </label>
+                                        <div className="input-group">
+                                            <input type="text" className="form-control"
+                                                   placeholder="LinkenIn URL"
+                                                   onChange={(event) => user.updateUser(
+                                                       user=
+                                                           { ...user.updatedUser,
+                                                               linked_in: event.target.value})}/>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                    <h4>Skills</h4>
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                               value="option1"/>
+                                            <label className="form-check-label" htmlFor="inlineCheckbox1">1</label>
+                                    </div>
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                               value="option1"/>
+                                            <label className="form-check-label" htmlFor="inlineCheckbox1">1</label>
+                                    </div>
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                               value="option1"/>
+                                            <label className="form-check-label" htmlFor="inlineCheckbox1">1</label>
+                                    </div>
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                               value="option1" />
+                                            <label className="form-check-label" htmlFor="inlineCheckbox1">1</label>
+                                    </div>
+                                    </div>
                                 </div>
 
                             }

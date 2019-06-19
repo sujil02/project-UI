@@ -17,6 +17,7 @@ import RegisterUserContainer from "../container/RegisterUserContainer";
 import UserService from "../services/UserService"
 import JobsContainer from "../container/JobsContainer"
 import JobSearchContainer from "../container/JobSearchContainer"
+import SearchFields from "./SearchFields";
 let userService = UserService.getInstance();
 
 export default class JobBoard extends React.Component{
@@ -124,17 +125,17 @@ export default class JobBoard extends React.Component{
                        render={() => <RegisterUserContainer />}/>
 
                         <Route exact path={'/'}
-                       render={(props) =><JobContainer {...props} isUserLoggedIn = {localStorage.getItem('isUserLoggedIn')}/>} />
+                       render={(props) =><JobSearchContainer jobs = {[]}/>} />
 
-                       <Route exact path={`/jobs/:skill/:loc`}
+                       <Route exact path={`/search/:skill/:loc`}
                        render={(props) => <JobContainer {...props}/>}/>
 
-                       <Route path={`/jobs/:skill/:loc/positions/:id`}
+                       <Route path={`/search/:skill/:loc/positions/:id`}
                        render={(props) =>
                            <JobContainer {...props}/>
                        }/>
 
-                       <Route exact path={`/job/:skill/:loc/positions/:id`}
+                       <Route exact path={`/search/:skill/:loc/positions/:id`}
                               render={(props) => <JobContainer {...props}/> } />
 
                        <Route  path={`/api/users/:username`}
