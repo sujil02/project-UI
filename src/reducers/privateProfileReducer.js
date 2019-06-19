@@ -23,20 +23,34 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
         case 'SAVE_USER':
             return{
                 user:  action.user,
-                tab: state.tab
+                tab: state.tab,
+                savedGitJobs:[],
+                markedStudents:[],
+                followingStudents:[],
+                followedStudents:[],
+                allAddedJobs:[]
             };
         case 'SAVED_GIT_JOBS':
             return{
                 savedGitJobs : action.savedGitJobs,
                 tab:  action.tab,
-                user: action.user
+                user: action.user,
+                markedStudents:[],
+                followingStudents:[],
+                followedStudents:[],
+                allAddedJobs:[]
 
             };
         case 'ALL_ADDED_JOBS':
             return{
                 allAddedJobs : action.allAddedJobs,
                 tab:  action.tab,
-                user: action.user
+                user: action.user,
+                markedStudents:[],
+                followingStudents:[],
+                followedStudents:[],
+                savedGitJobs:[]
+
 
             };
 
@@ -44,7 +58,11 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
             return{
                 followedStudents : action.followedStudents,
                 tab:  action.tab,
-                user: action.user
+                user: action.user,
+                followingStudents:[],
+                markedStudents:[],
+                allAddedJobs:[],
+                savedGitJobs:[]
 
             };
 
@@ -52,21 +70,34 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
             return{
                 followingStudents : action.followingStudents,
                 tab:  action.tab,
-                user: action.user
+                user: action.user,
+                followedStudents:[],
+                markedStudents:[],
+                allAddedJobs:[],
+                savedGitJobs:[]
 
             };
         case 'MARKED_STUDENTS':
             return{
                 markedStudents : action.markedStudents,
                 tab:  action.tab,
-                user: action.user
+                user: action.user,
+                followingStudents:[],
+                allAddedJobs:[],
+                followedStudents:[],
+                savedGitJobs:[]
 
             };
         case 'CHANGED_TAB':
             return{
                 // savedGitJobs : action.savedGitJobs,
                 tab:  action.tab,
-                user: action.user
+                user: action.user,
+                savedGitJobs:[],
+                markedStudents:[],
+                followingStudents:[],
+                followedStudents:[],
+                allAddedJobs:[]
             };
 
         case 'ADD_JOB':
@@ -74,6 +105,11 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
                 tab: state.tab,
                 user: state.user,
                 job: action.job,
+                savedGitJobs:[],
+                markedStudents:[],
+                followingStudents:[],
+                followedStudents:[],
+                allAddedJobs:[]
 
             };
 
@@ -81,7 +117,12 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
             return{
                 tab: state.tab,
                 user: state.user,
-                job: action.job
+                job: action.job,
+                savedGitJobs:[],
+                markedStudents:[],
+                followingStudents:[],
+                followedStudents:[],
+                allAddedJobs:[]
             };
 
 

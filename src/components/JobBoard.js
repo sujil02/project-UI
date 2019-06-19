@@ -19,6 +19,8 @@ import UserService from "../services/UserService"
 import JobsContainer from "../container/JobsContainer"
 import JobSearchContainer from "../container/JobSearchContainer"
 import SearchFields from "./SearchFields";
+import SkillSearch from "./SkillSearch";
+import SkillSearchContainer from "../container/SkillSearchContainer";
 let userService = UserService.getInstance();
 
 export default class JobBoard extends React.Component{
@@ -145,6 +147,12 @@ export default class JobBoard extends React.Component{
                        render={(props) =>
                            <JobContainer {...props}/>
                        }/>
+
+                <Route path={`/recruiter`}
+                       render={(props) =>
+                           <SkillSearchContainer {...props}/>
+                       }/>
+
 
                        <Route exact path={`/search/:skill/:loc/positions/:id`}
                               render={(props) => <JobContainer {...props}/> } />

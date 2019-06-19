@@ -4,13 +4,15 @@ import loginReducer from './loginReducer'
 import {combineReducers} from "redux";
 import privateProfileReducer from './privateProfileReducer'
 import registerUserReducer from './registerUserReducer'
+import skillUserReducer from "./skillUserReducer";
 
 export default combineReducers({
     jobReducer,
     UserReducer,
     loginReducer,
     privateProfileReducer,
-    registerUserReducer
+    registerUserReducer,
+    skillUserReducer
 })
 
  // export const selectIsUserLoggedIn = (state) =>

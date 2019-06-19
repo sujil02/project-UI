@@ -102,6 +102,12 @@ export default class UserService {
     }
 
 
+    getSkilledUsers = (skill) => {
+        return fetch(`${URL_ROOT}/api/users/skill/${skill}`,{
+        }).then(response=> response.json())
+            .catch(response=> console.log("ERROR IN GETTING SKILLED USERS" + response))
+    }
+
 
 
 }

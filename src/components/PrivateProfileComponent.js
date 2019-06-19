@@ -84,7 +84,10 @@ class PrivateProfileComponent extends React.Component {
 
                                     <li className={this.getclassName("ALL_ADDED_JOBS")}>
                                         <button className="btn" onClick= {() => this.props.getAllAddedJobs(this.props.loggedInUser)}>
-                                            All Saved Jobs
+                                            All Added Jobs
+                                            <h6  className={!this.props.allAddedJobs.length && 'd-none'}>
+                                                {this.props.allAddedJobs.length} Jobs Added
+                                            </h6>
                                         </button>
                                         <ul>
                                         {
@@ -115,6 +118,9 @@ class PrivateProfileComponent extends React.Component {
                                     <li className={this.getclassName("MARKED_STUDENTS")}>
                                         <button className="btn" onClick= {() => this.props.getMarkedStudents(this.props.loggedInUser , "MARKED_STUDENTS" )}>
                                             Marked Students
+                                            <h6  className={!this.props.markedStudents.length && 'd-none'}>
+                                                {this.props.markedStudents.length} Students Marked
+                                            </h6>
                                         </button>
                                         <ul>
                                         {
@@ -144,7 +150,11 @@ class PrivateProfileComponent extends React.Component {
                                 <li className={this.getclassName("SAVED_GIT_JOBS")}>
                                     <button className="btn" onClick= {() => this.props.getSavedGitJobs(this.props.loggedInUser)}>
                                     All Saved Jobs
+                                        <h6  className={!this.props.savedGitJobs.length && 'd-none'}>
+                                            {this.props.savedGitJobs.length} Jobs Saved
+                                        </h6>
                                 </button>
+
                                     <ul>
                                     {
                                     this.props.tab === "SAVED_GIT_JOBS" &&
@@ -166,6 +176,9 @@ class PrivateProfileComponent extends React.Component {
                                 <li className={this.getclassName("FOLLOWING_STUDENT")}>
                                     <button className="btn" onClick= {() => this.props.getFollowingStudents(this.props.loggedInUser , "FOLLOWING_STUDENT" )}>
                                         Following
+                                        <h6  className={!this.props.followingStudents.length && 'd-none'}>
+                                            Following {this.props.followingStudents.length} Users
+                                        </h6>
                                     </button>
                                     {
                                         this.props.tab === "FOLLOWING_STUDENT" &&
@@ -187,6 +200,9 @@ class PrivateProfileComponent extends React.Component {
                                     <button className="btn"
                                             onClick={() => this.props.getFollowedStudents(this.props.loggedInUser, "FOLLOWED_STUDENT")}>
                                         Followed Students
+                                        <h6  className={!this.props.followedStudents.length && 'd-none'}>
+                                            Followed By {this.props.followedStudents.length} Users
+                                        </h6>
                                     </button>
                                     <ul>
                                         {
@@ -348,7 +364,7 @@ class PrivateProfileComponent extends React.Component {
                         {
                             this.props.tab === "SAVED_GIT_JOBS" &&
                             this.state.job !== null &&
-                            <JobDetails job={this.state.job}/>
+                                <JobDetails job={this.state.job}/>
                         }
 
                         {
