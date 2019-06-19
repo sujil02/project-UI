@@ -51,7 +51,7 @@ export default class JobBoard extends React.Component{
                 {console.log(this.props)}
                 <div className="navbar navbar-expand-sm navbar-dark bg-dark">
                     <Link to={'/'}>
-                        <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-circle"
+                        <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-top rounded-bottom"
                               style={{'margin': '0', 'padding':'0'}}/>
                     </Link>
 
@@ -124,7 +124,12 @@ export default class JobBoard extends React.Component{
 
 
                 <Route exact path={`/login`}
-                            render={(props) => <LoginContainer {...props}/>}/>
+                            render={(props) => (this.props.isUserLoggedIn !== undefined && this.props.isUserLoggedIn !== true)  ? (
+                                <LoginContainer {...props}/>
+                            ) : (
+                                <Redirect to={{pathname: `/`}} />
+                                )
+                            }/>
 
                             <Route exact path={`/profile`}
                             render={() => this.props.isUserLoggedIn ?
@@ -141,10 +146,10 @@ export default class JobBoard extends React.Component{
                        <Route exact path={`/search/:skill/:loc`}
                        render={(props) => <JobContainer {...props}/>}/>
 
-                       <Route path={`/search/:skill/:loc/positions/:id`}
-                       render={(props) =>
-                           <JobContainer {...props}/>
-                       }/>
+                       {/*<Route exact path={`/search/:skill/:loc/positions/:id`}*/}
+                       {/*render={(props) =>*/}
+                       {/*    <JobContainer {...props}/>*/}
+                       {/*}/>*/}
 
                        <Route exact path={`/search/:skill/:loc/positions/:id`}
                               render={(props) => <JobContainer {...props}/> } />
