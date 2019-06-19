@@ -10,7 +10,8 @@ export default class LoginComponent extends React.Component{
             user: {
                 username: '',
                 password: ''
-            }
+            },
+            redirect : false
         }
     }
 
@@ -35,6 +36,8 @@ export default class LoginComponent extends React.Component{
     render() {
       return (
           <div>
+              {console.log("LOGIN")}
+              {console.log(this.props)}
               <div className="row justify-content-center">
                   <div className="card" style={{'width':'60%', 'marginTop':'3em', 'marginBottom':'3em'}}>
                       <div className="card-body">

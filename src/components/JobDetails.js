@@ -5,7 +5,6 @@ const JobDetails =({job}) => {
     return (
 
         <div className="container">
-
             {job &&
             <div>
                 <div className="card">
@@ -78,9 +77,9 @@ const JobDetails =({job}) => {
                         </div>
                     </div>
                     <div className="form-group">
-                        <Link  className="btn btn-block btn-success">
+                        <button  className="btn btn-block btn-success">
                             Add Job to Profile
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>
