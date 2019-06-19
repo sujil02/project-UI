@@ -81,6 +81,8 @@ export default class JobSearch extends React.Component{
                                         < JobDetails
                                             {...this.props}
                                             job={this.props.job}
+                                            userId={this.props.loggedInUser.id}
+                                            addJob={this.props.addJob}
                                         />
                                     ) : (
                                         <div>

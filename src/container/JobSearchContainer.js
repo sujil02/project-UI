@@ -7,7 +7,8 @@ const jobService = service.getInstance();
 const stateToPropertyMapper = (state) => ({
     jobs: state.jobReducer.jobs,
     job: state.jobReducer.job,
-    isUserLoggedIn: state.loginReducer.isUserLoggedIn
+    isUserLoggedIn: state.loginReducer.isUserLoggedIn,
+    loggedInUser: state.loginReducer.user
 });
 
 const propertyToDispatchMapper = dispatch => ({
@@ -43,7 +44,13 @@ const propertyToDispatchMapper = dispatch => ({
                             jobs: jobs
                         }))
 
-                )
+                ),
+
+        addJob: (job, userId) =>
+            jobService.saveGithubJob(job,userId)
+                .then(result => dispatch({
+                    type: 'SAVE_JOB'
+                }))
     }
 
 

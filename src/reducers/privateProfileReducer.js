@@ -1,15 +1,29 @@
+const initialJob = {title:"",
+                    type:"",
+                    create_at:"",
+                    description:"",
+                    logo_details:"",
+                    url:"",
+                    company_url:"",
+                    company:"",
+                    application_details:"",
+                    address:"",};
+
 
 const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
                                         savedGitJobs: [] ,
                                         allAddedJobs: [] ,
                                         followedStudents : [] ,
-                                        markedStudents : []}, action) => {
+                                        markedStudents : [],
+                                        job: initialJob } ,
+                               action) => {
     switch(action.type){
 
         case 'UPDATE_USER':
         case 'SAVE_USER':
             return{
-                user:  action.user
+                user:  action.user,
+                tab: state.tab
             };
         case 'SAVED_GIT_JOBS':
             return{
@@ -45,7 +59,21 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
                 // savedGitJobs : action.savedGitJobs,
                 tab:  action.tab,
                 user: action.user
+            };
 
+        case 'ADD_JOB':
+            return{
+                tab: state.tab,
+                user: state.user,
+                job: action.job,
+
+            };
+
+        case 'UPDATE_JOB':
+            return{
+                tab: state.tab,
+                user: state.user,
+                job: action.job
             };
 
 

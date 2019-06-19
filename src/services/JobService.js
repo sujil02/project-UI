@@ -1,8 +1,7 @@
-
+import URL_ROOT from "./UrlConfig";
 export default class JobService {
 
     static myInstance = null;
-
     static getInstance() {
         if (JobService.myInstance == null) {
             JobService.myInstance =
@@ -10,6 +9,10 @@ export default class JobService {
         }
         return this.myInstance;
     }
+
+
+    urlJobs = `http://localhost:8080/api/jobs`;
+    proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
 
     findAllJobsbyDescriptionAndLocation  = (description,location) =>{
@@ -25,6 +28,36 @@ export default class JobService {
         var findJobByID = "https://jobs.github.com/positions/" + jobId +".json";
         return fetch(proxyUrl+findJobByID)
             .then(response => response.json())}
+
+
+    addJob = (job, userId) => {
+        console.log("ADD JOB SERVICE")
+        return fetch(`${this.urlJobs}/${userId}`,{
+            method: 'POST',
+            body: JSON.stringify(job),
+            headers:{
+                'content-type': 'application/json'
+            }
+        }).then(result=> result.json());
+    };
+
+    getAllJobsForAUser = (userId) => {
+        return fetch(`${URL_ROOT}/api/userJobLink/${userId}`)
+            .then(result => result.json())
+    };
+
+    saveGithubJob = (job, userId) => {
+        return fetch(`${URL_ROOT}/api/userJobLink/${userId}`,{
+            method: 'POST',
+            body:  JSON.stringify(job),
+            headers: {
+                'content-type':'application/json'
+            }
+        }).then(result=> result.json())
+            .catch(result=> console.log("ERROR IN SAVING GITHUB JOB"))
+    }
+
+
 
 
     // deleteWidget = widgetId =>

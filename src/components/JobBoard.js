@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import jobReducer from '../reducers/jobReducer';
@@ -78,9 +79,12 @@ export default class JobBoard extends React.Component{
                                     <Link to={`/api/users/${this.state.searchField}`}>
                                         <button className="btn btn-outline-success"
                                                 onClick={() => userService.findUsers(this.state.searchField)
-                                                    .then(result => this.setState({
-                                                        searchResults: result
-                                                    }))}>
+                                                    .then(result =>
+                                                    {this.props.user &&
+                                                        this.setState({
+                                                        searchResults: result.filter(currUser =>
+                                                            currUser.username !== this.props.user.username)
+                                                    })})}>
                                             <i className="fa fa-search" />
                                         </button>
                                     </Link>
@@ -90,7 +94,12 @@ export default class JobBoard extends React.Component{
                             this.props.isUserLoggedIn &&
                                 <li className="nav-item nav-link">
                                     <Link to={`/profile`}>
-                                        <button className="btn bg-light">Profile</button>
+                                        <button className="btn bg-transparent btn-outline-success">
+                                            {this.props.user.username}
+                                            <i className="fa fa-user-circle"
+                                               style={{'marginLeft':'0.2em', 'borderLeft':'2px solid green',
+                                                        'paddingLeft':'0.2em'}}/>
+                                        </button>
                                     </Link>
                                 </li>
                                 }
@@ -98,7 +107,9 @@ export default class JobBoard extends React.Component{
                             this.props.isUserLoggedIn &&
                                 <li className="nav-item nav-link">
                                     <Link to={`/`} onClick={() => this.props.logOutUser()}>
-                                        <button className="btn bg-light">Log out</button>
+                                        <button className="btn bg-transparent btn-outline-danger">
+                                            <i className="fa fa-sign-out"/>
+                                        </button>
                                     </Link>
                                 </li>
                         }
@@ -112,7 +123,7 @@ export default class JobBoard extends React.Component{
 
 
                 <Route exact path={`/login`}
-                            render={() => <LoginContainer />}/>
+                            render={(props) => <LoginContainer {...props}/>}/>
 
                             <Route exact path={`/profile`}
                             render={() => this.props.isUserLoggedIn ?
@@ -139,7 +150,9 @@ export default class JobBoard extends React.Component{
 
                        <Route  path={`/api/users/:username`}
                       render={(props) => {
-                          return <UserSearchComponent {...props} users={this.state.searchResults}/>}} />
+                          return <UserSearchComponent {...props} currentUser={this.props.user}
+                                                      users={this.state.searchResults}
+                                                      isUserLoggedIn={this.props.isUserLoggedIn}/>}}/>
 
             </Router>
         );

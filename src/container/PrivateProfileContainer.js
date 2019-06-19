@@ -1,8 +1,9 @@
 import {connect} from 'react-redux'
 import PrivateProfileComponent from "../components/PrivateProfileComponent";
 import UserService from '../services/UserService'
+import JobService from '../services/JobService'
 let userService = UserService.getInstance();
-
+let jobService = JobService.getInstance();
 
 const stateTOPropertyMapper = state => ({
     loggedInUser: state.loginReducer.user,
@@ -11,7 +12,8 @@ const stateTOPropertyMapper = state => ({
     savedGitJobs : state.privateProfileReducer.savedGitJobs,
     allAddedJobs : state.privateProfileReducer.allAddedJobs,
     followedStudents : state.privateProfileReducer.followedStudents,
-    markedStudents : state.privateProfileReducer.markedStudents
+    markedStudents : state.privateProfileReducer.markedStudents,
+    job: state.privateProfileReducer.job,
 
 });
 
@@ -20,7 +22,7 @@ const propertyToDispatchMapper = dispatch => ({
     updateUser: (user) => {
         dispatch({
             type: 'UPDATE_USER',
-            user: user
+            user: user,
         })
     },
 
@@ -32,179 +34,71 @@ const propertyToDispatchMapper = dispatch => ({
             })),
 
     getSavedGitJobs: (user) => {
-
-    dispatch({
-                 type: 'SAVED_GIT_JOBS',
-                 savedGitJobs: [
-                     {
-                         "id": "3",
-                         "type": null,
-                         "url": null,
-                         "createdAt": null,
-                         "company": "Google",
-                         "company_url": null,
-                         "address": "NY",
-                         "title": "ABC",
-                         "description": null,
-                         "applicationDetails": "aa",
-                         "logoDetails": null
-                     },
-                     {
-                         "id": "4",
-                         "type": "IT",
-                         "url": null,
-                         "createdAt": null,
-                         "company": "Facebook",
-                         "company_url": "facebook.com",
-                         "address": "BOSTON",
-                         "title": "Software Developer",
-                         "description": "Software Developer",
-                         "applicationDetails": "Hello",
-                         "logoDetails": null
-                     }
-                 ],
-                 user: user,
-                 tab: 'SAVED_GIT_JOBS'
-             })
-
-
-
+        jobService.getAllJobsForAUser(user.id).then(
+            result =>
+                dispatch({
+                    type: 'SAVED_GIT_JOBS',
+                    savedGitJobs: result,
+                    user: user,
+                    tab: 'SAVED_GIT_JOBS'
+                })
+        )
 },
 
 
     getAllAddedJobs: (user) => {
-
-            dispatch({
+        jobService.getAllJobsForAUser(user.id).then(
+            result => dispatch({
                 type: 'ALL_ADDED_JOBS',
-                allAddedJobs: [
-                    {
-                        "id": "3",
-                        "type": null,
-                        "url": null,
-                        "createdAt": null,
-                        "company": "Google",
-                        "company_url": null,
-                        "address": "NY",
-                        "title": "ABC",
-                        "description": null,
-                        "applicationDetails": "aa",
-                        "logoDetails": null
-                    },
-                    {
-                        "id": "4",
-                        "type": "IT",
-                        "url": null,
-                        "createdAt": null,
-                        "company": "Facebook",
-                        "company_url": "facebook.com",
-                        "address": "BOSTON",
-                        "title": "Software Developer",
-                        "description": "Software Developer",
-                        "applicationDetails": "Hello",
-                        "logoDetails": null
-                    }
-                ],
+                allAddedJobs: result,
                 user: user,
                 tab: 'ALL_ADDED_JOBS'
-            })
-
-
-
+            }))
         },
 
     getMarkedStudents: (user) => {
-
-        dispatch({
-            type: 'MARKED_STUDENTS',
-            markedStudents: [
-                {
-                    "id": "3",
-                    "type": null,
-                    "url": null,
-                    "createdAt": null,
-                    "company": "Google",
-                    "company_url": null,
-                    "address": "NY",
-                    "title": "ABC",
-                    "description": null,
-                    "applicationDetails": "aa",
-                    "logoDetails": null
-                },
-                {
-                    "id": "4",
-                    "type": "IT",
-                    "url": null,
-                    "createdAt": null,
-                    "company": "Facebook",
-                    "company_url": "facebook.com",
-                    "address": "BOSTON",
-                    "title": "Software Developer",
-                    "description": "Software Developer",
-                    "applicationDetails": "Hello",
-                    "logoDetails": null
-                }
-            ],
-            user: user,
-            tab: 'MARKED_STUDENTS'
-        })
-
-
-
+        userService.getFollowingUsers(user.id)
+            .then(result => dispatch({
+                type: 'MARKED_STUDENTS',
+                markedStudents: result,
+                user: user,
+                tab: 'MARKED_STUDENTS'
+            }))
     },
 
     getFollowedStudents: (user) => {
-
-        dispatch({
-            type: 'FOLLOWED_STUDENT',
-            followedStudents: [
-                {
-                    "id": "3",
-                    "type": null,
-                    "url": null,
-                    "createdAt": null,
-                    "company": "Google",
-                    "company_url": null,
-                    "address": "NY",
-                    "title": "ABC",
-                    "description": null,
-                    "applicationDetails": "aa",
-                    "logoDetails": null
-                },
-                {
-                    "id": "4",
-                    "type": "IT",
-                    "url": null,
-                    "createdAt": null,
-                    "company": "Facebook",
-                    "company_url": "facebook.com",
-                    "address": "BOSTON",
-                    "title": "Software Developer",
-                    "description": "Software Developer",
-                    "applicationDetails": "Hello",
-                    "logoDetails": null
-                }
-            ],
-            user: user,
-            tab: 'FOLLOWED_STUDENT'
-        })
-
-
-
+        userService.getFollowingUsers(user.id)
+            .then(result => dispatch({
+                type: 'FOLLOWED_STUDENT',
+                followedStudents: result,
+                user: user,
+                tab: 'FOLLOWED_STUDENT'
+            }))
     },
 
 
-
-
-
-
-    changeTab : (user , tab) => {
+    changeTab : (user , tab) =>
         dispatch({
             type: 'CHANGED_TAB',
             user: user,
             tab: tab
-        })
+        }),
 
-    },
+    addJob: (job, userId) => jobService.addJob(job, userId)
+        .then(dispatch({
+            type: 'ADD_JOB',
+            job: job,
+        })),
+
+    updateJob: (job) => {
+        dispatch({
+            type: 'UPDATE_JOB',
+            job:  job
+        })
+    }
+
+
+
 
 
 });

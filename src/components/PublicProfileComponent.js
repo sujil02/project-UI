@@ -1,4 +1,6 @@
 import React from 'react';
+import UserService from '../services/UserService';
+let userService = UserService.getInstance();
 
 class PublicProfileComponent extends React.Component {
     render() {
@@ -79,11 +81,26 @@ class PublicProfileComponent extends React.Component {
 
                     </div>
                 </div>
+                {this.props.currentUser &&
                 <div className="card-footer bg-transparent">
-                    <button className="btn btn-success" >
-                        Follow this User
+                    <button className="btn btn-success" onClick={() =>
+                        userService.followUser(this.props.currentUser.id, this.props.user.id)
+                            .then(result => this.setState({
+                                followStatus: result
+                            }))
+                    }>
+
+                        {this.props.currentUser.role === "RECRUITER" ? (
+                            <span> Mark this applicant</span>
+                        ) : (
+                            <span>Follow this user</span>
+                        )
+                        }
+
+
                     </button>
                 </div>
+                }
             </div>
         )
     }

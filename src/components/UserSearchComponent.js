@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route} from 'react-router-dom';
+import {Link, Route, Redirect} from 'react-router-dom';
 import PublicProfileComponent from "./PublicProfileComponent";
 
 class UserSearchComponent extends React.Component {
@@ -12,6 +12,8 @@ class UserSearchComponent extends React.Component {
     render() {
         return (
             <div className="row">
+                {console.log("SEARCH USERS")}
+                {console.log(this.props)}
                 <div className="col-sm-4 col-md-4 col-lg-4">
                     <div className="card">
                         <div className="card-header border-success">
@@ -48,9 +50,15 @@ class UserSearchComponent extends React.Component {
                 <div className="col-sm-8 col-md-8 col-lg-8">
                 {/*    INSERT USER DETAILS HERE*/}
                 <Route path={'/api/users/public/:username'}
-                       render={(props) => <PublicProfileComponent
+                       render={(props) => this.props.isUserLoggedIn ? (
 
-                            user={this.state.currentProfile}/>} />
+                           <PublicProfileComponent
+                            currentUser={this.props.currentUser}
+                            user={this.state.currentProfile}/>
+                       ):(
+                           <Redirect to={{pathname: `/login`, state:{message: true}}} />
+                       )
+                       } />
                 </div>
 
             </div>

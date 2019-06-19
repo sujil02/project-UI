@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import {Link} from "react-router-dom";
-const JobDetails =({job}) => {
+const JobDetails =({job, addJob, userId}) => {
     return (
 
         <div className="container">
@@ -49,8 +49,8 @@ const JobDetails =({job}) => {
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-2 col-form-label-sm"> Job Description: </label>
                                 <div className="col-sm-10">
-                                    <span >{ReactHtmlParser(job.description)}</span>
-                                    {/*< className="form-control" value={job.description} readOnly/>*/}
+                                    <span className="border-dark">{ReactHtmlParser(job.description)}</span>
+                                        {/*< className="form-control" value={job.description} readOnly/>*/}
                                 </div>
                             </div>
                         </div>
@@ -59,6 +59,7 @@ const JobDetails =({job}) => {
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2 col-form-label-sm"> How to Apply: </label>
                             <div className="col-sm-10">
+
                                 <span>{ReactHtmlParser(job.how_to_apply)}</span>
                             </div>
                         </div>
@@ -76,11 +77,14 @@ const JobDetails =({job}) => {
                             </div>
                         </div>
                     </div>
+                    {addJob &&
                     <div className="form-group">
-                        <button  className="btn btn-block btn-success">
+                        <button  className="btn btn-block btn-success"
+                            onClick={() => addJob(job,userId)}>
                             Add Job to Profile
                         </button>
                     </div>
+                    }
                 </div>
             </div>
             }

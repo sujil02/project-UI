@@ -74,6 +74,20 @@ export default class UserService {
             .catch(error => console.log("ERROR IN LOG OUT"))
     }
 
+    followUser = (currentUserId, userToFollowId) => {
+        return fetch(`${URL_ROOT}/api/linkUsers/${currentUserId}/${userToFollowId}`,{
+            method: 'POST',
+        })
+            .then(response => response.text())
+            .catch(result => console.log("ERROR IN FOLLOW"))
+    }
+
+    getFollowingUsers = (currentUserId) => {
+        return fetch(`${URL_ROOT}/api/linkUsers/${currentUserId}`)
+            .then(response=> response.json())
+            .catch(response=> console.log("ERROR IN GETTING FOLLOWING USERS" + response))
+    }
+
 
 
 

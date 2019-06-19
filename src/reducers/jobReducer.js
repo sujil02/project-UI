@@ -7,12 +7,17 @@ const jobReducer = (state = {jobs: []}, action) => {
             return {
                 jobs: action.jobs,
 
-            }
+            };
         case "FIND_JOB_BY_ID":
             return{
                 job:action.job,
                 jobs:action.jobs
-            }
+            };
+        case 'SAVE_JOB':
+            return{
+                job:state.job,
+                jobs:state.jobs
+            };
         default:
             return state;
     }
