@@ -1,5 +1,5 @@
 
-const registerUserReducer = (state = {user:{}}, action) => {
+const registerUserReducer = (state = {user:{skills:"", role:"STUDENT"}}, action) => {
     switch(action.type){
 
         case 'UPDATE_USER':
