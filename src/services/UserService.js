@@ -101,11 +101,24 @@ export default class UserService {
             .catch(response=> console.log("ERROR IN GETTING FOLLOWING USERS" + response))
     }
 
+    getFollowerUsers = (currentUserId) => {
+        return fetch(`${URL_ROOT}/api/linkUsers/followers/${currentUserId}`)
+            .then(response=> response.json())
+            .catch(response=> console.log("ERROR IN GETTING FOLLOWERS USERS" + response))
+    }
+
 
     getSkilledUsers = (skill) => {
         return fetch(`${URL_ROOT}/api/users/skill/${skill}`,{
         }).then(response=> response.json())
             .catch(response=> console.log("ERROR IN GETTING SKILLED USERS" + response))
+    }
+
+    unFollowUser = (currentUserId, userToUnfollowUserId) => {
+        return fetch(`${URL_ROOT}/api/linkUsers/${currentUserId}/${userToUnfollowUserId}`,{
+            method: 'DELETE',
+        }).then(response => response.json())
+            .catch(error => console.log("ERROR IN UNFOLLOW USERS" + error))
     }
 
 

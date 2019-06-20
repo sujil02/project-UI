@@ -44,6 +44,7 @@ export default class JobBoard extends React.Component{
         if(this.props.isUserLoggedIn === undefined){
             this.props.checkIfUserIsLoggedIn()
         }
+
     }
 
     render(){
@@ -155,9 +156,12 @@ export default class JobBoard extends React.Component{
                        ) }/>
 
                         <Route exact path={'/'}
-                       render={(props) =><JobSearchContainer jobs = {[]}/>} />
+                       render={(props) =><JobSearchContainer {...props} jobs = {[]}/>} />
 
                        <Route exact path={`/search/:skill/:loc`}
+                       render={(props) => <JobContainer {...props}/>}/>
+
+                    <Route exact path={`/search/:skill/`}
                        render={(props) => <JobContainer {...props}/>}/>
 
                        {/*<Route exact path={`/search/:skill/:loc/positions/:id`}*/}
@@ -165,7 +169,7 @@ export default class JobBoard extends React.Component{
                        {/*    <JobContainer {...props}/>*/}
                        {/*}/>*/}
 
-                <Route path={`/recruiter`}
+                        <Route exact path={`/recruiter`}
                        render={(props) =>
                            <SkillSearchContainer {...props}/>
                        }/>

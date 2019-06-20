@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import {Link} from "react-router-dom";
+import JobService from '../services/JobService'
+let jobService = JobService.getInstance();
 const JobDetails =({job, addJob, userId}) => {
     return (
 
@@ -77,13 +79,19 @@ const JobDetails =({job, addJob, userId}) => {
                             </div>
                         </div>
                     </div>
-                    {addJob &&
+                    {addJob ?(
                     <div className="form-group">
                         <button  className="btn btn-block btn-success"
                             onClick={() => addJob(job,userId)}>
                             Add Job to Profile
                         </button>
                     </div>
+                    ) : (
+                        <button  className="btn btn-block btn-danger"
+                                 onClick={() =>jobService.unSaveJob(userId, job.id)}>
+                            Remove Job
+                        </button>
+                    )
                     }
                 </div>
             </div>

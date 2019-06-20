@@ -15,6 +15,22 @@ export default class LoginComponent extends React.Component{
         }
     }
 
+    handleLoginUser = (user) => {
+        console.log("HANDLE LOG IN")
+        this.setState({
+            user: this.props.loginUser(user)
+        })
+        if( this.state.user !== null && this.state.user.role !== undefined){
+            console.log("LOGGED IN")
+            console.log(this.state.user)
+            console.log(this.state.user.role)
+        }else{
+            console.log("LOGGED IN 2")
+            console.log(this.state.user)
+            console.log(this.state.user.role)
+        }
+    }
+
     usernameFieldChanged = (event) => {
         this.setState({
             user: {
@@ -95,13 +111,13 @@ export default class LoginComponent extends React.Component{
                               <Link to={`/register`}>
                                   <button className="btn btn-warning"> Sign Up </button>
                               </Link>
-                              {/*{this.props.user &&*/}
+                              {/*{this.props.user!==null && this.props.user.role!==undefined &&*/}
                               {/*    <div>*/}
                               {/*{*/}
                               {/*    this.props.user.role === "STUDENT" ? (*/}
-                              {/*        <Redirect tp={`/recruiter`}/>*/}
+                              {/*        <Redirect to={`/recruiter`}/>*/}
                               {/*    ):(*/}
-                              {/*        <Redirect to={'/'}/>*/}
+                              {/*        <Redirect to={`/recruiter`}/>*/}
                               {/*    )*/}
                               {/*}*/}
                               {/*    </div>*/}

@@ -11,9 +11,25 @@ export default class SearchFields extends React.Component{
         this.state={
             job: '',
             location:'',
-            postings:[]
+            postings:[],
+            required: false
 
     }
+    }
+
+    componentDidMount() {
+        if(this.props.match.params.skill ){
+            console.log("FOUND PREVIOUS SKILL")
+            this.setState({
+                job: this.props.match.params.skill
+            })
+        }
+        if(this.props.match.params.loc ){
+            console.log("FOUND PREVIOUS JOB")
+            this.setState({
+                location: this.props.match.params.loc
+            })
+        }
     }
 
     handleChangeJobTitle(event){
@@ -30,6 +46,14 @@ export default class SearchFields extends React.Component{
 
     }
 
+    handleFormSubmit = () => {
+        if(this.state.job !== '' || this.state.location !== ''){
+            this.setState({
+                required: true
+            })
+            (this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location));
+        }
+    }
 
 
 
@@ -44,7 +68,8 @@ export default class SearchFields extends React.Component{
                         </label>
                         <input type="input" className="form-control" id="job-title"
                         onChange={this.handleChangeJobTitle}
-                        defaultValue= {window.location.pathname.split("/")[2]}/>
+                        defaultValue= {window.location.pathname.split("/")[2]}
+                        required/>
                     </div>
 
                     <div className="form-group">
@@ -53,16 +78,27 @@ export default class SearchFields extends React.Component{
                         </label>
                         <input type="input" className="form-control" id="job-location"
                         onChange={this.handleChangeJobLocation}
-                               defaultValue = {window.location.pathname.split("/")[3]}/>
+                               defaultValue = {window.location.pathname.split("/")[3]}
+                        required/>
                     </div>
 
                     <div className="form-group">
                         <Link to={`/search/${this.state.job}/${this.state.location}`}
                               className="btn btn-block btn-success"
-                              onClick={() => {this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location);}}>
+                              onClick={() => this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location)} >
                             Search Jobs
                         </Link>
                     </div>
+                {
+                    this.props.loggedInUser!== null && this.props.loggedInUser.role === "RECRUITER" &&
+                    <div >
+                        <Link to={`/recruiter`}>
+                            <button className="btn btn-warning btn-block">
+                                Recruiting? Find applicants based on skill..
+                            </button>
+                        </Link>
+                    </div>
+                }
                         { this.props.jobs.length > 0  &&
 
                                     <JobRow skill = {this.state.job}
