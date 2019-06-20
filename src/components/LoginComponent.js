@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterComponent from "./RegisterComponent";
-import {Route, Link} from 'react-router-dom';
+import {Route, Link, Redirect} from 'react-router-dom';
 import {selectIsUserLoggedIn} from "../reducers/loginReducer";
 
 export default class LoginComponent extends React.Component{
@@ -91,9 +91,21 @@ export default class LoginComponent extends React.Component{
                                   Login
                               </button>
                               </Link>
+
                               <Link to={`/register`}>
                                   <button className="btn btn-warning"> Sign Up </button>
                               </Link>
+                              {/*{this.props.user &&*/}
+                              {/*    <div>*/}
+                              {/*{*/}
+                              {/*    this.props.user.role === "STUDENT" ? (*/}
+                              {/*        <Redirect tp={`/recruiter`}/>*/}
+                              {/*    ):(*/}
+                              {/*        <Redirect to={'/'}/>*/}
+                              {/*    )*/}
+                              {/*}*/}
+                              {/*    </div>*/}
+                              {/*}*/}
                           </div>
 
                       </div>

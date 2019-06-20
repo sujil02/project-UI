@@ -45,7 +45,7 @@ class RegisterComponent extends React.Component {
                             <h4> Register </h4>
                         </div>
                         <div className="card-body">
-                            <form className="form">
+                            <div className="form">
                                 <div className="form-group">
                                     <label className="col-form-label-sm">
                                         <h5> First Name: </h5>
@@ -226,11 +226,11 @@ class RegisterComponent extends React.Component {
                                             <div className="form-inline">
                                                 <input type="text" placeholder="CSS, C, C++..."
                                                        onChange={(event) => this.updateSkills(event)} className="form-control"/>
-                                                {/*<button className="btn btn-outline-success"*/}
-                                                {/*        onClick={() => this.props.updateUser({*/}
-                                                {/*            ...this.props.user,*/}
-                                                {/*            skills: this.props.user.skills.concat(",").concat(this.state.skills)*/}
-                                                {/*        })}> Add skills </button>*/}
+                                                <button className="btn btn-outline-success"
+                                                        onClick={() => this.props.updateUser({
+                                                            ...this.props.user,
+                                                            skills: this.props.user.skills.concat(",").concat(this.state.skills)
+                                                        })}> Add skills </button>
                                             </div>
                                         </div>
                                     </div>
@@ -256,16 +256,17 @@ class RegisterComponent extends React.Component {
                                     </div>
                                 }
 
-                            </form>
+                            </div>
                         </div>
                         <div className="card-footer">
                             <div className="form-row">
                                 <Link className="btn btn-success ml-1 mr-auto"
                                       onClick={() =>
-                                            this.props.register({
-                                                        ...this.props.user,
-                                                        skills: this.props.user.skills.concat(",").concat(this.state.skills)
-                                      })}
+                                          this.props.register(this.props.user)
+                                          // ...this.props.user,
+                                          // skills: this.props.user.skills.concat(",").concat(this.state.skills)
+                                          // })}
+                                      }
                                       to="/login">
                                     Register
                                 </Link>
