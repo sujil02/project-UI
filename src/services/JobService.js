@@ -57,6 +57,13 @@ export default class JobService {
             .catch(result=> console.log("ERROR IN SAVING GITHUB JOB"))
     }
 
+    unSaveJob = (userId, jobToUnsaveId) => {
+        return fetch(`${URL_ROOT}/api/userJobLink/${userId}/${jobToUnsaveId}`,{
+            method: 'DELETE'
+        }).then(result => result.json())
+            .catch(error => console.log("ERROR IN UNSAVE JOB" + error))
+    }
+
 
     getCompanyDetals = (company_url) =>{
        return fetch('https://api.fullcontact.com/v3/company.enrich', {

@@ -81,7 +81,7 @@ class PublicProfileComponent extends React.Component {
 
                     </div>
                 </div>
-                {this.props.currentUser &&
+                {this.props.currentUser ? (
                 <div className="card-footer bg-transparent">
                     <button className="btn btn-success" onClick={() =>
                         userService.followUser(this.props.currentUser.id, this.props.user.id)
@@ -99,7 +99,15 @@ class PublicProfileComponent extends React.Component {
 
 
                     </button>
-                </div>
+                </div> )
+                    : (
+
+                            this.props.myUserId &&
+                            <button className="btn btn-danger"
+                                    onClick={() => userService.unFollowUser(this.props.myUserId, this.props.user.id)}>
+                                Unfollow User
+                            </button>
+                    )
                 }
             </div>
         )

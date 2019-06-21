@@ -69,7 +69,7 @@ const propertyToDispatchMapper = dispatch => ({
     },
 
     getFollowedStudents: (user) => {
-        userService.getFollowingUsers(user.id)
+        userService.getFollowerUsers(user.id)
             .then(result => dispatch({
                 type: 'FOLLOWED_STUDENT',
                 followedStudents: result,
@@ -79,12 +79,14 @@ const propertyToDispatchMapper = dispatch => ({
     },
 
     getFollowingStudents: (user) => {
+        userService.getFollowingUsers(user.id)
+            .then(result =>
         dispatch({
             type: 'FOLLOWING_STUDENT',
-            followingStudents: [],
+            followingStudents: result,
             user: user,
             tab: 'FOLLOWING_STUDENT'
-        })
+        }))
     },
 
     changeTab : (user , tab) => {

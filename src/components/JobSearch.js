@@ -79,6 +79,8 @@ export default class JobSearch extends React.Component{
                                     isUserLoggedIn={this.props.isUserLoggedIn}/>
 
 
+
+
                             </div>
                             <div className="col-lg-8 col-md-8">
 
