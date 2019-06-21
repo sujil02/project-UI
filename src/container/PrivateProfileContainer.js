@@ -27,11 +27,12 @@ const propertyToDispatchMapper = dispatch => ({
         })
     },
 
-    saveDetails: (user, userId) =>
+    saveDetails: (user, loggedInUser, userId) =>
         userService.updateUser(user, userId)
             .then(result => dispatch({
                 type: 'SAVE_USER',
                 user: result,
+                loggedInUser: loggedInUser,
                 tab:'PROFILE'
             })),
 

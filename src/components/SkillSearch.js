@@ -31,6 +31,9 @@ export default class SkillSearch extends React.Component{
     render(){
         return(
             <div>
+                <div className="jumbotron bg-secondary" style={{'marginBottom':'2em'}}>
+                    <h1>Search Applicants</h1>
+                </div>
                 <div className="container-fluid">
 
 

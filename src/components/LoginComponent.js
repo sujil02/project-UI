@@ -54,10 +54,13 @@ export default class LoginComponent extends React.Component{
           <div>
               {console.log("LOGIN")}
               {console.log(this.props)}
+              <div className="jumbotron bg-secondary">
+                  <h1>Login</h1>
+              </div>
               <div className="row justify-content-center">
                   {this.props.location.state !== undefined && this.props.location.state.message === true &&
-                      <div className="row">
-                          <div className="col-sm-12 justify-content-center">
+                      <div className="container">
+                          <div className="container justify-content-center">
                               <div className="alert alert-warning" role="alert">
                                   <h4 className="alert-heading">Oops!</h4>
                                   <p>Hmm, seems like you do not have the authorization to view that data.

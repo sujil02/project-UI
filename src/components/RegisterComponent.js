@@ -37,6 +37,9 @@ class RegisterComponent extends React.Component {
     render() {
         return (
             <div>
+                <div className="jumbotron bg-secondary">
+                    <h1>Register</h1>
+                </div>
                 {console.log("REGISTER")}
                 {console.log(this.props.user)}
                 <div className="row justify-content-center">
