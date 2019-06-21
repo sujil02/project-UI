@@ -75,6 +75,25 @@ class PublicProfileComponent extends React.Component {
                                     </div>
                                 </div>
 
+                                <div className="form-group row">
+                                    <label className="col-form-label col-sm-3">
+                                        Skills
+                                    </label>
+                                    <div className="col-sm-9">
+                                        <ul className="list-group">
+                                        {this.props.user.skills
+                                            .split(",")
+                                            .splice(1, this.props.user.skills.split(",").length)
+                                            .map(skill =>
+                                             <li className="list-group-item list-group-item-action">
+                                                 {skill}
+                                             </li>
+                                        )
+                                        }
+                                        </ul>
+                                    </div>
+                                </div>
+
                             </div>
                         )}
 

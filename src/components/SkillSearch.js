@@ -37,6 +37,15 @@ export default class SkillSearch extends React.Component{
                     <div className="row">
                         <div className="col-lg-4 col-md-4" style={{'borderRight': '3px solid black'}}>
                             <div className="justify-content-center">
+                                <div className="row">
+                                    <div className="col-sm-12 justify-content-center">
+                                        <div className="alert alert-secondary" role="alert">
+                                            <h4 className="alert-heading">Find Suitable Candidates</h4>
+                                            <p> Hunting applicants for a specific skill? Try the search below.
+                                                Feel free to mark the applicants if you want to contact them later.</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="form-group">
                                     <label htmlFor="job-title">
                                         Skill Required

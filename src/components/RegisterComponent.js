@@ -22,9 +22,9 @@ class RegisterComponent extends React.Component {
 
     getClass = (userSkills, skill) => {
         if (userSkills.includes(skill)){
-            return "list-group-item active"
+            return "list-group-item list-group-item-action active"
         }else{
-            return "list-group-item"
+            return "list-group-item list-group-item-action"
         }
     };
 

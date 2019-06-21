@@ -60,7 +60,7 @@ export default class JobBoard extends React.Component{
                 {console.log("JOB BOARD")}
                 {console.log(this.props)}
                 <div className="navbar navbar-expand-sm navbar-dark bg-dark">
-                    <Link to={'/index'}>
+                    <Link to={'/'}>
                         <img  src="https://picsum.photos/id/20/40/40" className=" navbar-brand rounded-top rounded-bottom"
                               style={{'margin': '0', 'padding':'0', 'border':'1px solid white'}}/>
                     </Link>
@@ -75,15 +75,24 @@ export default class JobBoard extends React.Component{
 
                     <ul className="navbar-nav">
                         <li className="nav-item nav-link">
-                            <Link to={`/index`}>
+                            <Link to={`/`}>
                             <button className="btn btn-outline-light"> Home </button>
                             </Link>
                         </li>
-                        <Link to={`/companies`} >
-                        <li className="nav-item nav-link">
-                            <button className="btn btn-outline-light"> Search Companies </button>
-                        </li>
+                        { this.props.isUserLoggedIn && this.props.user.role === 'STUDENT' &&
+                            <Link to={`/companies`}>
+                                <li className="nav-item nav-link">
+                                    <button className="btn btn-outline-light"> Search Companies</button>
+                                </li>
+                            </Link>
+                        }
+                        { this.props.isUserLoggedIn && this.props.user.role === 'RECRUITER' &&
+                        <Link to={`/recruiter`}>
+                            <li className="nav-item nav-link">
+                                <button className="btn btn-outline-light"> Looking for Applicants? Check this out..</button>
+                            </li>
                         </Link>
+                        }
                     </ul>
 
                     <div className="collapse navbar-collapse" id="navbarText">
@@ -150,7 +159,16 @@ export default class JobBoard extends React.Component{
                 </div>
                 </div>
                 <div className="jumbotron bg-info">
-                    <h1>Job Search Application</h1>
+                    {  !this.props.isUserLoggedIn ?
+                        (
+                            <h1>Job Search Application</h1>
+
+                        ) : (
+
+                            <h1>Welcome {this.props.user.firstName} </h1>
+
+                        )
+                    }
                 </div>
 
 
@@ -158,7 +176,7 @@ export default class JobBoard extends React.Component{
                             render={(props) => (this.props.isUserLoggedIn !== undefined && this.props.isUserLoggedIn !== true)  ? (
                                 <LoginContainer {...props}/>
                             ) : (
-                                <Redirect to={{pathname: `/index`}} />
+                                <Redirect to={{pathname: `/`}} />
                                 )
                             }/>
 
@@ -172,10 +190,10 @@ export default class JobBoard extends React.Component{
                        render={() => (this.props.isUserLoggedIn !== undefined && this.props.isUserLoggedIn !== true)  ? (
                            <RegisterUserContainer/>
                        ) : (
-                           <Redirect to={{pathname: `/index`}} />
+                           <Redirect to={{pathname: `/`}} />
                        ) }/>
 
-                        <Route exact path={'/index'}
+                        <Route exact path={'/'}
                        render={(props) =><JobSearchContainer {...props} jobs = {[]}/>} />
 
                        <Route exact path={`/search/:skill/:loc`}
