@@ -7,6 +7,8 @@ import LoginContainer from "../container/LoginContainer";
 import JobsContainer from "../container/JobsContainer";
 import LoginComponent from "./LoginComponent";
 import JobRow from "./JobRow";
+import LatestDetails from "./LatestDetails";
+import CompanyDetailsComponent from "./CompanyDetailsComponent";
 // import {s} from './JobBoard';
 
 
@@ -117,7 +119,6 @@ export default class JobSearch extends React.Component{
 
 
                             </div>
-                            {this.props.job !== null &&
                                 <div className="col-lg-8 col-md-8">
 
                                     {/*{window.location.pathname.split('/')[2] &&*/}
@@ -128,12 +129,13 @@ export default class JobSearch extends React.Component{
                                         {/*           : <LoginComponent /> )*/}
                                         {/*       }}/>*/}
 
-                                        {this.props.isUserLoggedIn === true ? (
+                                        {this.props.isUserLoggedIn === true && this.props.job ? (
                                             < JobDetails
                                                 {...this.props}
                                                 job={this.props.job}
                                                 userId={this.props.loggedInUser.id}
                                                 addJob={this.props.addJob}
+                                                user={this.props.loggedInUser}
                                             />
                                         ) : (
                                             <div>
@@ -149,6 +151,8 @@ export default class JobSearch extends React.Component{
                                                 {/*        <LoginContainer/>*/}
                                                 {/*    </h4>*/}
                                                 {/*}*/}
+                                                <Route exact path={'/'} render={(props) => <LatestDetails {...props} isUserLoggedIn={this.props.isUserLoggedIn} user={this.props.loggedInUser}/>}/>
+
                                             </div>
 
                                         )
@@ -178,7 +182,6 @@ export default class JobSearch extends React.Component{
 
 
                                 </div>
-                            }
                         </div>
                     </div>
                 </div>

@@ -108,7 +108,19 @@ const propertyToDispatchMapper = dispatch => ({
             type: 'UPDATE_JOB',
             job:  job
         })
+    },
+
+    removeJob: (user) => {
+        jobService.unSaveJob(user.id).then(
+            result => dispatch({
+                type: 'ALL_ADDED_JOBS',
+                allAddedJobs: result,
+                user: user,
+                tab: 'ALL_ADDED_JOBS'
+            }))
     }
+
+
 
 
 

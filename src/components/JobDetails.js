@@ -3,10 +3,12 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 import {Link} from "react-router-dom";
 import JobService from '../services/JobService'
 let jobService = JobService.getInstance();
-const JobDetails =({job, addJob, userId}) => {
+const JobDetails =({job, addJob, userId, user, findAllJobs, set_job}) => {
     return (
 
         <div className="container">
+            {console.log("JOB DETAILS")}
+            {console.log(job, findAllJobs, userId)}
             {job &&
             <div>
                 <div className="card">
@@ -81,14 +83,17 @@ const JobDetails =({job, addJob, userId}) => {
                     </div>
                     {addJob ?(
                     <div className="form-group">
-                        <button  className="btn btn-block btn-success"
-                            onClick={() => addJob(job,userId)}>
+                        {user.role === "STUDENT" &&
+                        <button className="btn btn-block btn-success"
+                                onClick={() => addJob(job, userId)}>
                             Add Job to Profile
                         </button>
+                        }
                     </div>
                     ) : (
                         <button  className="btn btn-block btn-danger"
-                                 onClick={() =>jobService.unSaveJob(userId, job.id)}>
+                                 onClick={() => {jobService.unSaveJob(userId, job.id); findAllJobs(userId);
+                                                set_job({},[])}}>
                             Remove Job
                         </button>
                     )

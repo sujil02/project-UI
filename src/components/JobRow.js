@@ -80,8 +80,6 @@ export default class JobBoard extends React.Component{
     return(
         <div>
             {
-
-
                 this.get_Row()
             }
         </div>

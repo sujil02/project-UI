@@ -51,9 +51,14 @@ class PrivateProfileComponent extends React.Component {
     }
 
     set_User = (user_id, users) => {
+        if(users.length > 0){
         this.setState({
             user: users.find(u => u.id === user_id)
-        })
+        })}else{
+            this.setState({
+                user: {}
+            })
+        }
     }
 
 
@@ -362,59 +367,42 @@ class PrivateProfileComponent extends React.Component {
                             this.props.tab === "ALL_ADDED_JOBS" &&
                             this.state.job !== null &&
 
-                            <JobDetails userId={this.props.loggedInUser.id} job={this.state.job}/>
+                            <JobDetails userId={this.props.loggedInUser.id} job={this.state.job}
+                                        findAllJobs={this.props.getSavedGitJobs}
+                                        set_job={this.set_Job}/>
 
                         }
 
                         {
                             this.props.tab === "SAVED_GIT_JOBS" &&
                             this.state.job !== null &&
-                                <JobDetails userId={this.props.loggedInUser.id} job={this.state.job}/>
+                                <JobDetails userId={this.props.loggedInUser.id} job={this.state.job}
+                                            findAllJobs={this.props.getSavedGitJobs}
+                                            set_job={this.set_Job}/>
                         }
 
                         {
                             this.props.tab === "MARKED_STUDENTS"
                             && Object.keys(this.state.user).length > 0 &&
-                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user}/>
+                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user}
+                                                    getFollowingStudents={this.props.getFollowingStudents}
+                                                    set_user={this.set_User}/>
                         }
 
                         {
                             this.props.tab === "FOLLOWED_STUDENT"
                             && Object.keys(this.state.user).length > 0 &&
-                            <PublicProfileComponent  user={this.state.user}/>
+                            <PublicProfileComponent  user={this.state.user} getFollowingStudents={this.props.getFollowingStudents}
+                                                     set_user={this.set_User}/>
                         }
 
                         {
                             this.props.tab === "FOLLOWING_STUDENT"
                             && Object.keys(this.state.user).length > 0 &&
-                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user}/>
+                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user}
+                                                    getFollowingStudents={this.props.getFollowingStudents}
+                                                    set_user={this.set_User}/>
                         }
-
-                        {/*{*/}
-                        {/*    this.props.tab === "MARKED_STUDENTS"&&*/}
-                        {/*    this.state.user !== null &&*/}
-                        {/*    <div>*/}
-                        {/*    <p>{this.state.user}</p>*/}
-                        {/*    </div>*/}
-                        {/*}*/}
-
-                        {/*{*/}
-                        {/*    this.props.tab === "FOLLOWED_STUDENT"&&*/}
-                        {/*    this.state.user !== null &&*/}
-                        {/*    <div>*/}
-                        {/*        <p>{this.state.user}</p>*/}
-                        {/*    </div>*/}
-                        {/*}*/}
-
-                        {/*{*/}
-                        {/*    this.props.tab === "FOLLOWING_STUDENT"&&*/}
-                        {/*    this.state.user !== null &&*/}
-                        {/*    <div>*/}
-                        {/*        <p>{this.state.user}</p>*/}
-                        {/*    </div>*/}
-                        {/*}*/}
-
-
 
                     </div>
 
