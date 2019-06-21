@@ -25,6 +25,7 @@ import CompanyList from "./CompanyList";
 import CompanyListContainer from "../container/CompanyListContainer";
 
 import CompanyDetailsComponent from "./CompanyDetailsComponent";
+import LatestDetails from "./LatestDetails";
 let userService = UserService.getInstance();
 
 export default class JobBoard extends React.Component{
@@ -158,18 +159,18 @@ export default class JobBoard extends React.Component{
                     </ul>
                 </div>
                 </div>
-                <div className="jumbotron bg-info">
-                    {  !this.props.isUserLoggedIn ?
-                        (
-                            <h1>Job Search Application</h1>
+                {/*<div className="jumbotron bg-primary" style={{'marginBottom':'0', 'backgroundColor':'#A9B2C3'}}>*/}
+                {/*    {  !this.props.isUserLoggedIn ?*/}
+                {/*        (*/}
+                {/*            <h1>Job Search Application</h1>*/}
 
-                        ) : (
+                {/*        ) : (*/}
 
-                            <h1>Welcome {this.props.user.firstName} </h1>
+                {/*            <h1>Welcome {this.props.user.firstName} </h1>*/}
 
-                        )
-                    }
-                </div>
+                {/*        )*/}
+                {/*    }*/}
+                {/*</div>*/}
 
 
                 <Route exact path={`/login`}
@@ -199,6 +200,8 @@ export default class JobBoard extends React.Component{
                        <Route exact path={`/search/:skill/:loc`}
                        render={(props) => <JobContainer {...props}/>}/>
 
+                       <Route exact path={'/'} component={LatestDetails} />
+
                     <Route exact path={`/search/:skill/`}
                        render={(props) => <JobContainer {...props}/>}/>
 
@@ -217,9 +220,9 @@ export default class JobBoard extends React.Component{
                            <CompanyListContainer {...props}/>
                        }/>
 
-                        <Route exact path={`/companies`}
+                        <Route  path={`/companies`}
                        render={(props) =>
-                           <CompanyDetailsComponent {...props}/>
+                           <CompanyListContainer {...props}/>
                        }/>
 
                 <Route exact path={`/search/:skill/:loc/positions/:id`}

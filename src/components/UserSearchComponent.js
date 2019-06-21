@@ -11,9 +11,14 @@ class UserSearchComponent extends React.Component {
     }
     render() {
         return (
+            <div>
+                <div className="jumbotron bg-secondary" style={{'marginBottom':'2em'}}>
+                    <h1>Users</h1>
+                </div>
             <div className="row">
                 {console.log("SEARCH USERS")}
                 {console.log(this.props)}
+
                 <div className="col-sm-4 col-md-4 col-lg-4">
                     <div className="card">
                         <div className="card-header border-success">
@@ -61,6 +66,7 @@ class UserSearchComponent extends React.Component {
                        } />
                 </div>
 
+            </div>
             </div>
         )
     }
