@@ -21,6 +21,7 @@ import JobSearchContainer from "../container/JobSearchContainer"
 import SearchFields from "./SearchFields";
 import SkillSearch from "./SkillSearch";
 import SkillSearchContainer from "../container/SkillSearchContainer";
+import CompanyDetailsComponent from "./CompanyDetailsComponent";
 let userService = UserService.getInstance();
 
 export default class JobBoard extends React.Component{
@@ -44,6 +45,9 @@ export default class JobBoard extends React.Component{
         if(this.props.isUserLoggedIn === undefined){
             this.props.checkIfUserIsLoggedIn()
         }
+    }
+
+    setNavTabsActive = (tab_name) => {
 
     }
 
@@ -53,9 +57,9 @@ export default class JobBoard extends React.Component{
                 {console.log("JOB BOARD")}
                 {console.log(this.props)}
                 <div className="navbar navbar-expand-sm navbar-dark bg-dark">
-                    <Link to={'/'}>
-                        <img  src="https://picsum.photos/id/0/40/40" className=" navbar-brand rounded-top rounded-bottom"
-                              style={{'margin': '0', 'padding':'0'}}/>
+                    <Link to={'/index'}>
+                        <img  src="https://picsum.photos/id/20/40/40" className=" navbar-brand rounded-top rounded-bottom"
+                              style={{'margin': '0', 'padding':'0', 'border':'1px solid white'}}/>
                     </Link>
 
                     <button className="navbar-toggler" type="button"
@@ -65,6 +69,19 @@ export default class JobBoard extends React.Component{
                             onClick={() => this.setState({toggleStuff: true})}>
                         <span className="navbar-toggler-icon" />
                     </button>
+
+                    <ul className="navbar-nav">
+                        <li className="nav-item nav-link">
+                            <Link to={`/index`}>
+                            <button className="btn btn-outline-light"> Home </button>
+                            </Link>
+                        </li>
+                        <Link to={`/companies`} >
+                        <li className="nav-item nav-link">
+                            <button className="btn btn-outline-light"> Search Companies </button>
+                        </li>
+                        </Link>
+                    </ul>
 
                     <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav mr-1 ml-auto">
@@ -138,7 +155,7 @@ export default class JobBoard extends React.Component{
                             render={(props) => (this.props.isUserLoggedIn !== undefined && this.props.isUserLoggedIn !== true)  ? (
                                 <LoginContainer {...props}/>
                             ) : (
-                                <Redirect to={{pathname: `/`}} />
+                                <Redirect to={{pathname: `/index`}} />
                                 )
                             }/>
 
@@ -152,10 +169,10 @@ export default class JobBoard extends React.Component{
                        render={() => (this.props.isUserLoggedIn !== undefined && this.props.isUserLoggedIn !== true)  ? (
                            <RegisterUserContainer/>
                        ) : (
-                           <Redirect to={{pathname: `/`}} />
+                           <Redirect to={{pathname: `/index`}} />
                        ) }/>
 
-                        <Route exact path={'/'}
+                        <Route exact path={'/index'}
                        render={(props) =><JobSearchContainer {...props} jobs = {[]}/>} />
 
                        <Route exact path={`/search/:skill/:loc`}
@@ -170,10 +187,14 @@ export default class JobBoard extends React.Component{
                        {/*}/>*/}
 
                         <Route exact path={`/recruiter`}
-                       render={(props) =>
-                           <SkillSearchContainer {...props}/>
+                                    render={(props) =>
+                               <SkillSearchContainer {...props}/>
                        }/>
 
+                        <Route exact path={`/companies`}
+                       render={(props) =>
+                           <CompanyDetailsComponent {...props}/>
+                       }/>
 
                        <Route exact path={`/search/:skill/:loc/positions/:id`}
                               render={(props) => <JobContainer {...props}/> } />
