@@ -11,7 +11,8 @@ class PrivateProfileComponent extends React.Component {
 
         this.state = {
             job: null,
-            user: {}
+            user: {},
+
         }
         // localStorage.setItem('isUserLoggedIn', this.state.isUserLoggedIn)
         // this.state = {
@@ -49,6 +50,12 @@ class PrivateProfileComponent extends React.Component {
             job: jobs.find(j => j.id === job_id)
         })
     }
+
+   set_user_to_null = () =>{
+       this.setState({
+           user:{}
+       })
+   }
 
     set_User = (user_id, users) => {
         this.setState({
@@ -116,7 +123,8 @@ class PrivateProfileComponent extends React.Component {
 
 
                                     <li className={this.getclassName("MARKED_STUDENTS")}>
-                                        <button className="btn" onClick= {() => this.props.getMarkedStudents(this.props.loggedInUser , "MARKED_STUDENTS" )}>
+                                        <button className="btn" onClick= {() => {(this.props.getMarkedStudents(this.props.loggedInUser , "MARKED_STUDENTS"));
+                                        (this.set_user_to_null())}}>
                                             Marked Students
                                             <h6  className={!this.props.markedStudents.length && 'd-none'}>
                                                 {this.props.markedStudents.length} Students Marked
@@ -174,7 +182,7 @@ class PrivateProfileComponent extends React.Component {
                                 </li>
 
                                 <li className={this.getclassName("FOLLOWING_STUDENT")}>
-                                    <button className="btn" onClick= {() => this.props.getFollowingStudents(this.props.loggedInUser , "FOLLOWING_STUDENT" )}>
+                                    <button className="btn" onClick= {() => {this.props.getFollowingStudents(this.props.loggedInUser , "FOLLOWING_STUDENT" ); (this.set_user_to_null())}}>
                                         Users I'm Following
                                         <h6  className={!this.props.followingStudents.length && 'd-none'}>
                                             Following {this.props.followingStudents.length} Users
@@ -200,7 +208,7 @@ class PrivateProfileComponent extends React.Component {
 
                                 <li className={this.getclassName("FOLLOWED_STUDENT")}>
                                     <button className="btn"
-                                            onClick={() => this.props.getFollowedStudents(this.props.loggedInUser, "FOLLOWED_STUDENT")}>
+                                            onClick={() => {this.props.getFollowedStudents(this.props.loggedInUser, "FOLLOWED_STUDENT"); (this.set_user_to_null())}}>
                                         Users Following Me
                                         <h6  className={!this.props.followedStudents.length && 'd-none'}>
                                             Followed By {this.props.followedStudents.length} Users
@@ -372,19 +380,19 @@ class PrivateProfileComponent extends React.Component {
                         {
                             this.props.tab === "MARKED_STUDENTS"
                             && Object.keys(this.state.user).length > 0 &&
-                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user}/>
+                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user} {...this.props}/>
                         }
 
                         {
                             this.props.tab === "FOLLOWED_STUDENT"
                             && Object.keys(this.state.user).length > 0 &&
-                            <PublicProfileComponent  user={this.state.user}/>
+                            <PublicProfileComponent  user={this.state.user} {...this.props}/>
                         }
 
                         {
                             this.props.tab === "FOLLOWING_STUDENT"
                             && Object.keys(this.state.user).length > 0 &&
-                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user}/>
+                            <PublicProfileComponent myUserId={this.props.loggedInUser.id} user={this.state.user} {...this.props}/>
                         }
 
                         {/*{*/}
