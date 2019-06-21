@@ -11,7 +11,8 @@ const stateToPropertyMapper = (state) => ({
     company_list: state.companyListReducer.company_list,
     jobs:state.companyListReducer.jobs,
     company_details : state.companyListReducer.company_details,
-    isUserLoggedIn: state.loginReducer.isUserLoggedIn
+    isUserLoggedIn: state.loginReducer.isUserLoggedIn,
+    loggedInUser: state.loginReducer.user,
 });
 
 
@@ -23,7 +24,7 @@ const propertyToDispatchMapper = dispatch => ({
             .then(companies_list =>
                 dispatch({
                     type: 'COMPANIES_BY_APLHABET',
-                    companies_list: companies_list,
+                    company_list: companies_list,
                 })),
     getCompaniesJobs: (company_name) =>
         jobService

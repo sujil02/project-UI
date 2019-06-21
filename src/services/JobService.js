@@ -66,19 +66,46 @@ export default class JobService {
 
 
     getCompanyDetals = (company_url) =>{
-       return fetch('https://api.fullcontact.com/v3/company.enrich', {
+        // let b = {
+        //     domain: 'http://acadian-asset.com'
+        // }
+    //     return fetch(`https://api.fullcontact.com/v2/company/lookup.json?domain=${company_url}`, {
+    //         headers:
+    //             {
+    //                 Authorization: 'Bearer 0x80D6oMtEj4AbwZzgyoKHwnKdh8bAuN',
+    //             }
+    //         // body: { domain: JSON.parse('http://acadian-asset.com') },
+    //    }).then(result=> result.json())
+    //         .catch(error => console.log("Error in get company details" + error))
+    //
+    // }
+        return fetch(`https://api.fullcontact.com/v3/company.enrich`, {
             method: 'POST',
-            headers: {
-                'Authorization': 'Bearer 0x80D6oMtEj4AbwZzgyoKHwnKdh8bAuN',
-                'content-type':'application/json'
-            },
-            body: {
-            "domain": company_url
-        }
-
-       }).then(result=> result.json())
+            headers:
+                {
+                    Authorization: 'Bearer 0x80D6oMtEj4AbwZzgyoKHwnKdh8bAuN',
+                },
+            body: JSON.stringify({
+                domain: company_url
+            }),
+        }).then(result=> result.json())
+            .catch(error => console.log("Error in get company details" + error))
 
     }
+
+    getCompaniesByAlphabet = (alphabet) => {
+        return fetch(`${URL_ROOT}/api/companies/getAllCompaniesByAlphabet/${alphabet}`,{
+        }).then(result => result.json())
+            .catch(error => console.log("ERROR IN GET COMPANIES BY ALPHABET" + error))
+    }
+
+
+    getCompaniesJobs= (comp_id) => {
+        return fetch(`${URL_ROOT}/api/companies/${comp_id}`,{
+        }).then(result => result.json())
+            .catch(error => console.log("ERROR IN GET JOBS FOR COMPANY BY ALPHABET" + error))
+    }
+
 
 
 
