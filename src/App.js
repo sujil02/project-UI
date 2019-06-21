@@ -11,14 +11,18 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import mainReducer from './reducers/JobBoardReducer';
 import JobBoardContainer from './container/JobBoardContainer';
+import HomePage from "./components/HomePage";
 
 const store = createStore(mainReducer);
 
 function App() {
   return (
+      <div>
+      {/*<HomePage />*/}
       <Provider store={store}>
         <JobBoardContainer />
       </Provider>
+      </div>
   );
 }
 

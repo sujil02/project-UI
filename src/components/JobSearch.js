@@ -71,6 +71,30 @@ export default class JobSearch extends React.Component{
 
                         <div className="row">
                             <div className="col-lg-4 col-md-4" style={{'borderRight': '3px solid black'}}>
+
+                                        <div className="row">
+                                            <div className="col-sm-12 justify-content-center">
+                                                {!this.props.isUserLoggedIn ?
+                                                    (
+                                                <div className="alert alert-secondary" role="alert">
+
+                                                    <h4 className="alert-heading">Hey there!</h4>
+                                                    <p> Just graduated? Bored of your current job? Search for jobs here
+                                                        according to your skills. You will see a list of positions available.
+                                                        Need more details? Login/Signup :) </p>
+                                                </div>
+                                                    ) : (
+                                                        <div className="alert alert-secondary" role="alert">
+
+                                                            <h4 className="alert-heading">Hey there!</h4>
+                                                            <p> Look for jobs here. Feel free to save jobs and view them later
+                                                                in your profile. </p>
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                        </div>
+
                                 <SearchFields
                                     {...this.props}
                                     findAllJobsbyDescriptionAndLocation={this.props.findAllJobsbyDescriptionAndLocation}
