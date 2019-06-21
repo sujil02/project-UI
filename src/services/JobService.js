@@ -58,6 +58,22 @@ export default class JobService {
     }
 
 
+    getCompanyDetals = (company_url) =>{
+       return fetch('https://api.fullcontact.com/v3/company.enrich', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer 0x80D6oMtEj4AbwZzgyoKHwnKdh8bAuN',
+                'content-type':'application/json'
+            },
+            body: {
+            "domain": company_url
+        }
+
+       }).then(result=> result.json())
+
+    }
+
+
 
 
     // deleteWidget = widgetId =>

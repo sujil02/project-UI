@@ -5,8 +5,8 @@ const skillUserReducer = (state = {skilledUsers:[]}, action) => {
     switch(action.type) {
         case 'FIND_ALL_SKILLED_USERS':
             return {
-                skilledUsers: action.users,
-                isUserLoggedIn: true
+                skilledUsers: action.users
+
             };
         default:
             return state;

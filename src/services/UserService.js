@@ -37,8 +37,7 @@ export default class UserService {
                 headers: {
                     'content-type': 'application/json'
                 }
-            })
-                .then(response => response.json())
+            }).then(response => response.json())
         }
         else{
             return fetch(`${this.urlUser}/register/recruiter`, {
@@ -48,8 +47,7 @@ export default class UserService {
                 headers: {
                     'content-type': 'application/json'
                 }
-            })
-                .then(response => response.json())
+            }).then(response => response.json())
         }
     }
 
