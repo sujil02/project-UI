@@ -103,7 +103,7 @@ export default class JobService {
     }
 
     getLocalJobs = (skill, location) => {
-        return fetch(`${URL_ROOT}/api/jobs/${skill}=location=${location}`)
+        return fetch(`${URL_ROOT}/api/jobs/findByDetails/${skill}=location=${location}`)
             .then(result => result.json())
             .catch(error => console.log("ERROR IN GET LOCAL JOBS" + error))
     }
