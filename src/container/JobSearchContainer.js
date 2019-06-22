@@ -30,7 +30,9 @@ const propertyToDispatchMapper = dispatch => ({
                     type: 'FIND_JOB_BY_ID',
                     job: job,
                     jobs: jobs
-                })),
+                })).catch(
+
+        ),
 
             reset:() =>
                 dispatch({
@@ -38,18 +40,21 @@ const propertyToDispatchMapper = dispatch => ({
                     jobs: []
 
                 }),
+
+
         findAllJobsbyDescriptionAndLocationandid: (desc, location , id) =>
             jobService
                 .findAllJobsbyDescriptionAndLocation(desc, location)
-                .then(jobs =>jobService.findJobById(id).then(
+                .then(jobs =>jobService.getLocalJobs(desc, location)
+            .then(result => jobService.findJobById(id).then(
                     job =>
                         dispatch({
                             type: 'FIND_JOB_BY_ID',
                             job: job,
-                            jobs: jobs
+                            jobs: result.concat(jobs)
                         }))
 
-                ),
+                )),
 
         addJob: (job, userId) =>
             jobService.saveGithubJob(job,userId)

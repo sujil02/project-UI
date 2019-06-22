@@ -14,15 +14,15 @@ const stateToPropertyMapper = state => ({
 const propertyToDispatchMapper = dispatch => ({
 
 
-        findJobById: (job_id, jobs) =>
-            jobService
-                .findJobById(job_id)
-                .then(job =>
-                    dispatch({
-                        type: 'FIND_JOB_BY_ID',
-                        job: job,
-                        jobs: jobs
-                    })),
+        // findJobById: (job_id, jobs) =>
+        //     jobService
+        //         .findJobById(job_id)
+        //         .then(job =>
+        //             dispatch({
+        //                 type: 'FIND_JOB_BY_ID',
+        //                 job: job,
+        //                 jobs: jobs
+        //             })),
 
     }
 )

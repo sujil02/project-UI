@@ -69,6 +69,7 @@ export default class SearchFields extends React.Component{
                         <input type="input" className="form-control" id="job-title"
                         onChange={this.handleChangeJobTitle}
                         defaultValue= {window.location.pathname.split("/")[2]}
+                        placeholder="Skill eg. Python"
                         required/>
                     </div>
 
@@ -79,6 +80,7 @@ export default class SearchFields extends React.Component{
                         <input type="input" className="form-control" id="job-location"
                         onChange={this.handleChangeJobLocation}
                                defaultValue = {window.location.pathname.split("/")[3]}
+                               placeholder="Location eg. New York"
                         required/>
                     </div>
 

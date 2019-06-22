@@ -37,14 +37,16 @@ export default class JobBoard extends React.Component{
 
 
     get_Row = () =>
-{
+{{console.log("Jobss")}
+    {console.log(this.props.jobs)}
+
     if (this.props.user_logged_in){
         return (
             this.props.jobs.length > 0 &&
             this.props.jobs.map((posting,index) =>
 
                 <li className="list-group-item" key={index}>
-                <Link
+                    <Link
                 to={
                      `/search/${window.location.pathname.split("/")[2]}/${window.location.pathname.split("/")[3]}/positions/${posting.id}`
                 }

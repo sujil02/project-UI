@@ -27,7 +27,9 @@ export default class JobService {
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         var findJobByID = "https://jobs.github.com/positions/" + jobId +".json";
         return fetch(proxyUrl+findJobByID)
-            .then(response => response.json())}
+            .then(response => response.json())
+                .catch(result=>fetch(`${URL_ROOT}/api/jobs/${jobId}`)
+                    .then(result1 => result1.json()) ) }
 
 
     addJob = (job, userId) => {
