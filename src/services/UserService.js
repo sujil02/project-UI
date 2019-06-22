@@ -81,7 +81,7 @@ export default class UserService {
             method: 'POST',
             credentials: 'include'
         })
-            .then(response => response.text())
+            .then(response => console.log(response.text()))
             .catch(error => console.log("ERROR IN LOG OUT"))
     }
 

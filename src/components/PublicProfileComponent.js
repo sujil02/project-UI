@@ -3,6 +3,19 @@ import UserService from '../services/UserService';
 let userService = UserService.getInstance();
 
 class PublicProfileComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            followSuccess: false
+        }
+    }
+
+    setFollowSuccess = () => {
+        this.setState({
+            followSuccess: true
+        })
+    };
+
     render() {
         return (
             <div className="card">
@@ -102,22 +115,43 @@ class PublicProfileComponent extends React.Component {
                 </div>
                 {this.props.currentUser ? (
                 <div className="card-footer bg-transparent">
-                    <button className="btn btn-success" onClick={() =>
-                        userService.followUser(this.props.currentUser.id, this.props.user.id)
-                            .then(result => this.setState({
-                                followStatus: result
-                            }))
-                    }>
+                    { this.state.followSuccess &&
+                    <div className="row">
+                        <div className="alert alert-success alert-dismissible show d-block" role="alert"
+                             onClick={() => this.setState({followSuccess: false})}
+                             style={{'width': '100%'}}>
+                            {this.props.currentUser.role === "RECRUITER" ? (
+                                <span> {this.props.user.firstName} was marked and can be viewed in your profile</span>
+                            ) : (
+                                <span>Following {this.props.user.firstName}. You can unfollow this user from your profile.</span>
+                            )
+                            }
+                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    }
+                    {!this.state.followSuccess &&
+                        <button className="btn btn-success" onClick={() => {
+                            userService.followUser(this.props.currentUser.id, this.props.user.id)
+                                .then(result => this.setState({
+                                    followStatus: result
+                                }));
+                            this.setFollowSuccess();
+                        }}>
 
-                        {this.props.currentUser.role === "RECRUITER" ? (
-                            <span> Mark this applicant</span>
-                        ) : (
-                            <span>Follow this user</span>
-                        )
-                        }
+                            {this.props.currentUser.role === "RECRUITER" ? (
+                                <span> Mark this applicant</span>
+                            ) : (
+                                <span>Follow this user</span>
+                            )
+                            }
 
 
-                    </button>
+                        </button>
+                    }
+
                 </div> )
                     : (
 
@@ -129,9 +163,11 @@ class PublicProfileComponent extends React.Component {
                             </button>
                     )
                 }
+
             </div>
         )
     }
 }
 
 export default PublicProfileComponent;
+

@@ -133,7 +133,8 @@ export default class CompanyList extends React.Component{
                            <Route path={`/companies/job`}
                                   render={() => <JobDetails job={this.state.job}
                                                             userId={this.props.loggedInUser.id}
-                                                            addJob={true}/>}/>
+                                                            addJob={true}
+                                                            user={this.props.loggedInUser}/>}/>
 
 
                            <Route path={`/companies/company_details`}
