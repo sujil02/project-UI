@@ -41,9 +41,18 @@ export default class JobSearch extends React.Component{
 
 
     componentWillMount() {
-        if(window.location.pathname.split("/")[4] === "positions") {
-            this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill ,
-                this.props.match.params.loc, window.location.pathname.split("/")[5] )
+       if(window.location.pathname.split("/")[4] === "positions") {
+
+
+            if (this.props.match.params.loc) {
+                this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill,
+                    this.props.match.params.loc, window.location.pathname.split("/")[5])
+
+            }
+        else{
+                this.props.findAllJobsbyDescriptionAndLocationandid(this.props.match.params.skill,
+                    "", window.location.pathname.split("/")[5])
+            }
         }
         else if(window.location.pathname.split("/")[1] === "search") {
 
@@ -51,6 +60,7 @@ export default class JobSearch extends React.Component{
                 this.props.match.params.loc)
 
         }
+
 
         this.props.reset();
     }

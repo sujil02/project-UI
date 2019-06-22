@@ -61,6 +61,12 @@ export default class JobBoard extends React.Component{
             <Router>
                 {console.log("JOB BOARD")}
                 {console.log(this.props)}
+
+
+                {/*<Route path={`/admin`}*/}
+                {/*    render={(props) =>*/}
+                {/*    <AdminContainer/>}/>*/}
+                {/*}*/}
                 <div className="navbar navbar-expand-sm navbar-dark bg-dark">
                     <Link to={'/'}>
                         <img  src="https://picsum.photos/id/20/40/40" className=" navbar-brand rounded-top rounded-bottom"
@@ -215,15 +221,9 @@ export default class JobBoard extends React.Component{
                                <SkillSearchContainer {...props}/>
                        }/>
 
-                <Route exact path={`/admin`}
-                       render={(props) =>
-                           <AdminContainer/>}/>
 
 
-                <Route path={`/test`}
-                       render={(props) =>
-                           <CompanyListContainer {...props}/>
-                       }/>
+
 
                         <Route  path={`/companies`}
                        render={(props) =>
@@ -232,6 +232,8 @@ export default class JobBoard extends React.Component{
 
                 <Route exact path={`/search/:skill/:loc/positions/:id`}
                               render={(props) => <JobContainer {...props}/> } />
+                <Route exact path={`/search/:skill//positions/:id`}
+                       render={(props) => <JobContainer {...props}/> } />
 
                        <Route  path={`/api/users/:username`}
                       render={(props) => {
