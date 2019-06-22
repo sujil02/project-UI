@@ -5,7 +5,7 @@ let userService = UserService.getInstance();
 
 const stateToProperyMapper = state => {
     return {
-        user: {...state.loginReducer.user, ...state.privateProfileReducer.user},
+        user: state.loginReducer.user,
         isUserLoggedIn: state.loginReducer.isUserLoggedIn,
         jobs: state.jobReducer.jobs,
         job: state.jobReducer.job,
