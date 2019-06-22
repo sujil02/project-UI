@@ -56,14 +56,6 @@ export default class JobSearch extends React.Component{
     }
 
 
-    componentWillUpdate(nextProps, nextState) {
-
-
-    }
-
-
-
-
     render() {
             return (
                 <div>

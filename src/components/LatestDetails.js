@@ -4,6 +4,8 @@ import JobRow from "./JobRow";
 import {Link, Route} from 'react-router-dom'
 import CompanyDetailsComponent from "./CompanyDetailsComponent";
 import JobDetails from "./JobDetails";
+import UserService from "../services/UserService"
+let userService = UserService.getInstance();
 let jobService = JobService.getInstance();
 export default class LatestDetails extends React.Component{
 
@@ -15,17 +17,59 @@ export default class LatestDetails extends React.Component{
         }
     }
     componentWillMount() {
-        if(this.props.user){
-            if(!this.props.isUserLoggedIn) {
-                jobService.getRecentJobs(this.props.user.id)
-                    .then(result => this.setState({
-                        jobs: result
+        // if(this.props.user){
+        //     console.log("COMPONENT MOUNTED")
+            // userService.getSavedJobsForUsers(this.props.user.id)
+            //     .then(result =>
+            //         this.setState({
+            //             jobs:result
+            //         }))
+        //     if(!this.props.isUserLoggedIn) {
+        //         jobService.getRecentJobs(this.props.user.id)
+        //             .then(result => this.setState({
+        //                 jobs: result
+        //             }))
+        //     }else{
+        //         userService.getSavedJobsForUsers(this.props.user.id)
+        //             .then(result =>
+        //                 this.setState({
+        //                     jobs:result
+        //                 }))
+        //     }
+        // }
+    }
+
+    componentDidMount() {
+        if(!this.props.isUserLoggedIn) {
+            jobService.getRecentJobs()
+                .then(result => this.setState({
+                    jobs: result
+                }))
+        }else{
+            userService.getSavedJobsForUsers(this.props.user.id)
+                .then(result =>
+                    this.setState({
+                        jobs:result
                     }))
-            }else{
-                this.setState({
-                    jobs:[]
-                })
-            }
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.user !== this.props.user){
+
+                if(!this.props.isUserLoggedIn) {
+                    jobService.getRecentJobs()
+                        .then(result => this.setState({
+                            jobs: result
+                        }))
+                }else{
+                    userService.getSavedJobsForUsers(this.props.user.id)
+                        .then(result =>
+                            this.setState({
+                                jobs:result
+                            }))
+                }
+            
         }
     }
 
@@ -113,7 +157,7 @@ export default class LatestDetails extends React.Component{
                 {this.props.isUserLoggedIn &&
                 <div>
                     {Object.keys(this.state.job).length > 0 &&
-                    <JobDetails job={this.state.job} addJob={true} userId={this.props.user.id}/>
+                    <JobDetails job={this.state.job} addJob={true} userId={this.props.user.id} user={this.props.user}/>
                     }
                 </div>
                 }

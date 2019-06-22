@@ -119,6 +119,12 @@ export default class UserService {
             .catch(error => console.log("ERROR IN UNFOLLOW USERS" + error))
     }
 
+    getSavedJobsForUsers = (userId) => {
+        return fetch(`${URL_ROOT}/api/userJobLink/recentlySaved/${userId}`)
+            .then(response => response.json())
+            .catch(error => console.log("ERROR IN GETTING FEED JOBS FOR USER" + error))
+    }
+
 
 
 }
