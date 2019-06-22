@@ -82,7 +82,7 @@ class PrivateProfileComponent extends React.Component {
                         <ul className="list-group">
                             <li className={this.getclassName("PROFILE")}>
                                 <button className="btn"
-                                        onClick={() => this.props.changeTab(this.props.loggedInUser, "PROFILE")}>
+                                        onClick={() => this.props.getProfileDetails(this.props.loggedInUser.id, "PROFILE")}>
                                     Profile
                                 </button>
                             </li>
@@ -353,7 +353,12 @@ class PrivateProfileComponent extends React.Component {
                             </div>
                             <div className="card-footer">
                                 <button className="btn btn-success btn-block"
-                                        onClick={() => this.props.saveDetails(this.props.updatedUser,this.props.loggedInUser, this.props.loggedInUser.id)}>
+                                        onClick={() => {
+                                            this.props.saveDetails(this.props.updatedUser,this.props.loggedInUser,
+                                                this.props.loggedInUser.id);
+
+
+                                        }}>
                                     Save Details
                                 </button>
                             </div>

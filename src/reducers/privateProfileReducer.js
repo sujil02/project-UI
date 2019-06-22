@@ -32,7 +32,7 @@ const privateProfileReducer = (state = {user: {} , tab : 'PROFILE' ,
 
         case 'SAVE_USER':
             return{
-                user:  action.loggedInUser,
+                user:  action.user,
                 tab: state.tab,
                 savedGitJobs:[],
                 markedStudents:[],
