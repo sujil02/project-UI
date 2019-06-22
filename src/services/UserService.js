@@ -119,6 +119,17 @@ export default class UserService {
             .catch(error => console.log("ERROR IN UNFOLLOW USERS" + error))
     }
 
+    getAllUsers = () => {
+        return fetch(`${URL_ROOT}/api/users`,{
+        }).then(response => response.json())
+            .catch(error => console.log("ERROR IN GETTING USERS FOR ADMIN" + error))
+    }
 
+    deleteUser = (userId) => {
+        return fetch(`${URL_ROOT}/api/user/${userId}`,{
+            method: 'DELETE',
+        }).then(response => response.json())
+            .catch(error => console.log("ERROR IN DELETING A USER FOR ADMIN" + error))
+    }
 
 }

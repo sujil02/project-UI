@@ -63,7 +63,7 @@ export default class SkillSearch extends React.Component{
 
                                 <div className="form-group">
                                     <Link className="btn btn-block btn-success"
-                                          onClick={() => {this.props.getSkilledUsers(this.state.skill_value);}}>
+                                          onClick={() => {this.props.getSkilledUsers(this.state.skill_value); this.set_user({})}}>
                                         Search Skilled Users
                                     </Link>
                                 </div>
@@ -76,7 +76,7 @@ export default class SkillSearch extends React.Component{
 
                                         <li className="list-group-item">
                                             <button className="btn btn-block"
-                                            onClick={() => this.set_user(user)} >
+                                            onClick={() => {this.set_user(user) } } >
                                                 {user.firstName} {user.lastName}
                                             </button>
                                         </li>)

@@ -25,7 +25,8 @@ const AddJobComponent =({props}) => {
                                               onChange={(event) => props.updateJob(({
                                                   ...props.job,
                                                   company: event.target.value
-                                              }))}/>
+                                              }))}
+                                              defaultValue = {props.job.company}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -35,7 +36,8 @@ const AddJobComponent =({props}) => {
                                                 onChange={(event) => props.updateJob(({
                                                     ...props.job,
                                                     title: event.target.value
-                                                }))}/>
+                                                }))}
+                                              defaultValue = {props.job.title}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -45,7 +47,8 @@ const AddJobComponent =({props}) => {
                                            onChange={(event) => props.updateJob(({
                                                ...props.job,
                                                type: event.target.value.toString()
-                                           }))}>
+                                           }))
+                                           } defaultValue = {props.job.type}>
                                         <option value="Full Time"> Full Time </option>
                                         <option value="Part Time"> Part Time </option>
                                     </select>
@@ -59,7 +62,10 @@ const AddJobComponent =({props}) => {
                                            onChange={(event) => props.updateJob(({
                                                ...props.job,
                                                created_at: event.target.value.toString()
-                                           }))}/>
+
+                                           }))
+                                           }
+                                           defaultValue = {props.job.created_at}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -69,7 +75,8 @@ const AddJobComponent =({props}) => {
                                            onChange={(event) => props.updateJob(({
                                                ...props.job,
                                                address: event.target.value
-                                           }))}/>
+                                           }))}
+                                           defaultValue = {props.job.address}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -80,7 +87,7 @@ const AddJobComponent =({props}) => {
                                                   onChange={(event) => props.updateJob(({
                                                       ...props.job,
                                                       description: event.target.value
-                                                  }))}/>
+                                                  }))} defaultValue = {props.job.description}/>
                                     </div>
                                     {/*< className="form-control" value={job.description} readOnly/>*/}
                                 </div>
@@ -95,7 +102,8 @@ const AddJobComponent =({props}) => {
                                           onChange={(event) => props.updateJob(({
                                               ...props.job,
                                               application_details: event.target.value
-                                          }))}/>
+                                          }))}
+                                          defaultValue = {props.job.application_details}/>
                             </div>
                         </div>
                         <div className="form-group row">
@@ -105,7 +113,8 @@ const AddJobComponent =({props}) => {
                                        onChange={(event) => props.updateJob(({
                                            ...props.job,
                                            company_url: event.target.value
-                                       }))}/>
+                                       }))}
+                                       defaultValue = {props.job.company_url}/>
                             </div>
                         </div>
                             <div className="form-group row">
@@ -115,7 +124,7 @@ const AddJobComponent =({props}) => {
                                            onChange={(event) => props.updateJob(({
                                                ...props.job,
                                                logo_details: event.target.value
-                                           }))}/>
+                                           }))} defaultValue = {props.job.logo_details}/>
                                 </div>
                             </div>
                         <div className="form-group row">
@@ -125,14 +134,16 @@ const AddJobComponent =({props}) => {
                                        onChange={(event) => props.updateJob(({
                                            ...props.job,
                                            url: event.target.value
-                                       }))}/>
+                                       }))}
+                                       defaultValue = {props.job.url}/>
                             </div>
                         </div>
                     </div>
                     <div className="form-group">
                         <button  className="btn btn-block btn-success"
                                 onClick={() => props.addJob( ({...props.job, id: (new Date()).getTime().toString()}),
-                                    props.loggedInUser.id )}>
+                                    props.loggedInUser.id )}
+                        >
                            Post Job
                         </button>
                     </div>

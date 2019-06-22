@@ -6,6 +6,7 @@ import privateProfileReducer from './privateProfileReducer'
 import registerUserReducer from './registerUserReducer'
 import skillUserReducer from "./skillUserReducer";
 import companyListReducer from "./companyListReducer";
+import AdminReducer from "./AdminReducer";
 
 export default combineReducers({
     jobReducer,
@@ -14,7 +15,8 @@ export default combineReducers({
     privateProfileReducer,
     registerUserReducer,
     skillUserReducer,
-    companyListReducer
+    companyListReducer,
+    AdminReducer
 })
 
  // export const selectIsUserLoggedIn = (state) =>

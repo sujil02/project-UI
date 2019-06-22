@@ -26,6 +26,7 @@ import CompanyListContainer from "../container/CompanyListContainer";
 
 import CompanyDetailsComponent from "./CompanyDetailsComponent";
 import LatestDetails from "./LatestDetails";
+import AdminContainer from "../container/AdminContainer";
 let userService = UserService.getInstance();
 
 export default class JobBoard extends React.Component{
@@ -214,6 +215,11 @@ export default class JobBoard extends React.Component{
                                     render={(props) =>
                                <SkillSearchContainer {...props}/>
                        }/>
+
+                <Route exact path={`/admin`}
+                       render={(props) =>
+                           <AdminContainer/>}/>
+
 
                 <Route path={`/test`}
                        render={(props) =>

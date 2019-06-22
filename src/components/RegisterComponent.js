@@ -125,12 +125,14 @@ class RegisterComponent extends React.Component {
                                     </label>
                                     <div className="input-group">
                                         <select className="form-control"
-                                                defaultValue="STUDENT"
+                                                defaultValue="NONE"
                                                 onChange={(event) => this.props.updateUser({
                                                         ...this.props.user,
                                                         role: event.target.value
                                                     })}>
+
                                                 {/*value={this.props.user.role}>*/}
+                                            <option  value=""  selected >Select Your Role</option>
                                             <option value="STUDENT"> Student </option>
                                             <option value="RECRUITER"> Recruiter </option>
                                         </select>

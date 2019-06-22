@@ -45,9 +45,7 @@ const propertyToDispatchMapper = dispatch => ({
                     user: user,
                     tab: 'SAVED_GIT_JOBS'
                 })
-        )
-},
-
+        )},
 
     getAllAddedJobs: (user) => {
         jobService.getAllJobsForAUser(user.id).then(
@@ -108,11 +106,8 @@ const propertyToDispatchMapper = dispatch => ({
             type: 'UPDATE_JOB',
             job:  job
         })
+
     }
-
-
-
-
 
 });
 
