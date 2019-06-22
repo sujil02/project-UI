@@ -32,7 +32,7 @@ const propertyToDispatchMapper = dispatch => ({
             .then(result => dispatch({
                 type: 'SAVE_USER',
                 user: result,
-                loggedInUser: loggedInUser,
+                loggedInUser: user,
                 tab:'PROFILE'
             })),
 
@@ -86,6 +86,15 @@ const propertyToDispatchMapper = dispatch => ({
             user: user,
             tab: 'FOLLOWING_STUDENT'
         }))
+    },
+
+    getProfileDetails: (userId,tab) => {
+        userService.findUserByUserId(userId)
+            .then(result => dispatch({
+                type: 'CHANGED_TAB',
+                user: result,
+                tab: tab
+            }))
     },
 
     changeTab : (user , tab) => {

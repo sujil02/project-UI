@@ -85,7 +85,8 @@ export default class SearchFields extends React.Component{
                     <div className="form-group">
                         <Link to={`/search/${this.state.job}/${this.state.location}`}
                               className="btn btn-block btn-success"
-                              onClick={() => this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location)} >
+                              onClick={() =>{
+                              this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location)}} >
                             Search Jobs
                         </Link>
                     </div>

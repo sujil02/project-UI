@@ -139,4 +139,11 @@ export default class UserService {
             .catch(error => console.log("ERROR IN DELETING A USER FOR ADMIN" + error))
     }
 
+    findUserByUserId = (userId) => {
+        return fetch(`${URL_ROOT}/api/user/${userId}`,{
+            credentials: "include"
+        }).then(response => response.json())
+            .catch(error => console.log("ERROR  IN FIND USER BY ID" + error))
+    }
+
 }
