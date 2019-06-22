@@ -89,7 +89,7 @@ export default class SkillSearch extends React.Component{
 
                         <div className="col-lg-8 col-md-8">
                             {Object.keys(this.state.s_user).length > 0 &&
-                            <PublicProfileComponent currentUser={({role: 'RECRUITER'})} user={this.state.s_user}/>
+                            <PublicProfileComponent currentUser={this.props.user} user={this.state.s_user}/>
                             }
                         </div>
 

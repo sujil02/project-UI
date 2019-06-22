@@ -218,7 +218,7 @@ export default class JobBoard extends React.Component{
 
                         <Route exact path={`/recruiter`}
                                     render={(props) =>
-                               <SkillSearchContainer {...props}/>
+                               <SkillSearchContainer {...props} user={this.props.user}/>
                        }/>
 
 

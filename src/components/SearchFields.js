@@ -61,7 +61,7 @@ export default class SearchFields extends React.Component{
     render(){
         return(
             <div>
-            <div className="justify-content-center">
+            <form className="justify-content-center">
                     <div className="form-group">
                         <label htmlFor="job-title">
                             Job Skill
@@ -85,12 +85,14 @@ export default class SearchFields extends React.Component{
                     </div>
 
                     <div className="form-group">
+
                         <Link to={`/search/${this.state.job}/${this.state.location}`}
-                              className="btn btn-block btn-success"
+                              className="btn btn-block btn-outline-success"
                               onClick={() =>{
                               this.props.findAllJobsbyDescriptionAndLocation(this.state.job, this.state.location)}} >
                             Search Jobs
                         </Link>
+
                     </div>
                 {
                     this.props.loggedInUser!== null && this.props.loggedInUser.role === "RECRUITER" &&
@@ -113,7 +115,7 @@ export default class SearchFields extends React.Component{
                         }
 
 
-            </div>
+            </form>
             </div>
         )
     }

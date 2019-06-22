@@ -85,7 +85,7 @@ const JobDetails =({job, addJob, userId, user, findAllJobs, set_job}) => {
                     <div className="form-group">
                         {user.role === "STUDENT" &&
                         <button className="btn btn-block btn-success"
-                                onClick={() => addJob(job, userId)}>
+                                onClick={() => {addJob(job, userId); alert("Added to profile")}}>
                             Add Job to Profile
                         </button>
                         }
