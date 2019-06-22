@@ -8,6 +8,12 @@ const jobReducer = (state = {jobs: []}, action) => {
                 jobs: action.jobs,
 
             };
+
+        case 'FIND_LOCAL_JOBS':
+            return{
+                jobs: action.jobs,
+                job: state.job
+            };
         case "FIND_JOB_BY_ID":
         case "RESET":
             return{

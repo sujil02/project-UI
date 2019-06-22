@@ -13,15 +13,15 @@ const stateToPropertyMapper = (state) => ({
 
 const propertyToDispatchMapper = dispatch => ({
 
-    findAllJobsbyDescriptionAndLocation: (desc, location) =>
-        jobService
-            .findAllJobsbyDescriptionAndLocation(desc, location)
-            .then(jobs =>
-                dispatch({
-                    type: 'FIND_JOB_BY_DESC_LOC',
-                    jobs: jobs,
-                })),
-
+        findAllJobsbyDescriptionAndLocation: (desc, location) =>
+            jobService.
+            findAllJobsbyDescriptionAndLocation(desc, location)
+                .then(jobs => jobService.getLocalJobs(desc, location)
+                    .then(result => dispatch({
+                        type: 'FIND_JOB_BY_DESC_LOC',
+                        jobs: result.concat(jobs)
+                    }))
+                ),
     findJobById: (job_id, jobs) =>
         jobService
             .findJobById(job_id)
@@ -55,6 +55,13 @@ const propertyToDispatchMapper = dispatch => ({
             jobService.saveGithubJob(job,userId)
                 .then(result => dispatch({
                     type: 'SAVE_JOB'
+                })),
+
+        findLocalJobs: (skill, location) =>
+            jobService.getLocalJobs(skill, location)
+                .then(result => dispatch({
+                    type: 'FIND_LOCAL_JOBS',
+                    jobs: result
                 }))
     }
 
