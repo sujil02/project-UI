@@ -66,19 +66,6 @@ export default class JobService {
 
 
     getCompanyDetals = (company_url) =>{
-        // let b = {
-        //     domain: 'http://acadian-asset.com'
-        // }
-    //     return fetch(`https://api.fullcontact.com/v2/company/lookup.json?domain=${company_url}`, {
-    //         headers:
-    //             {
-    //                 Authorization: 'Bearer 0x80D6oMtEj4AbwZzgyoKHwnKdh8bAuN',
-    //             }
-    //         // body: { domain: JSON.parse('http://acadian-asset.com') },
-    //    }).then(result=> result.json())
-    //         .catch(error => console.log("Error in get company details" + error))
-    //
-    // }
         return fetch(`https://api.fullcontact.com/v3/company.enrich`, {
             method: 'POST',
             headers:
@@ -107,33 +94,12 @@ export default class JobService {
     }
 
 
+    getRecentJobs = () => {
+        return fetch(`${URL_ROOT}/api/jobs/recentlyPosted`)
+            .then(result => result.json())
+            .catch(error => console.log("ERROR IN GETTING RECENT JOBS" + error))
+    }
 
 
-
-    // deleteWidget = widgetId =>
-    //     fetch(`https://cs5610-rahul-java-server.herokuapp.com/api/widgets/${widgetId}`, {
-    //         method: 'DELETE'
-    //     })
-    //         .then(response => response.json())
-    //
-    // updateWidget = (newWidget) =>
-    //     fetch(`https://cs5610-rahul-java-server.herokuapp.com/api/widgets/${newWidget.id}`, {
-    //         method: 'PUT',
-    //         body: JSON.stringify(newWidget),
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         }
-    //     })
-    //         .then(response => response.json())
-    // saveWidgets = (widgets) =>
-    //     fetch(`https://cs5610-rahul-java-server.herokuapp.com/api/widgets`, {
-    //         method: 'PUT',
-    //         body: JSON.stringify(widgets),
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         }
-    //     })
-    //         .then(response => response.json())
-    //
 
 }

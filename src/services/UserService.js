@@ -124,6 +124,13 @@ export default class UserService {
         }).then(response => response.json())
             .catch(error => console.log("ERROR IN GETTING USERS FOR ADMIN" + error))
     }
+    getSavedJobsForUsers = (userId) => {
+        return fetch(`${URL_ROOT}/api/userJobLink/recentlySaved/${userId}`)
+            .then(response => response.json())
+            .catch(error => console.log("ERROR IN GETTING FEED JOBS FOR USER" + error))
+    }
+
+
 
     deleteUser = (userId) => {
         return fetch(`${URL_ROOT}/api/user/${userId}`,{

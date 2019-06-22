@@ -123,7 +123,8 @@ class PublicProfileComponent extends React.Component {
 
                             this.props.myUserId &&
                             <button className="btn btn-danger"
-                                    onClick={() => userService.unFollowUser(this.props.myUserId, this.props.user.id)}>
+                                    onClick={() => {userService.unFollowUser(this.props.myUserId, this.props.user.id);
+                                                    this.props.getFollowingStudents(this.props.myUserId);this.props.set_user(0,[])}}>
                                 Unfollow User
                             </button>
                     )

@@ -201,7 +201,6 @@ export default class JobBoard extends React.Component{
                        <Route exact path={`/search/:skill/:loc`}
                        render={(props) => <JobContainer {...props}/>}/>
 
-                       <Route exact path={'/'} component={LatestDetails} />
 
                     <Route exact path={`/search/:skill/`}
                        render={(props) => <JobContainer {...props}/>}/>
