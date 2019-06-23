@@ -48,7 +48,7 @@ export default class JobBoard extends React.Component{
                 <li className="list-group-item" key={index}>
                     <Link
                 to={
-                     `/search/${window.location.pathname.split("/")[2]}/${window.location.pathname.split("/")[3]}/positions/${posting.id}`
+                     `/result/${window.location.pathname.split("/")[2]}/${window.location.pathname.split("/")[3]}/positions/${posting.id}`
                 }
                 onClick={() => this.props.findJobById(posting.id, this.props.jobs)}
 

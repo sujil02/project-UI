@@ -111,7 +111,7 @@ export default class JobBoard extends React.Component{
                                     <input className="form-control" type="text"
                                            placeholder="Search for people"
                                            onChange={(event) => this.searchFieldOnChange(event)}/>
-                                    <Link to={`/api/users/${this.state.searchField}`}>
+                                    <Link to={`/public/${this.state.searchField}`}>
                                         <button className="btn btn-outline-success"
                                                 onClick={() => userService.findUsers(this.state.searchField)
                                                     .then(result =>
@@ -142,7 +142,7 @@ export default class JobBoard extends React.Component{
                             {
                             this.props.isUserLoggedIn &&
                                 <li className="nav-item nav-link">
-                                    <Link to={`/profile`}>
+                                    <Link to={`/public`}>
                                         <button className="btn bg-transparent btn-outline-success">
                                             {this.props.user.username}
                                             <i className="fa fa-user-circle"
@@ -230,12 +230,12 @@ export default class JobBoard extends React.Component{
                            <CompanyListContainer {...props}/>
                        }/>
 
-                <Route exact path={`/search/:skill/:loc/positions/:id`}
+                <Route exact path={`/result/:skill/:loc/positions/:id`}
                               render={(props) => <JobContainer {...props}/> } />
-                <Route exact path={`/search/:skill//positions/:id`}
+                <Route exact path={`/result/:skill//positions/:id`}
                        render={(props) => <JobContainer {...props}/> } />
 
-                       <Route  path={`/api/users/:username`}
+                       <Route path={`/public/:username`}
                       render={(props) => {
                           return <UserSearchComponent {...props} currentUser={this.props.user}
                                                       users={this.state.searchResults}
