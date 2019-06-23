@@ -72,7 +72,7 @@ export default class JobService {
             method: 'POST',
             headers:
                 {
-                    Authorization: 'Bearer 0x80D6oMtEj4AbwZzgyoKHwnKdh8bAuN',
+                    Authorization: 'Bearer 8wKfcWjrcKsDv99iLl70atsETeyGyHdV',
                 },
             body: JSON.stringify({
                 domain: company_url
