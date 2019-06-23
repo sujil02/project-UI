@@ -142,7 +142,7 @@ export default class JobBoard extends React.Component{
                             {
                             this.props.isUserLoggedIn &&
                                 <li className="nav-item nav-link">
-                                    <Link to={`/public`}>
+                                    <Link to={`/profile`}>
                                         <button className="btn bg-transparent btn-outline-success">
                                             {this.props.user.username}
                                             <i className="fa fa-user-circle"

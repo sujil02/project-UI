@@ -27,7 +27,7 @@ class UserSearchComponent extends React.Component {
                         <div className="card-body">
                             <ul className="list-group">
                             {
-                                this.props.users.map(profile =>
+                                this.props.users.filter(user => user.firstName !== "Github").map(profile =>
                                  <li className="list-group-item">
                                      <Link to={`/public/profile/${profile.id}`}
                                             onClick={() => this.setState({
