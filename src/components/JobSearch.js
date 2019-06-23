@@ -9,6 +9,8 @@ import LoginComponent from "./LoginComponent";
 import JobRow from "./JobRow";
 import LatestDetails from "./LatestDetails";
 import CompanyDetailsComponent from "./CompanyDetailsComponent";
+import Admin from "./Admin";
+import AdminContainer from "../container/AdminContainer";
 // import {s} from './JobBoard';
 
 
@@ -69,6 +71,9 @@ export default class JobSearch extends React.Component{
     render() {
             return (
                 <div>
+                    {this.props.loggedInUser && this.props.loggedInUser.firstName === "Admin" ? ( <AdminContainer/> ) : (
+                <div>
+
                     {  !this.props.isUserLoggedIn ? (
                     <div className="jumbotron bg-secondary " style={{'marginBottom':'0', 'backgroundColor':'#A9B2C3', 'color':'white'}}>
                                 <h1>Job Search Application</h1>
@@ -186,6 +191,9 @@ export default class JobSearch extends React.Component{
                                 </div>
                         </div>
                     </div>
+                </div>
+                    )
+                    }
                 </div>
 
             )

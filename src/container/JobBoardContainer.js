@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import JobBoard from "../components/JobBoard";
 import UserService from '../services/UserService';
+import HomePage from "../components/HomePage";
 let userService = UserService.getInstance();
 
 const stateToProperyMapper = state => {
@@ -29,5 +30,4 @@ const propertyToDispatchMapper = dispatch => ({
 
 
 const JobBoardContainer = connect(stateToProperyMapper,propertyToDispatchMapper)(JobBoard);
-
 export default JobBoardContainer;

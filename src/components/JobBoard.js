@@ -241,6 +241,11 @@ export default class JobBoard extends React.Component{
                                                       users={this.state.searchResults}
                                                       isUserLoggedIn={this.props.isUserLoggedIn}/>}}/>
 
+                {/*<Route path={`/admin`}*/}
+                {/*    render={(props) =>*/}
+                {/*    <AdminContainer/>}/>*/}
+                }
+
             </Router>
         );
     };

@@ -11,9 +11,27 @@ export default class LoginComponent extends React.Component{
                 username: '',
                 password: ''
             },
-            redirect : false
+            redirect : false,
+            loginStatus: false
         }
     }
+
+    checkUser = () => {
+        // if(this.props.user === null){
+        //     console.log("WOAZZA")
+        //     this.setLoginStatus();
+        // }
+        this.setState({
+            user: this.props.user
+        })
+        this.setLoginStatus()
+    }
+
+    setLoginStatus = () => {
+        this.setState({
+            loginStatus: true
+        })
+    };
 
     handleLoginUser = (user) => {
         console.log("HANDLE LOG IN")
@@ -70,6 +88,19 @@ export default class LoginComponent extends React.Component{
                       </div>
 
                   }
+
+                      <div className="container">
+                          {
+                              this.state.loginStatus &&
+                              <div className="alert alert-warning" role="alert"
+                                   onClick={() => this.setState({loginStatus: false})}>
+                                  <h4 className="alert-heading">Please sign up</h4>
+                                  <p>We don't seem to have your records in our database yet. Please sign up! :) </p>
+                              </div>
+                          }
+                              </div>
+
+
                   <div className="card" style={{'width':'60%', 'marginTop':'3em', 'marginBottom':'3em'}}>
                       <div className="card-body">
                           <form className="form">
@@ -101,19 +132,31 @@ export default class LoginComponent extends React.Component{
                       </div>
                       <div className="card-footer">
                           <div className="form-row">
-                              <Link to={`/`} className="ml-1 mr-auto">
-                              <button className="btn btn-success "
+                              {/*<Link to={`/`} className="ml-1 mr-auto">*/}
+                              <button className="btn btn-success ml-1 mr-auto "
                                         onClick={() =>
                                         {
                                             this.props.loginUser(this.state.user);
+                                            this.checkUser();
                                         }}>
                                   Login
                               </button>
-                              </Link>
+                              {/*</Link>*/}
 
                               <Link to={`/register`}>
                                   <button className="btn btn-warning"> Sign Up </button>
                               </Link>
+
+
+                              {this.props.user !== null && Object.keys(this.props.user).length > 0 ? (
+                                  (this.props.user.role === "RECRUITER") ? (this.props.history.push("/recruiter")) : (
+                                      (this.props.user.role === "STUDENT" ? (this.props.history.push("/")) : (this.props.history.push("/admin")))
+                                  )) : (
+                                  <div></div>
+                              )
+                              }
+
+
                               {/*{this.props.user!==null && this.props.user.role!==undefined &&*/}
                               {/*    <div>*/}
                               {/*{*/}
@@ -126,6 +169,7 @@ export default class LoginComponent extends React.Component{
                               {/*    </div>*/}
                               {/*}*/}
                           </div>
+
 
                       </div>
 

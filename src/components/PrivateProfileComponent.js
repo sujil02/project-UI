@@ -1,6 +1,6 @@
 import React from 'react';
 import AddJobComponent from './AddJobComponent'
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 
 import JobDetails from "./JobDetails";
 import PublicProfileComponent from "./PublicProfileComponent";
@@ -181,6 +181,7 @@ class PrivateProfileComponent extends React.Component {
                                                     <button className="btn"
                                                             onClick={() => this.set_Job(posting.id, this.props.savedGitJobs)}>
                                                         {posting.title}
+
                                                     </button>
                                                 </li>)
 
@@ -389,9 +390,9 @@ class PrivateProfileComponent extends React.Component {
                         {
                             this.props.tab === "SAVED_GIT_JOBS" &&
                             this.state.job !== null &&
-                                <JobDetails userId={this.props.loggedInUser.id} job={this.state.job}
-                                            findAllJobs={this.props.getSavedGitJobs}
-                                            set_job={this.set_Job}/>
+                                < JobDetails userId={this.props.loggedInUser.id} job={this.state.job}
+                                    findAllJobs={this.props.getSavedGitJobs}
+                                    set_job={this.set_Job}/>
                         }
 
                         {
