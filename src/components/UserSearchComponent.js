@@ -29,7 +29,7 @@ class UserSearchComponent extends React.Component {
                             {
                                 this.props.users.map(profile =>
                                  <li className="list-group-item">
-                                     <Link to={`/api/users/public/${profile.username}`}
+                                     <Link to={`/public/profile/${profile.id}`}
                                             onClick={() => this.setState({
                                                 currentProfile: this.props.users.find(
                                                     u => u.username === profile.username
@@ -54,7 +54,7 @@ class UserSearchComponent extends React.Component {
                 </div>
                 <div className="col-sm-8 col-md-8 col-lg-8">
                 {/*    INSERT USER DETAILS HERE*/}
-                <Route path={'/api/users/public/:username'}
+                <Route path={'/public/profile/:username'}
                        render={(props) => this.props.isUserLoggedIn ? (
 
                            <PublicProfileComponent

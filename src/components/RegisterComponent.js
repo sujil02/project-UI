@@ -194,7 +194,7 @@ class RegisterComponent extends React.Component {
                                                        placeholder="GPA"
                                                        onChange={(event) => this.props.updateUser(
                                                                { ...this.props.user,
-                                                                   GPA: event.target.value})}/>
+                                                                   gpa: event.target.value})}/>
                                             </div>
                                         </div>
 
