@@ -108,6 +108,18 @@ export default class JobService {
             .catch(error => console.log("ERROR IN GET LOCAL JOBS" + error))
     }
 
+    saveUpdatedJob = (jobId, job) => {
+        console.log("UPDATE JOB " + job.id + job.title)
+        return fetch(`${URL_ROOT}/api/jobs/${jobId}`,{
+            method: 'PUT',
+            body: JSON.stringify(job),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(result => result.json())
+            .catch(error => console.log("ERROR IN SAVING UPDATED JOB" + error))
+    }
 
 
 }
