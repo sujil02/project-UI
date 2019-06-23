@@ -68,7 +68,7 @@ export default class JobService {
 
 
     getCompanyDetals = (company_url) =>{
-        return fetch(`https://api.fullcontact.com/v3/company.enrich`, {
+        return fetch(this.proxyUrl + `https://api.fullcontact.com/v3/company.enrich`, {
             method: 'POST',
             headers:
                 {
