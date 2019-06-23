@@ -3,7 +3,10 @@ import React from 'react';
 export default class CompanyDetailsComponent extends React.Component{
     render(){
         return (
-            <div className="card">
+            <div>
+                {this.props.company &&
+                <div className="card">
+
                 <div className="card-header">
                     <div className="row">
                         <div className="col-md-10">
@@ -77,6 +80,8 @@ export default class CompanyDetailsComponent extends React.Component{
                     </div>
                 </div>
 
+            </div>
+                }
             </div>
         )
     }
