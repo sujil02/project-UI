@@ -130,12 +130,9 @@ class PrivateProfileComponent extends React.Component {
                                                                 this.props.allAddedJobs); this.setState({updateJobToggle: false})}}>
                                                         {posting.title}
                                                     </button>
-                                                    <button className="btn btn-outline-warning float-right"
-                                                            onClick={() => this.setUpdateJobToggle()}>
-                                                        Edit Job
-                                                    </button>
+                                                    <button className="btn float-right fa fa-pencil"
+                                                            onClick={() => this.setUpdateJobToggle()}></button>
                                                 </li>)
-
                                         }
                                     </ul>
 
@@ -405,6 +402,7 @@ class PrivateProfileComponent extends React.Component {
                                         set_job={this.set_Job}/>
                             ):(
                                 this.state.job !== null && this.props.loggedInUser.role === "RECRUITER" &&
+                                this.props.tab === "ALL_ADDED_JOBS" &&
                                     <UpdateJobComponent job={ this.state.job}
                                                         user={this.props.loggedInUser}
                                                     updateJob={this.updateJob}
