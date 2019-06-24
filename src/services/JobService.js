@@ -34,7 +34,7 @@ export default class JobService {
 
     addJob = (job, userId) => {
         console.log("ADD JOB SERVICE")
-        return fetch(`${this.urlJobs}/${userId}`,{
+        return fetch(`${URL_ROOT}/api/jobs/${userId}`,{
             method: 'POST',
             body: JSON.stringify(job),
             headers:{
@@ -72,7 +72,7 @@ export default class JobService {
             method: 'POST',
             headers:
                 {
-                    Authorization: 'Bearer K9LIB6BuVBsrOoax0ahygpmKaULY1Ikr',
+                    Authorization: 'Bearer 8wKfcWjrcKsDv99iLl70atsETeyGyHdV',
                 },
             body: JSON.stringify({
                 domain: company_url

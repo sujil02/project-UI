@@ -16,7 +16,7 @@ export default class UserService {
     proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
     findUserBycredentials  = (user) =>{
-        return fetch(`${this.urlUser}/login`,{
+        return fetch(`${URL_ROOT}/api/login`,{
             method: 'POST',
             body: JSON.stringify(user),
             credentials:'include',
@@ -30,7 +30,7 @@ export default class UserService {
     registerUser = (user) => {
 
         if (user.role == "STUDENT") {
-            return fetch(`${this.urlUser}/register/student`, {
+            return fetch(`${URL_ROOT}/api/register/student`, {
                 method: 'POST',
                 body: JSON.stringify(user),
                 credentials: 'include',
@@ -40,7 +40,7 @@ export default class UserService {
             }).then(response => response.json())
         }
         else{
-            return fetch(`${this.urlUser}/register/recruiter`, {
+            return fetch(`${URL_ROOT}/api/register/recruiter`, {
                 method: 'POST',
                 body: JSON.stringify(user),
                 credentials: 'include',
@@ -53,7 +53,7 @@ export default class UserService {
 
 
     updateUser = (user, userId) => {
-        return fetch(`${this.urlUser}/user/${userId}`,{
+        return fetch(`${URL_ROOT}/api/user/${userId}`,{
             method: 'PUT',
             body: JSON.stringify(user),
             credentials: 'include',
@@ -64,12 +64,12 @@ export default class UserService {
     }
 
     findUsers = (username) => {
-        return fetch(`${this.urlUser}/users/searchUserProfiles/${username}`)
+        return fetch(`${URL_ROOT}/api/users/searchUserProfiles/${username}`)
             .then(response => response.json())
     }
 
     checkIfUserLoggedIn = () => {
-        return fetch(`${this.urlUser}/loggedIn`,{
+        return fetch(`${URL_ROOT}/api/loggedIn`,{
             credentials: 'include'
         })
             .then(response => response.text())
@@ -77,7 +77,7 @@ export default class UserService {
     };
 
     logOutUser = () => {
-        return fetch(`${this.urlUser}/logout`,{
+        return fetch(`${URL_ROOT}/api/logout`,{
             method: 'POST',
             credentials: 'include'
         })
