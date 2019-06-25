@@ -92,8 +92,8 @@ const JobDetails =({job, addJob, userId, user, findAllJobs, set_job}) => {
                     </div>
                     ) : (
                         <button  className="btn btn-block btn-danger"
-                                 onClick={() => {jobService.unSaveJob(userId, job.id); findAllJobs(userId);
-                                                set_job({},[])}}>
+                                 onClick={() => {jobService.unSaveJob(userId, job.id);
+                                                set_job({},[]); alert("Removed job")}}>
                             Remove Job
                         </button>
                     )

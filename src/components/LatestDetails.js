@@ -39,6 +39,10 @@ export default class LatestDetails extends React.Component{
         // }
     }
 
+    set_job = (job_id, jobs) => {
+        console.log("Dummy" + job_id )
+    }
+
     componentDidMount() {
         if(!this.props.isUserLoggedIn) {
             jobService.getRecentJobs()
@@ -156,7 +160,8 @@ export default class LatestDetails extends React.Component{
                 {this.props.isUserLoggedIn &&
                 <div>
                     {Object.keys(this.state.job).length > 0 &&
-                    <JobDetails job={this.state.job} addJob={true} userId={this.props.user.id} user={this.props.user}/>
+                    <JobDetails job={this.state.job} addJob={false} userId={this.props.user.id} user={this.props.user}
+                                findAllJobs={jobService.getSavedJobsForUsers} set_job={this.set_job}/>
                     }
                 </div>
                 }

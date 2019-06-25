@@ -230,7 +230,7 @@ export default class JobBoard extends React.Component{
                 {/*<Route path={`/admin`}*/}
                 {/*    render={(props) =>*/}
                 {/*    <AdminContainer/>}/>*/}
-                
+
 
             </Router>
         );
